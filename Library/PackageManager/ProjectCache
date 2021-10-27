@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637707892243495185
-    m_Hash: 1407836200
+      ticks: 637709435015026801
+    m_Hash: 3006576431
   m_LockFileStatus:
     m_FilePath: C:/Users/School part/Fantasy Showdown/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637707892484525329
-    m_Hash: 1628627717
+      ticks: 637709435015036770
+    m_Hash: 2379440839
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -112,6 +112,7 @@ m_PackageAssets:
         - 7.0.0-pre.3
         - 7.0.0
         - 7.0.1
+        - 8.0.0-pre.3
         compatible:
         - 5.0.8
         - 5.0.9
@@ -312,6 +313,7 @@ m_PackageAssets:
         - 6.0.0-pre.4
         - 6.0.0
         - 6.0.1
+        - 7.0.0-pre.3
         compatible:
         - 4.1.1
         - 4.1.2
@@ -501,6 +503,7 @@ m_PackageAssets:
         - 7.0.0-pre.3
         - 7.0.0
         - 7.0.2
+        - 8.0.0-pre.4
         compatible:
         - 5.1.5
         verified: 5.1.5
