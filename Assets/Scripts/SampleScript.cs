@@ -8,6 +8,7 @@ public class SampleScript : MonoBehaviour
     public GameObject card;
     public GameObject playerArea;
     // Start is called before the first frame update
+    //hello
     void Start()
     {
         
