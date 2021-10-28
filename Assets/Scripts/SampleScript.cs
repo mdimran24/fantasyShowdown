@@ -13,5 +13,9 @@ public class SampleScript : MonoBehaviour
         
     }
 
+    public void onClick(){
+       
+    }
+
     
 }
