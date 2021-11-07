@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Login.unity
-=======
-- path: Assets/Scenes/Menu.unity
->>>>>>> ToBeMerged
+- path: Assets/Scenes/MainGame.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
