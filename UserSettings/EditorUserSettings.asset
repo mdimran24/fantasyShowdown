@@ -9,10 +9,17 @@ EditorUserSettings:
       value: 224247031146466b0501182d1e636a1e1f03016a022d3227223b163aece77b1ce7ea39faa80a2a321b03fc35072d4c0be71e0619ff0a0644220df80014ec5f2304cb3ac409c11c0f86351ddbc31ed9e6c798c1e4d1fffe
       flags: 0
     RecentlyUsedScenePath-1:
+<<<<<<< HEAD
       value: 224247031146466b0501182d1e636a1e1f03016a022d3227223b163aece77b1ce7ea39faa81e3a313635e02e0f3b1370d60f0404c1041800141cda0f1cfa5d2012c016c054dd1115df00
       flags: 0
     RecentlyUsedScenePath-2:
       value: 224247031146466b0501182d1e636a1e1f03016a022d3227223b163aece77b1ce7ea39faa81e3a313650cb161133111efc0e3b1ef83c031f193ef51702f613005ee11dc8159a3b36de140cefc319e3f6dbe1ddfed0dbefc1cdd6a3e1b9c3edfdfbf4ebeea4a1e8d9
+=======
+      value: 22424703114646680e0b0227036c72111f193f2b212d68252320092a
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646680e0b0227036c731f171311242b66333e243d04
+>>>>>>> ToBeMerged
       flags: 0
     RecentlyUsedScenePath-3:
       value: 224247031146466b0501182d1e636a1e1f03016a022d3227223b163aece77b1ce7ea39faa81e3a31362afa3e4b1a0432fd221c09bb38090e1f0bb03843b1051d18d101
@@ -34,6 +41,9 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-9:
       value: 22424703114646680e0b0227036c731f111e166439262f2434
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 22424703114646680e0b0227036c72151802563f22213229
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

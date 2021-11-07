@@ -15,13 +15,13 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 0
-    y: 43.2
-    width: 1536
-    height: 772.8
+    y: 43
+    width: 1920
+    height: 989
   m_ShowMode: 4
   m_Title: Hierarchy
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -43,12 +43,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1536
-    height: 722.8
+    width: 1920
+    height: 939
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 108
+=======
+  controlID: 15
+>>>>>>> ToBeMerged
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,10 +68,17 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1051.2
     y: 0
     width: 484.80005
     height: 722.8
+=======
+    x: 1575
+    y: 0
+    width: 345
+    height: 939
+>>>>>>> ToBeMerged
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
@@ -92,8 +103,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 352
     height: 445.6
+=======
+    width: 527
+    height: 579
+>>>>>>> ToBeMerged
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
@@ -117,9 +133,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 445.6
     width: 1051.2
     height: 277.19998
+=======
+    y: 579
+    width: 1575
+    height: 360
+>>>>>>> ToBeMerged
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 14}
@@ -148,9 +170,9 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1536
-    height: 772.8
-  m_MinSize: {x: 875, y: 542}
+    width: 1920
+    height: 989
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -173,7 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1536
+    width: 1920
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -197,8 +219,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 752.8
-    width: 1536
+    y: 969
+    width: 1920
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -221,12 +243,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1051.2
     height: 722.8
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 109
+=======
+    width: 1575
+    height: 939
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
+  vertical: 1
+  controlID: 16
+>>>>>>> ToBeMerged
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,12 +277,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1051.2
     height: 445.6
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
   controlID: 110
+=======
+    width: 1575
+    height: 579
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 17
+>>>>>>> ToBeMerged
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,10 +307,17 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 352
     y: 0
     width: 699.19995
     height: 445.6
+=======
+    x: 527
+    y: 0
+    width: 1048
+    height: 579
+>>>>>>> ToBeMerged
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
@@ -500,9 +547,15 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 519.2
     width: 1050.2
     height: 256.19998
+=======
+    y: 652
+    width: 1574
+    height: 339
+>>>>>>> ToBeMerged
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -525,14 +578,20 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\School part\Fantasy Showdown
+  m_LastProjectPath: C:\Users\Imran\OneDrive\Documents\GitHub\fastasyShowdown
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 96430000
     m_LastClickedID: 17302
     m_ExpandedIDs: 000000008843000000ca9a3b
+=======
+    m_SelectedIDs: 8c490000
+    m_LastClickedID: 18828
+    m_ExpandedIDs: 000000007e4900008049000000ca9a3b
+>>>>>>> ToBeMerged
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -560,7 +619,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000088430000
+=======
+    m_ExpandedIDs: 000000007e49000080490000
+>>>>>>> ToBeMerged
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -632,14 +695,21 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Inspector
-    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1051.2001
     y: 73.6
     width: 483.80005
     height: 701.8
+=======
+    x: 1575
+    y: 73
+    width: 344
+    height: 918
+>>>>>>> ToBeMerged
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -674,16 +744,28 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 73.6
     width: 351
     height: 424.6
+=======
+    y: 73
+    width: 526
+    height: 558
+>>>>>>> ToBeMerged
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 22e6ffffe0f6ffff78f9ffff9af9ffff44faffff6efaffff3efbffffb2450000e6450000
+=======
+      m_SelectedIDs: a6490000
+      m_LastClickedID: 0
+      m_ExpandedIDs: c8f6ffffe8f6ffff00f7fffff2f7ffffa0f9ffff
+>>>>>>> ToBeMerged
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -727,10 +809,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 352
     y: 73.6
     width: 697.19995
     height: 424.6
+=======
+    x: 527
+    y: 73
+    width: 1046
+    height: 558
+>>>>>>> ToBeMerged
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
@@ -743,9 +832,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 346.9573, y: 240.99467, z: -44.60819}
     speed: 2
     m_Value: {x: 355.92453, y: 246.08762, z: -43.630344}
+=======
+    m_Target: {x: 601.487, y: 239.18268, z: -138.79535}
+    speed: 2
+    m_Value: {x: 601.487, y: 239.18268, z: -138.79535}
+>>>>>>> ToBeMerged
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -796,9 +891,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 259.40063
     speed: 2
     m_Value: 271.6237
+=======
+    m_Target: 379.44498
+    speed: 2
+    m_Value: 379.44498
+>>>>>>> ToBeMerged
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -843,10 +944,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 352
     y: 73.6
     width: 697.19995
     height: 424.6
+=======
+    x: 527
+    y: 73
+    width: 1046
+    height: 558
+>>>>>>> ToBeMerged
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -854,7 +962,11 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+<<<<<<< HEAD
   m_TargetSize: {x: 697.19995, y: 392}
+=======
+  m_TargetSize: {x: 1046, y: 537}
+>>>>>>> ToBeMerged
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -869,10 +981,17 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
     m_HBaseRangeMin: -278.87997
     m_HBaseRangeMax: 278.87997
     m_VBaseRangeMin: -156.8
     m_VBaseRangeMax: 156.8
+=======
+    m_HBaseRangeMin: -523
+    m_HBaseRangeMax: 523
+    m_VBaseRangeMin: -268.5
+    m_VBaseRangeMax: 268.5
+>>>>>>> ToBeMerged
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -890,16 +1009,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 697.19995
       height: 403.6
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 348.59998, y: 201.8}
+=======
+      width: 1046
+      height: 537
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 523, y: 268.5}
+>>>>>>> ToBeMerged
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -348.59998
       y: -201.8
       width: 697.19995
@@ -907,6 +1034,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 871.49994, y: 530.75}
+=======
+      x: -523
+      y: -268.5
+      width: 1046
+      height: 537
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 1046, y: 558}
+>>>>>>> ToBeMerged
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
