@@ -7,7 +7,7 @@ public class DragDrop : MonoBehaviour
     private Vector2 startPosition;
     private bool isDragging = false;
     private bool isOverDropZone = false;
-    private GameObject dropZone;
+    private GameObject chosenCardArea;
     // Update is called once per frame
     void Update()
     {
@@ -18,13 +18,13 @@ public class DragDrop : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isOverDropZone = true;
-        dropZone = collision.gameObject;
+        chosenCardArea = collision.gameObject;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         isOverDropZone = false;
-        dropZone = null;
+        chosenCardArea = null;
     }
     public void StartDrag()
     {
@@ -38,7 +38,7 @@ public class DragDrop : MonoBehaviour
         isDragging = false;
         if (isOverDropZone)
         {
-            transform.SetParent(dropZone.transform, false);
+            transform.SetParent(chosenCardArea.transform, false);
         } else
         {
             transform.position = startPosition;
