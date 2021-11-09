@@ -8,11 +8,19 @@ public class DragDrop : MonoBehaviour
     private bool isDragging = false;
     private bool isOverDropZone = false;
     private GameObject chosenCardArea;
+    private GameObject startParent;
+    public GameObject Canvas;
     // Update is called once per frame
+
+private void Awake() {
+    Canvas = GameObject.Find("Main Canvas");
+}
+
     void Update()
     {
         if (isDragging){
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            transform.SetParent(Canvas.transform, true);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +36,7 @@ public class DragDrop : MonoBehaviour
     }
     public void StartDrag()
     {
+        startParent = transform.parent.gameObject;
         startPosition = transform.position;
         isDragging = true;
     }
@@ -42,6 +51,7 @@ public class DragDrop : MonoBehaviour
         } else
         {
             transform.position = startPosition;
+            transform.SetParent(startParent.transform, false);
         }
     }
 }
