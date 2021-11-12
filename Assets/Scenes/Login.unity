@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 154188475}
   - component: {fileID: 154188474}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LogInInstead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ RectTransform:
   m_Children:
   - {fileID: 1657038361}
   m_Father: {fileID: 776828287}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -205,7 +205,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 154188475}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 240578687}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 776828286}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &154188475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &240578688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -285,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030518, y: 1.7}
+  m_AnchoredPosition: {x: 0, y: 1.7000122}
   m_SizeDelta: {x: -387.0063, y: -174.266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240578689
@@ -496,7 +520,7 @@ GameObject:
   - component: {fileID: 350440204}
   - component: {fileID: 350440203}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +600,7 @@ GameObject:
   - component: {fileID: 605693081}
   - component: {fileID: 605693080}
   m_Layer: 5
-  m_Name: InputField (1)
+  m_Name: EmailAuthInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +825,7 @@ RectTransform:
   - {fileID: 240578688}
   - {fileID: 776828287}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -821,7 +845,7 @@ GameObject:
   - component: {fileID: 691832262}
   - component: {fileID: 691832261}
   m_Layer: 5
-  m_Name: InputField (2)
+  m_Name: PasswordAuthInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -841,7 +865,7 @@ RectTransform:
   - {fileID: 1028668351}
   - {fileID: 1214824833}
   m_Father: {fileID: 776828287}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -964,7 +988,7 @@ GameObject:
   - component: {fileID: 766005604}
   - component: {fileID: 766005603}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: SignUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,7 +1057,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 766005604}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 776828286}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 240578687}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &766005604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &776828287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1105,18 +1153,18 @@ RectTransform:
   - {fileID: 1574176316}
   - {fileID: 1678704332}
   - {fileID: 605693079}
-  - {fileID: 154188473}
-  - {fileID: 1408800027}
   - {fileID: 1056060607}
   - {fileID: 691832260}
   - {fileID: 2001372137}
   - {fileID: 2106468926}
+  - {fileID: 1408800027}
+  - {fileID: 154188473}
   m_Father: {fileID: 688840697}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0018311, y: 0}
+  m_AnchoredPosition: {x: 0.0018310547, y: 0}
   m_SizeDelta: {x: -387.01, y: -138.2381}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776828288
@@ -1221,7 +1269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911162607
 GameObject:
@@ -1235,7 +1283,7 @@ GameObject:
   - component: {fileID: 911162610}
   - component: {fileID: 911162609}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,7 +1441,7 @@ GameObject:
   - component: {fileID: 986245350}
   - component: {fileID: 986245349}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1551,7 +1599,7 @@ GameObject:
   - component: {fileID: 1056060609}
   - component: {fileID: 1056060608}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1569,7 +1617,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 776828287}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1697,6 +1745,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214824832}
   m_CullTransparentMesh: 1
+--- !u!1 &1286568114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286568116}
+  - component: {fileID: 1286568115}
+  m_Layer: 0
+  m_Name: PlayFabControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1286568115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286568114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981d9a741b6d0b941ba3542b6de76244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user: {fileID: 1574176317}
+  email: {fileID: 605693080}
+  password: {fileID: 691832261}
+  isAuthenticated: 0
+--- !u!4 &1286568116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286568114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 977.4469, y: 516.35034, z: -290.0416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341130402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1884,7 @@ GameObject:
   - component: {fileID: 1349229285}
   - component: {fileID: 1349229284}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: PlayAsGuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,7 +2005,7 @@ GameObject:
   - component: {fileID: 1408800029}
   - component: {fileID: 1408800028}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: SignUpAuth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1929,7 +2024,7 @@ RectTransform:
   m_Children:
   - {fileID: 1699625121}
   m_Father: {fileID: 776828287}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1979,7 +2074,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1408800029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1286568115}
+        m_TargetAssemblyTypeName: PlayFabAuthenticate, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1408800029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,7 +2206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574176315
 GameObject:
@@ -2114,7 +2221,7 @@ GameObject:
   - component: {fileID: 1574176318}
   - component: {fileID: 1574176317}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: UsernameAuthInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2336,7 +2443,7 @@ GameObject:
   - component: {fileID: 1625396182}
   - component: {fileID: 1625396181}
   m_Layer: 5
-  m_Name: InputField (1)
+  m_Name: PasswordInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2557,7 +2664,7 @@ GameObject:
   - component: {fileID: 1678704334}
   - component: {fileID: 1678704333}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Email
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3343,12 +3450,12 @@ GameObject:
   - component: {fileID: 2001372139}
   - component: {fileID: 2001372138}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: ConfirmPass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2001372137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3361,7 +3468,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 776828287}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3423,7 +3530,7 @@ GameObject:
   - component: {fileID: 2032131720}
   - component: {fileID: 2032131719}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: UsernameInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3566,7 +3673,7 @@ GameObject:
   - component: {fileID: 2041647971}
   - component: {fileID: 2041647970}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LogIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3687,12 +3794,12 @@ GameObject:
   - component: {fileID: 2106468928}
   - component: {fileID: 2106468927}
   m_Layer: 5
-  m_Name: InputField (3)
+  m_Name: ConfirmPassInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106468926
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3707,7 +3814,7 @@ RectTransform:
   - {fileID: 2119599969}
   - {fileID: 1720194980}
   m_Father: {fileID: 776828287}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
