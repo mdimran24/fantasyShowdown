@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 605693081}
   - component: {fileID: 605693080}
   m_Layer: 5
-  m_Name: EmailAuthInput
+  m_Name: EmailRegInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 691832262}
   - component: {fileID: 691832261}
   m_Layer: 5
-  m_Name: PasswordAuthInput
+  m_Name: PasswordRegInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 1408800029}
   - component: {fileID: 1408800028}
   m_Layer: 5
-  m_Name: SignUpAuth
+  m_Name: SignUpReg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2221,7 +2221,7 @@ GameObject:
   - component: {fileID: 1574176318}
   - component: {fileID: 1574176317}
   m_Layer: 5
-  m_Name: UsernameAuthInput
+  m_Name: UsernameRegInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3794,7 +3794,7 @@ GameObject:
   - component: {fileID: 2106468928}
   - component: {fileID: 2106468927}
   m_Layer: 5
-  m_Name: ConfirmPassInput
+  m_Name: ConfirmPassRegInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1880,7 +1880,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1097377606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a15265d08a23db4788016c8b78fd538, type: 3}
+  m_Script: {fileID: 11500000, guid: a63e018016c09b247a9dfffaea36e443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1098263642
@@ -2831,7 +2831,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1097377608}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: PressPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
