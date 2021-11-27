@@ -11,7 +11,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-
+using Photon;
 using Photon.Realtime;
 
 namespace Photon.Pun
