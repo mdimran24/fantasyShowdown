@@ -45,7 +45,7 @@ private void Awake() {
     {
 
         isDragging = false;
-        if (isOverDropZone)
+        if (isOverDropZone && chosenCardArea.transform.childCount <= 0)
         {
             transform.SetParent(chosenCardArea.transform, false);
         } else

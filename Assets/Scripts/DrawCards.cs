@@ -23,7 +23,7 @@ public class DrawCards : MonoBehaviour
     public void OnClick()
     {
         if(isClicked == false){
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 4; i++)
         {
             GameObject playerCard = Instantiate(cards[Random.Range(0,cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
             playerCard.transform.SetParent(PlayerArea.transform, false);
