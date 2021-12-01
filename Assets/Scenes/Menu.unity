@@ -124,7 +124,11 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &43844528
+=======
+--- !u!1 &231604664
+>>>>>>> Stashed changes
 =======
 --- !u!1 &231604664
 >>>>>>> Stashed changes
@@ -136,17 +140,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 43844529}
   - component: {fileID: 43844530}
   m_Layer: 5
   m_Name: Slider
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 231604665}
   - component: {fileID: 231604668}
   - component: {fileID: 231604667}
   - component: {fileID: 231604666}
   m_Layer: 5
   m_Name: QuitBtn
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +164,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!224 &43844529
+=======
+--- !u!224 &231604665
+>>>>>>> Stashed changes
 =======
 --- !u!224 &231604665
 >>>>>>> Stashed changes
@@ -163,6 +177,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 43844528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -182,6 +197,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43844530
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 231604664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -196,6 +213,9 @@ RectTransform:
   m_SizeDelta: {x: 480.9798, y: 90.1839}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231604666
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,15 +223,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 43844528}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 231604664}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_Name: 
   m_EditorClassIdentifier: 
@@ -244,6 +270,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_TargetGraphic: {fileID: 1768242245}
   m_FillRect: {fileID: 467462887}
   m_HandleRect: {fileID: 1768242244}
@@ -260,6 +287,8 @@ MonoBehaviour:
         m_MethodName: SetVolume
         m_Mode: 0
 =======
+=======
+>>>>>>> Stashed changes
   m_TargetGraphic: {fileID: 231604667}
   m_OnClick:
     m_PersistentCalls:
@@ -268,6 +297,9 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: QuitBtn, Assembly-CSharp
         m_MethodName: quitGame
         m_Mode: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -278,8 +310,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &55578687
 GameObject:
+=======
+--- !u!114 &231604667
+MonoBehaviour:
+>>>>>>> Stashed changes
 =======
 --- !u!114 &231604667
 MonoBehaviour:
@@ -288,6 +325,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   serializedVersion: 6
   m_Component:
@@ -302,6 +340,8 @@ MonoBehaviour:
 --- !u!224 &55578688
 RectTransform:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 231604664}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -328,11 +368,15 @@ RectTransform:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &231604668
 CanvasRenderer:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 55578687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -354,6 +398,11 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!1 &615773086
 >>>>>>> Stashed changes
+=======
+  m_GameObject: {fileID: 231604664}
+  m_CullTransparentMesh: 1
+--- !u!1 &615773086
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,20 +411,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 75262677}
   - component: {fileID: 75262678}
   m_Layer: 5
   m_Name: OptionsMenu
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 615773088}
   - component: {fileID: 615773087}
   m_Layer: 0
   m_Name: Main_Title
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_IsActive: 0
 --- !u!224 &75262677
@@ -385,10 +441,16 @@ RectTransform:
 --- !u!212 &615773087
 SpriteRenderer:
 >>>>>>> Stashed changes
+=======
+  m_IsActive: 1
+--- !u!212 &615773087
+SpriteRenderer:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 75262676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -411,6 +473,8 @@ SpriteRenderer:
 --- !u!114 &75262678
 MonoBehaviour:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 615773086}
   m_Enabled: 1
   m_CastShadows: 0
@@ -458,11 +522,15 @@ MonoBehaviour:
   m_SpriteSortPoint: 0
 --- !u!4 &615773088
 Transform:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 75262676}
   m_Enabled: 1
@@ -473,6 +541,8 @@ Transform:
   audioMixer: {fileID: 24100000, guid: 46d6d3a742f494a46b20f50060673acc, type: 2}
 --- !u!1 &92767780
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 615773086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.22, y: 2.69, z: 0}
@@ -482,6 +552,9 @@ Transform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847446508
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 92767781}
   - component: {fileID: 92767784}
   - component: {fileID: 92767783}
@@ -499,17 +573,23 @@ GameObject:
   m_Name: Scrollbar
   m_TagString: Untagged
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 847446511}
   - component: {fileID: 847446510}
   - component: {fileID: 847446509}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!224 &92767781
 RectTransform:
@@ -537,10 +617,15 @@ MonoBehaviour:
 --- !u!81 &847446509
 AudioListener:
 >>>>>>> Stashed changes
+=======
+--- !u!81 &847446509
+AudioListener:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 92767780}
   m_Enabled: 1
@@ -588,15 +673,21 @@ AudioListener:
 --- !u!114 &92767783
 MonoBehaviour:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 847446508}
   m_Enabled: 1
 --- !u!20 &847446510
 Camera:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 92767780}
   m_Enabled: 1
@@ -625,6 +716,8 @@ Camera:
 --- !u!222 &92767784
 CanvasRenderer:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 847446508}
   m_Enabled: 1
   serializedVersion: 2
@@ -664,16 +757,22 @@ CanvasRenderer:
   m_StereoSeparation: 0.022
 --- !u!4 &847446511
 Transform:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 92767780}
   m_CullTransparentMesh: 1
 --- !u!1 &103002066
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 847446508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
@@ -683,6 +782,9 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388719907
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,22 +794,29 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 103002067}
   - component: {fileID: 103002069}
   - component: {fileID: 103002068}
   m_Layer: 5
   m_Name: Text (TMP)
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 1388719909}
   - component: {fileID: 1388719908}
   m_Layer: 0
   m_Name: Loading_Screen_Background
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!224 &103002067
 RectTransform:
@@ -734,10 +843,15 @@ MonoBehaviour:
 --- !u!212 &1388719908
 SpriteRenderer:
 >>>>>>> Stashed changes
+=======
+--- !u!212 &1388719908
+SpriteRenderer:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 103002066}
   m_Enabled: 1
@@ -825,6 +939,8 @@ SpriteRenderer:
 --- !u!222 &103002069
 CanvasRenderer:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1388719907}
   m_Enabled: 1
   m_CastShadows: 0
@@ -872,16 +988,22 @@ CanvasRenderer:
   m_SpriteSortPoint: 0
 --- !u!4 &1388719909
 Transform:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 103002066}
   m_CullTransparentMesh: 1
 --- !u!1 &262050227
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1388719907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0161, y: 0, z: 0}
@@ -891,6 +1013,9 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1664287299
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +1025,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 262050228}
   - component: {fileID: 262050231}
   - component: {fileID: 262050230}
@@ -907,12 +1033,17 @@ GameObject:
   m_Layer: 5
   m_Name: backBtn
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 1664287300}
   - component: {fileID: 1664287303}
   - component: {fileID: 1664287302}
   - component: {fileID: 1664287301}
   m_Layer: 5
   m_Name: StartBtn
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +1051,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!224 &262050228
+=======
+--- !u!224 &1664287300
+>>>>>>> Stashed changes
 =======
 --- !u!224 &1664287300
 >>>>>>> Stashed changes
@@ -929,6 +1064,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 262050227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -946,6 +1082,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262050229
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1664287299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -960,6 +1098,9 @@ RectTransform:
   m_SizeDelta: {x: 501.9214, y: 94.1103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1664287301
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,7 +1108,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 262050227}
+=======
+  m_GameObject: {fileID: 1664287299}
+>>>>>>> Stashed changes
 =======
   m_GameObject: {fileID: 1664287299}
 >>>>>>> Stashed changes
@@ -986,9 +1131,15 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.6698113, g: 0.40062296, b: 0.40062296, a: 0.39607844}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.56078434}
+=======
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+>>>>>>> Stashed changes
 =======
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1011,6 +1162,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_TargetGraphic: {fileID: 262050230}
   m_OnClick:
     m_PersistentCalls:
@@ -1020,6 +1172,8 @@ MonoBehaviour:
         m_MethodName: SetActive
         m_Mode: 6
 =======
+=======
+>>>>>>> Stashed changes
   m_TargetGraphic: {fileID: 1664287302}
   m_OnClick:
     m_PersistentCalls:
@@ -1028,6 +1182,9 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: StartBtn, Assembly-CSharp
         m_MethodName: changeScene
         m_Mode: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1037,6 +1194,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       - m_Target: {fileID: 1097377606}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1054,13 +1212,20 @@ MonoBehaviour:
 =======
 --- !u!114 &1664287302
 >>>>>>> Stashed changes
+=======
+--- !u!114 &1664287302
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 262050227}
+=======
+  m_GameObject: {fileID: 1664287299}
+>>>>>>> Stashed changes
 =======
   m_GameObject: {fileID: 1664287299}
 >>>>>>> Stashed changes
@@ -1078,8 +1243,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
+=======
+  m_Sprite: {fileID: 21300000, guid: 0581573718f9e4f48bcd116f982b5c1b, type: 3}
+  m_Type: 0
+>>>>>>> Stashed changes
 =======
   m_Sprite: {fileID: 21300000, guid: 0581573718f9e4f48bcd116f982b5c1b, type: 3}
   m_Type: 0
@@ -1093,7 +1263,11 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!222 &262050231
+=======
+--- !u!222 &1664287303
+>>>>>>> Stashed changes
 =======
 --- !u!222 &1664287303
 >>>>>>> Stashed changes
@@ -1103,9 +1277,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 262050227}
   m_CullTransparentMesh: 1
 --- !u!1 &276641213
+=======
+  m_GameObject: {fileID: 1664287299}
+  m_CullTransparentMesh: 1
+--- !u!1 &2057946043
+>>>>>>> Stashed changes
 =======
   m_GameObject: {fileID: 1664287299}
   m_CullTransparentMesh: 1
@@ -1119,17 +1299,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 276641214}
   - component: {fileID: 276641216}
   - component: {fileID: 276641215}
   m_Layer: 5
   m_Name: Background
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 2057946046}
   - component: {fileID: 2057946045}
   - component: {fileID: 2057946044}
   m_Layer: 0
   m_Name: EventSystem
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,8 +1323,13 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!224 &276641214
 RectTransform:
+=======
+--- !u!114 &2057946044
+MonoBehaviour:
+>>>>>>> Stashed changes
 =======
 --- !u!114 &2057946044
 MonoBehaviour:
@@ -1147,6 +1338,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 276641213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -1163,6 +1355,8 @@ MonoBehaviour:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276641215
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2057946043}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1177,12 +1371,16 @@ MonoBehaviour:
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &2057946045
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 276641213}
   m_Enabled: 1
@@ -1211,6 +1409,8 @@ MonoBehaviour:
 --- !u!222 &276641216
 CanvasRenderer:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2057946043}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1222,16 +1422,22 @@ CanvasRenderer:
   m_DragThreshold: 10
 --- !u!4 &2057946046
 Transform:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 276641213}
   m_CullTransparentMesh: 1
 --- !u!1 &336540399
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2057946043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1241,6 +1447,9 @@ Transform:
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2110585392
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 336540400}
   - component: {fileID: 336540403}
   - component: {fileID: 336540402}
@@ -1257,6 +1467,8 @@ GameObject:
   m_Layer: 5
   m_Name: Viewport
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 2110585398}
   - component: {fileID: 2110585397}
   - component: {fileID: 2110585396}
@@ -1265,12 +1477,16 @@ GameObject:
   - component: {fileID: 2110585393}
   m_Layer: 5
   m_Name: Canvas
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!224 &336540400
 RectTransform:
@@ -1296,11 +1512,15 @@ RectTransform:
 =======
 --- !u!114 &2110585393
 >>>>>>> Stashed changes
+=======
+--- !u!114 &2110585393
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 336540399}
   m_Enabled: 1
@@ -1328,10 +1548,21 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &336540402
 CanvasRenderer:
+=======
+  m_GameObject: {fileID: 2110585392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c01d908d8956b84c864d032535ab7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110585394
+MonoBehaviour:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 336540399}
   m_CullTransparentMesh: 1
 --- !u!114 &336540403
@@ -1344,11 +1575,21 @@ CanvasRenderer:
   m_EditorClassIdentifier: 
 --- !u!114 &2110585394
 >>>>>>> Stashed changes
+=======
+  m_GameObject: {fileID: 2110585392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260c37534abe50f42bb18789b6c7611e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110585395
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 336540399}
   m_Enabled: 1
@@ -1359,10 +1600,26 @@ MonoBehaviour:
   m_ShowMaskGraphic: 0
 --- !u!1 &409801476
 GameObject:
+=======
+  m_GameObject: {fileID: 2110585392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &2110585396
+MonoBehaviour:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409801477}
@@ -1524,6 +1781,8 @@ CanvasRenderer:
 --- !u!1 &412567393
 GameObject:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2110585392}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1543,11 +1802,15 @@ GameObject:
   m_PresetInfoIsWorld: 0
 --- !u!223 &2110585397
 Canvas:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   serializedVersion: 6
   m_Component:
@@ -1563,6 +1826,8 @@ Canvas:
   m_IsActive: 1
 --- !u!224 &412567394
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2110585392}
   m_Enabled: 1
   serializedVersion: 3
@@ -1579,6 +1844,7 @@ Canvas:
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &2110585398
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1732,11 +1998,14 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &508760455
+=======
+>>>>>>> Stashed changes
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 508760454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4042,6 +4311,8 @@ MonoBehaviour:
       m_Calls: []
   m_IsOn: 1
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 2110585392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4057,4 +4328,7 @@ MonoBehaviour:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -1,7 +1,11 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_FilePath: C:/Users/Imran/OneDrive/Documents/GitHub/fantasy-showdown/Packages/manifest.json
+=======
+    m_FilePath: C:/Users/billa/Documents/GitHub/fantasy-showdown/Packages/manifest.json
+>>>>>>> Stashed changes
 =======
     m_FilePath: C:/Users/billa/Documents/GitHub/fantasy-showdown/Packages/manifest.json
 >>>>>>> Stashed changes
@@ -9,6 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       ticks: 637736118259433711
     m_Hash: 106927209
@@ -20,10 +25,17 @@ m_ProjectFiles:
   m_LockFileStatus:
     m_FilePath: C:/Users/billa/Documents/GitHub/fantasy-showdown/Packages/packages-lock.json
 >>>>>>> Stashed changes
+=======
+      ticks: 637738250247486111
+    m_Hash: 3006576431
+  m_LockFileStatus:
+    m_FilePath: C:/Users/billa/Documents/GitHub/fantasy-showdown/Packages/packages-lock.json
+>>>>>>> Stashed changes
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       ticks: 637736118531637759
     m_Hash: 3346551122
@@ -278,6 +290,8 @@ m_ResolvedPackages:
     file format. The ScriptedImporter is currently targeted for users who wants to
     create multi Sprite character animation using Unity 2D Animation Package.
 =======
+=======
+>>>>>>> Stashed changes
       ticks: 637738250247496077
     m_Hash: 2379440839
 m_EmbeddedPackageManifests:
