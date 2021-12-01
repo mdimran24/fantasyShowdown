@@ -500,7 +500,7 @@ MonoBehaviour:
     wisdom: 0
     charisma: 0
     cardArt: {fileID: 0}
-  thisId: 18
+  thisId: 0
   id: 0
   cardName: 
   strength: 0
