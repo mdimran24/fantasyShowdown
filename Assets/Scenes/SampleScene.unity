@@ -2531,14 +2531,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 805130156}
     m_Modifications:
-    - target: {fileID: 544756001921437348, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ea52886240f80bb4fbbd78f7b87ed697, type: 3}
-    - target: {fileID: 544756001921437348, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 544756001921437350, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
       propertyPath: m_Name
       value: SelectedArea
@@ -2626,22 +2618,6 @@ PrefabInstance:
     - target: {fileID: 544756001921437351, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 544756001921437355, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_StartAxis
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 544756001921437355, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_CellSize.x
-      value: 302.7851
-      objectReference: {fileID: 0}
-    - target: {fileID: 544756001921437355, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_CellSize.y
-      value: 421.8599
-      objectReference: {fileID: 0}
-    - target: {fileID: 544756001921437355, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
-      propertyPath: m_StartCorner
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fef619dd91d303a459ebb9b81fa5c0d3, type: 3}
