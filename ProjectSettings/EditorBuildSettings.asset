@@ -4,37 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-<<<<<<< HEAD
-  - enabled: 0
-    path: Assets/Scenes/CardSampler.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Loading.unity
-    guid: 9cd84fdb7ab39c94b88ef530893e2919
-  - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 2d8a74b868d39ae41b23d04c374b2727
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
-=======
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: cfb93129fe038fb438c0f523153e88b9
-  - enabled: 1
-    path: Assets/Scenes/Login.unity
-    guid: e8c80b9f6e57bae4aa3c5f4749c55c8a
-  - enabled: 1
-    path: Assets/Scenes/Register.unity
-    guid: 5d5b90f073fb29342b2b2578082bf045
-  - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: 225e21e42eb40024b88305fe78e54d16
-  - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 2e233d90b137e95489952992bfe1af76
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
->>>>>>> d8238bc7f0f98ad762198182ea294c1c606da414
-    guid: bc871222f03ed714091701624674b68f
+  m_Scenes: []
   m_configObjects: {}
