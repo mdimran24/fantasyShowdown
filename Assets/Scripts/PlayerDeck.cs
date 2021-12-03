@@ -7,15 +7,15 @@ using UnityEngine;
 public class PlayerDeck : MonoBehaviour
 {
 
-    public List<Card> deck = new List<Card>();
-    public List<Card> shuffleDeck = new List<Card>();
+    public List<Card> deck;
+    public static List<Card> shuffleDeck = new List<Card>();
 
     public int x;
-    public int deckSize;
+    public static int deckSize;
     public int cardDatabaseSize;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         x = 0;
@@ -43,10 +43,27 @@ public class PlayerDeck : MonoBehaviour
     {
         for(int i = 0; i < deckSize; i++)
         {
-            shuffleDeck[0] = deck[i];
-            int randomIndex = Random.Range(i, deckSize);
-            deck[i] = deck[randomIndex];
-            deck[randomIndex] = shuffleDeck[0];
+          //  shuffleDeck[0] = deck[i];
+          //  int randomIndex = Random.Range(i, deckSize);
+         //   deck[i] = deck[randomIndex];
+         //   deck[randomIndex] = shuffleDeck[0];
+         shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
         }
     }
+
+    public Card RemoveRnd()
+    {
+        Card picked = deck[Random.Range(0, deckSize)];
+        deck.Remove(picked);
+        return picked;
+    }
+
+    public static Card RemovefromShuffle(int i)
+    {
+        Card shufpicked = shuffleDeck[i];
+        shuffleDeck.Remove(shufpicked);
+        return shufpicked;
+    }
+
+  
 }

@@ -200,8 +200,8 @@ namespace GoFish
             NetworkClient.Instance.ConnectToRoom((connected) =>
             {
                 if (connected)
-                {
-                    SceneManager.LoadScene("MultiplayerGame");
+                { ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CHANGE FOR MULTI !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    SceneManager.LoadScene("Game");
                 }
                 else
                 {
@@ -250,11 +250,13 @@ namespace GoFish
         {
             Debug.Log("OnCancelClicked");
 
-            if (State == LobbyState.JoinedRoom)
+            if (State == LobbyState.JoinedRoom )
             {
                 // TODO: leave room.
                 LeaveRoom();
             }
+            
+            
 
             HideAllPopover();
         }
@@ -268,7 +270,7 @@ namespace GoFish
             // players are ready to player now.
             if (Debugging)
             {
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene("Game");
             }
             else
             {

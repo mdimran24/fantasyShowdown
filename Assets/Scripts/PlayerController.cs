@@ -9,40 +9,41 @@ public class PlayerController : MonoBehaviour
     public GameObject playerHand;
     public GameObject selectGO;
     public bool isDrawn = false;
-    public PlayerDeck playerDeck;
+ 
 
-    //  public GameObject statSel;
-    //  public Button strB;
-    // public Button dexB;
-    //  public Button conB;
-    //  public Button intlB;
-    //  public Button wisB;
-    //  public Button chaB;
+      public GameObject statSel;
+      public Button strB;
+     public Button dexB;
+      public Button conB;
+      public Button intlB;
+      public Button wisB;
+      public Button chaB;
      public int buttons;
-    // public Button compareB;
+     public Button compareB;
 
      public int selectedVal;
     public ThisCard thisCard;
+    public ThisCard selectedCard;
 
-    public void InstantiateCards()
+   
+
+
+    public void InstantiateCards(int onebyone)
     {
       
             playerCard = Instantiate(playerCard, new Vector3(0, 0, 0), Quaternion.identity);
-          //  pCard.transform.parent = pCard.transform;
+         
             playerCard.transform.SetParent(playerHand.transform, false);
             thisCard = playerCard.GetComponent<ThisCard>();
-            thisCard.thisId = Random.Range(0, playerDeck.deckSize);
-            // thisCard. = playerDeck.deck[i];
-
-            //   }
+          thisCard.thisId = Random.Range(0, PlayerDeck.deckSize);
+           
         }
 
-    public void InstantiateCardsIfNotLead()
+    public void OnSelected()
     {
-
+       Image cardgraphic= playerCard.GetComponent<Image>();
+        cardgraphic.color = Color.red;
     }
-
-    // StartCoroutine(SetupBattle());
     public void fetchStat(int i)
     {
         switch (i)

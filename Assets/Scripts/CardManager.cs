@@ -15,33 +15,24 @@ public class CardManager : MonoBehaviour
   //  public GameObject selectGO;
     private bool isDrawn = false;
     public PlayerDeck playerDeck;
-    public PlayerController playerController;
+    public Player player;
+    public Player enemy;
 
-    public GameObject statSel;
-    public Button strB;
-    public Button dexB;
-    public Button conB;
-    public Button intlB;
-    public Button wisB;
-    public Button chaB;
-    private int buttons;
-    public Button compareB;
-
-    private int selectedVal;
-    private int enemyVal;
-
-    public GameObject enemyCard;
-    public GameObject enemyArea;
-
-   // private ThisCard thisCard;
-    private ThisCard enemyDisplayer;
+   
 
     public RoundState state;
 
+    private void Awake()
+    {
+       
+
+    }
     void Start()
     {
         state = RoundState.START;
-      
+        playerDeck.Shuffle();
+        player.FillHand(5);
+
     }
 
     
@@ -56,7 +47,7 @@ public class CardManager : MonoBehaviour
 
    public void CheckForDrawn()
     {
-        if (playerController.isDrawn)
+        if (player.controller.isDrawn)
         {
             StartCoroutine(SetupBattle());
            
@@ -65,20 +56,17 @@ public class CardManager : MonoBehaviour
     }
    public void OnClickDraw()
     {
-       // for (var i = 0; i < 4; i++)
-        //{
+        
         if (!isDrawn)
         {
-            
-          //  playerController.playerCard = Instantiate(playerController.playerCard, new Vector3(0, 0, 0), Quaternion.identity);
-          //  playerController.playerCard.transform.SetParent(playerController.playerHand.transform, false);
-          //  playerController.thisCard = playerController.playerCard.GetComponent<ThisCard>();
-          //  playerController.thisCard.thisId = Random.Range(0, playerDeck.deckSize);
-               // thisCard. = playerDeck.deck[i];
-               playerController.InstantiateCards();
+           
+            for (int j = 0; j < player.handOfCards.Count; j++)
+            {
+
+                player.controller.InstantiateCards(j);
+            }
+        }
          
-     //   }
-         }
         isDrawn = true;
         StartCoroutine(SetupBattle());
 
@@ -88,7 +76,7 @@ public class CardManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         Debug.Log("Pick your stat bro");
-        statSel.gameObject.SetActive(true);
+        player.controller.statSel.gameObject.SetActive(true);
       
 yield return new WaitForSeconds(1f);
     }
@@ -98,12 +86,9 @@ yield return new WaitForSeconds(1f);
      
         yield return new WaitForSeconds(1f);
         // EnemyMove();
-        enemyCard = Instantiate(enemyCard, new Vector3(0, 0, 0), Quaternion.identity);
-        enemyCard.transform.SetParent(enemyArea.transform, false);
-         enemyDisplayer = enemyCard.GetComponent<ThisCard>();
-        enemyDisplayer.thisId = Random.Range(0, playerDeck.deckSize);
+        enemy.controller.InstantiateCards(1);
 
-        compareB.gameObject.SetActive(true);
+        player.controller.compareB.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
 
       
@@ -112,16 +97,16 @@ yield return new WaitForSeconds(1f);
     IEnumerator Compare()
     {
         yield return new WaitForSeconds(1f); yield return new WaitForSeconds(1f);
-        if (selectedVal > enemyVal)
+        if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
             state = RoundState.WON;
             EndRound();
         }
-        else if (enemyVal > selectedVal)
+        else if (enemy.controller.selectedVal > player.controller.selectedVal)
         {
             state = RoundState.LOST;
             EndRound();
-        } else if (enemyVal == selectedVal)
+        } else if (enemy.controller.selectedVal == player.controller.selectedVal)
         {
             state = RoundState.DRAW;
             EndRound();
@@ -137,12 +122,12 @@ yield return new WaitForSeconds(1f);
    public void onStatClick(int i)
     {
         
-        playerController.fetchStat(i);
-        statSel.gameObject.SetActive(false);
-        buttons = i;
-        selectedVal = playerController.selectedVal;
-        Debug.Log("Button pressed was " + buttons);
-        Debug.Log(selectedVal.ToString());
+        player.controller.fetchStat(i);
+        player.controller.statSel.gameObject.SetActive(false);
+        player.controller.buttons = i;
+       // ..playerController.selectedVal = playerController.selectedVal;
+        Debug.Log("Button pressed was " + player.controller.buttons);
+        Debug.Log(player.controller.selectedVal.ToString());
         state = RoundState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
 
@@ -151,19 +136,11 @@ yield return new WaitForSeconds(1f);
     public void EnemyMove()
     {
      
-          switch (buttons)
-           {
-               case 0: enemyVal = enemyDisplayer.strength; break;
-               case 1: enemyVal = enemyDisplayer.dexterity; break;
-               case 2: enemyVal = enemyDisplayer.constitution; break;
-               case 3: enemyVal = enemyDisplayer.intelligence; break;
-               case 4: enemyVal = enemyDisplayer.wisdom; break;
-               case 5: enemyVal = enemyDisplayer.charisma; break;
-               default: enemyVal = 0; break;
-           } 
+        
+          enemy.controller.fetchStat(player.controller.buttons);
        
-        Debug.Log(enemyVal);
-        compareB.gameObject.SetActive(false);
+        Debug.Log(enemy.controller.selectedVal);
+        player.controller.compareB.gameObject.SetActive(false);
         StartCoroutine(Compare());
     }
 
