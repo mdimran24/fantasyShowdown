@@ -184,6 +184,7 @@ IEnumerator PlayerTurn()
         if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
             state = RoundState.WON;
+
             EndRound();
         }
         else if (enemy.controller.selectedVal > player.controller.selectedVal)
@@ -202,6 +203,7 @@ IEnumerator PlayerTurn()
     // Happens depending on the current game state. Sorta self explanatory
     public void EndRound()
     {
+        player.controller.RemoveUsedCard();
         if (state == RoundState.WON)
         {
             Debug.Log("You won. Commencing victory cry.");

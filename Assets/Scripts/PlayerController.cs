@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     // Stores the details of the cards to be drawn / selected
      public int selectedVal;
+    private int valtoberemoved;
     public ThisCard thisCard;
     public ThisCard selectedCard;
 
@@ -49,21 +50,11 @@ public class PlayerController : MonoBehaviour
         }
 
    
-  
 
     //Enables the player to select the stat -- MAKE IT RANDOMISED !!!
     public void fetchCard(int i)
     {
-        /*   switch (i)
-           {
-               case 0: selectedVal = thisCard.strength; buttons = i; break;
-               case 1: selectedVal = thisCard.dexterity; buttons = i; break;
-               case 2: selectedVal = thisCard.constitution; buttons = i; break;
-               case 3: selectedVal = thisCard.intelligence; buttons = i; break;
-               case 4: selectedVal = thisCard.wisdom; buttons = i; break;
-               case 5: selectedVal = thisCard.charisma; buttons = i; break;
-               default: selectedVal = 0; buttons = i; break;
-           }*/
+        valtoberemoved = i;
         //this now fetches which card in the hand.
           switch (i)
         {
@@ -79,16 +70,11 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    // if you're not the one selecting the stats, on the enemy's behalf // MODIFY
-    public void FetchCardIfNotLead()
+    public void RemoveUsedCard()
     {
-
-       //   selectedCard = playerCard.GetComponent<ThisCard>();
-       // selectedCard.thisId = 
-
-          
-        
+        Destroy(physicalCards[valtoberemoved]);
     }
+  
 
 }
 
