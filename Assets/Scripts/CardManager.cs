@@ -16,18 +16,29 @@ public class CardManager : MonoBehaviour
     public Player player;
     public Player enemy;
 
-   
-//defines what part of the game we in
+    public string[] statuses;
+    public int chosenstat;
+
+
+    //defines what part of the game we in
     public RoundState state;
 
-    
+
     //Claims the game as started, shuffles cards, fills the player's hand with cards (should be for the enemy as well next time)
     void Start()
     {
         state = RoundState.START;
         playerDeck.Shuffle();
-        player.FillHand(5);
+        player.FillHand(6);
+        enemy.FillHand(1);
+        Debug.Log(PlayerDeck.shuffleDeck.Count);
 
+        player.controller.strT.text = player.handOfCards[0].cardName;
+        player.controller.dexT.text = player.handOfCards[1].cardName;
+        player.controller.conT.text = player.handOfCards[2].cardName;
+        player.controller.intlT.text = player.handOfCards[3].cardName;
+        player.controller.wisT.text = player.handOfCards[4].cardName;
+        player.controller.chaT.text = player.handOfCards[5].cardName;
     }
 
 
@@ -45,36 +56,53 @@ public class CardManager : MonoBehaviour
         StartCoroutine(PlayerTurn());
     }
 
-        
+
     // Runs when the Draw button is clicked.
     //isDrawn bool disables the player from drawing cards to infinity
     //j is the number of cards in the player's hand,
     //may also represent the index of the cards in the shuffled deck where it's drawing cards from.
-   public void OnClickDraw()
+    public void OnClickDraw()
     {
-        
+
         if (!isDrawn)
         {
-           
+
             for (int j = 0; j < player.handSize; j++)
             {
 
                 player.controller.InstantiateCards(j);
+                player.controller.thisCard.thisId = player.handOfCards[j].id;
+               
             }
         }
-         
+
         isDrawn = true;
         StartCoroutine(SetupBattle());
 
-        
+
     }
 
-    //it's the player's turn now, pops up a window letting them choose a stat to pick.
-    IEnumerator PlayerTurn()
+    public void SelectCardPrep()
     {
-        Debug.Log("Pick your stat bro");
+       statuses = new string[6];
+        statuses[0] = "strength";
+        statuses[1] = "dexterity";
+        statuses[2] = "constitution";
+        statuses[3] = "intelligence";
+        statuses[4] = "wisdom";
+        statuses[5] = "charisma";
+        chosenstat = Random.Range(0, statuses.Length);
+        Debug.Log("Status is:" + statuses[chosenstat]);
+
+    }
+
+//it's the player's turn now, pops up a window letting them choose a stat to pick.
+IEnumerator PlayerTurn()
+    {
+      SelectCardPrep();
+        Debug.Log("Pick your card bro");
         player.controller.statSel.gameObject.SetActive(true);
-      //IEnumerators NEED to return something, you can let do this.
+        //IEnumerators NEED to return something, you can let do this.
         yield return new WaitForSeconds(1f);
     }
 
@@ -84,13 +112,26 @@ public class CardManager : MonoBehaviour
     //and the index in question to be used for the enemy, to make sure the same stat is chosen
     //index goes 0-5 for the stats repectively.
     //then it switched to the enemy's turn and calls the method for it.
+
+    //now it takes the value from the selected card.
     public void onStatClick(int i)
     {
 
-        player.controller.fetchStat(i);
+        player.controller.fetchCard(i);
         player.controller.statSel.gameObject.SetActive(false);
-        player.controller.buttons = i;
-        Debug.Log("Button pressed was " + player.controller.buttons);
+        switch (statuses[chosenstat])
+        {
+            case "strength": player.controller.selectedVal = player.controller.selectedCard.strength; break;
+            case "dexterity": player.controller.selectedVal = player.controller.selectedCard.dexterity; break;
+            case "constitution": player.controller.selectedVal = player.controller.selectedCard.constitution; break;
+            case "intelligence": player.controller.selectedVal = player.controller.selectedCard.intelligence; break;
+            case "wisdom": player.controller.selectedVal = player.controller.selectedCard.wisdom; break;
+            case "charisma": player.controller.selectedVal = player.controller.selectedCard.charisma; break;
+            default: player.controller.selectedVal = 0;  break;
+        }
+
+       
+        Debug.Log("Card picked was" + player.controller.selectedCard.cardName);
         Debug.Log(player.controller.selectedVal.ToString());
         state = RoundState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
@@ -102,13 +143,15 @@ public class CardManager : MonoBehaviour
     //a "compare" button will appear for the player allowing the player to carry out the comparison and conclude the game.
     IEnumerator EnemyTurn()
     {
-      
+
         enemy.controller.InstantiateCards(1);
+        enemy.controller.thisCard.thisId = enemy.handOfCards[0].id;
+        //enemy.controller.fetchCard(0);
 
         player.controller.compareB.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
 
-      
+
     }
 
     //Called when pressing the compare button
@@ -116,7 +159,18 @@ public class CardManager : MonoBehaviour
     //once that is done, the comparison is carried out
     public void EnemyMove()
     {
-        enemy.controller.fetchStat(player.controller.buttons);
+        enemy.controller.fetchCard(0);
+        switch (statuses[chosenstat])
+        {
+            case "strength": enemy.controller.selectedVal = enemy.controller.thisCard.strength; break;
+            case "dexterity": enemy.controller.selectedVal = enemy.controller.thisCard.dexterity; break;
+            case "constitution": enemy.controller.selectedVal = enemy.controller.thisCard.constitution; break;
+            case "intelligence": enemy.controller.selectedVal = enemy.controller.thisCard.intelligence; break;
+            case "wisdom": enemy.controller.selectedVal = enemy.controller.thisCard.wisdom; break;
+            case "charisma": enemy.controller.selectedVal = enemy.controller.thisCard.charisma; break;
+            default: enemy.controller.selectedVal = 0; break;
+        }
+
 
         Debug.Log(enemy.controller.selectedVal);
         player.controller.compareB.gameObject.SetActive(false);
@@ -136,7 +190,8 @@ public class CardManager : MonoBehaviour
         {
             state = RoundState.LOST;
             EndRound();
-        } else if (enemy.controller.selectedVal == player.controller.selectedVal)
+        }
+        else if (enemy.controller.selectedVal == player.controller.selectedVal)
         {
             state = RoundState.DRAW;
             EndRound();
@@ -150,13 +205,14 @@ public class CardManager : MonoBehaviour
         if (state == RoundState.WON)
         {
             Debug.Log("You won. Commencing victory cry.");
-           new WaitForSeconds(3f);
-          // Application.OpenURL("https://www.youtube.com/watch?v=sAXZbfLzJUg");
+            new WaitForSeconds(3f);
+            // Application.OpenURL("https://www.youtube.com/watch?v=sAXZbfLzJUg");
         }
         else if (state == RoundState.LOST)
         {
             Debug.Log("You lost.");
-        } else if (state == RoundState.DRAW)
+        }
+        else if (state == RoundState.DRAW)
         {
             Debug.Log("It's a draw!");
         }

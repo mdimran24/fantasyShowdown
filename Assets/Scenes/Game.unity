@@ -152,18 +152,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a941ebe1606714ba32806a3cc12dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physicalCards: []
   playerCard: {fileID: 4000989354763434114, guid: 14ad83c15fb5714408a79791da185073, type: 3}
   playerHand: {fileID: 1019561216}
   selectGO: {fileID: 979746390}
   isDrawn: 0
   statSel: {fileID: 1331136198}
   strB: {fileID: 1871158425}
+  strT: {fileID: 0}
   dexB: {fileID: 1202902398}
+  dexT: {fileID: 0}
   conB: {fileID: 657991107}
+  conT: {fileID: 0}
   intlB: {fileID: 398737700}
+  intlT: {fileID: 0}
   wisB: {fileID: 988082664}
+  wisT: {fileID: 0}
   chaB: {fileID: 1393063642}
-  buttons: 0
+  chaT: {fileID: 0}
   compareB: {fileID: 1998126130}
   selectedVal: 0
   thisCard: {fileID: 0}
@@ -254,7 +260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Intelligence
+  m_Text: Fourth
 --- !u!222 &132794804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -334,7 +340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Strength
+  m_Text: First
 --- !u!222 &158836312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -859,7 +865,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Charisma
+  m_Text: Sixth
 --- !u!222 &546546714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1180,7 +1186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wisdom
+  m_Text: Fifth
 --- !u!222 &805545100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1404,7 +1410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Constitution
+  m_Text: Third
 --- !u!222 &986618050
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1581,12 +1587,16 @@ MonoBehaviour:
     playerId: 1
     playerName: p
     handOfCards: []
+    handSize: 0
     controller: {fileID: 1217035582}
   enemy:
     playerId: 2
     playerName: e
     handOfCards: []
+    handSize: 0
     controller: {fileID: 73723656}
+  statuses: []
+  chosenstat: 0
   state: 0
 --- !u!4 &1011646769
 Transform:
@@ -1867,18 +1877,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a941ebe1606714ba32806a3cc12dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physicalCards: []
   playerCard: {fileID: 4000989354763434114, guid: 14ad83c15fb5714408a79791da185073, type: 3}
   playerHand: {fileID: 1381654225}
   selectGO: {fileID: 979746390}
   isDrawn: 0
   statSel: {fileID: 1331136198}
   strB: {fileID: 1871158425}
+  strT: {fileID: 158836311}
   dexB: {fileID: 1202902398}
+  dexT: {fileID: 1925859160}
   conB: {fileID: 657991107}
+  conT: {fileID: 986618049}
   intlB: {fileID: 398737700}
+  intlT: {fileID: 132794803}
   wisB: {fileID: 988082664}
+  wisT: {fileID: 805545099}
   chaB: {fileID: 1393063642}
-  buttons: 0
+  chaT: {fileID: 546546713}
   compareB: {fileID: 1998126130}
   selectedVal: 0
   thisCard: {fileID: 0}
@@ -2420,7 +2436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dexterity
+  m_Text: Second
 --- !u!222 &1925859161
 CanvasRenderer:
   m_ObjectHideFlags: 0

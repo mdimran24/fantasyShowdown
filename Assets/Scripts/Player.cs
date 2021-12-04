@@ -15,7 +15,7 @@ public class Player : IEquatable<Player>
     public string playerName;
 
     // where the cards from the deck go
-    public static List<Card> handOfCards = new List<Card>();
+    public List<Card> handOfCards = new List<Card>();
     public int handSize;
     //Enables the player to do stuff with the cards
     public PlayerController controller;
