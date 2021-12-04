@@ -13,6 +13,7 @@ public class Player : IEquatable<Player>
     //PLayer identification
     public string playerId;
     public string playerName;
+    public int score = 0;
 
     // where the cards from the deck go
     public List<Card> handOfCards = new List<Card>();

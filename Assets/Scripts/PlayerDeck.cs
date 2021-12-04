@@ -38,14 +38,23 @@ public class PlayerDeck : MonoBehaviour
 
     public void Shuffle()
     {
-        for(int i = 0; i < deckSize; i++)
-        {
-          //  shuffleDeck[0] = deck[i];
-          //  int randomIndex = Random.Range(i, deckSize);
-         //   deck[i] = deck[randomIndex];
-         //   deck[randomIndex] = shuffleDeck[0];
-         shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
-        }
+      
+            if (shuffleDeck.Count == 0)
+            {
+            for (int i = 0; i < deckSize; i++)
+            {
+                shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
+            }
+            } else
+            {
+                shuffleDeck = new List<Card>();
+            for (int i = 0; i < deckSize; i++)
+            {
+                shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
+            }
+                Debug.Log("Shuffled deck size after reset " + PlayerDeck.shuffleDeck.Count);
+            }
+        
     }
 
     //returns a card to be put in the player' hand from the shuffled deck.

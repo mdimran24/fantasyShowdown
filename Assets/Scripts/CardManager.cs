@@ -183,21 +183,36 @@ IEnumerator PlayerTurn()
         yield return new WaitForSeconds(1f);
         if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
-            state = RoundState.WON;
-
-            EndRound();
+            player.score++;
+            NextRound();
+           
         }
         else if (enemy.controller.selectedVal > player.controller.selectedVal)
         {
-            state = RoundState.LOST;
-            EndRound();
+            enemy.score++;
+            NextRound();
+            
         }
         else if (enemy.controller.selectedVal == player.controller.selectedVal)
         {
             state = RoundState.DRAW;
-            EndRound();
+            NextRound();
+            
         }
 
+        if (player.score == 5)
+        {
+            state = RoundState.WON;
+        } else if (enemy.score == 5)
+        {
+            state = RoundState.LOST;
+        }
+    }
+
+    public void NextRound()
+    {
+        Debug.Log("Going to next round");
+       
     }
 
     // Happens depending on the current game state. Sorta self explanatory
