@@ -8,6 +8,8 @@ public class PlayerDeck : MonoBehaviour
 {
 
     public List<Card> deck;
+    //where the cards are gonna be taken from in game, the main deck should be untouched.
+    //static so that several scripts can reference it while only one deck is define throughout.
     public static List<Card> shuffleDeck = new List<Card>();
 
     public int x;
@@ -15,9 +17,9 @@ public class PlayerDeck : MonoBehaviour
     public int cardDatabaseSize;
 
     // Start is called before the first frame update
+    // fills the main deck with cards from the database.
     void Awake()
     {
-
         x = 0;
         deckSize = 20;
         cardDatabaseSize = CardDatabase.cardList.Count;
@@ -31,13 +33,8 @@ public class PlayerDeck : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // shuffles the deck
+    //fills the shuffled deck in question.
 
     public void Shuffle()
     {
@@ -51,13 +48,9 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
-    public Card RemoveRnd()
-    {
-        Card picked = deck[Random.Range(0, deckSize)];
-        deck.Remove(picked);
-        return picked;
-    }
-
+    //returns a card to be put in the player' hand from the shuffled deck.
+    // removes said card from the shuffled deck to avoid duplication
+   
     public static Card RemovefromShuffle(int i)
     {
         Card shufpicked = shuffleDeck[i];

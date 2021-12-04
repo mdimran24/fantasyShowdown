@@ -30,6 +30,7 @@ public class ThisCard : MonoBehaviour
     public Text charismaText;
 
     // Start is called before the first frame update
+    // Assign the details ont othe card gameobjects
     void Start()
     {
 
