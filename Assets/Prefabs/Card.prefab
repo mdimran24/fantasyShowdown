@@ -516,6 +516,8 @@ MonoBehaviour:
   intelligenceText: {fileID: 4000989355943181513}
   wisdomText: {fileID: 4000989354805187288}
   charismaText: {fileID: 4000989355067114091}
+  thisCardArt: {fileID: 0}
+  thisArt: {fileID: 4000989353974853311}
 --- !u!1 &4000989354805187238
 GameObject:
   m_ObjectHideFlags: 0
