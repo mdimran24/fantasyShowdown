@@ -406,6 +406,8 @@ GameObject:
   - component: {fileID: 4000989354763434119}
   - component: {fileID: 4000989354763434116}
   - component: {fileID: 4000989354763434118}
+  - component: {fileID: -1459440038730470178}
+  - component: {fileID: 7890797320795337213}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -516,6 +518,30 @@ MonoBehaviour:
   intelligenceText: {fileID: 4000989355943181513}
   wisdomText: {fileID: 4000989354805187288}
   charismaText: {fileID: 4000989355067114091}
+--- !u!114 &-1459440038730470178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000989354763434114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c79b62409f8654c81794fe975723c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &7890797320795337213
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000989354763434114}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4000989354805187238
 GameObject:
   m_ObjectHideFlags: 0
