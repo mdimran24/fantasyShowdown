@@ -4,24 +4,29 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    //Most of the code uses the interfaces implemented to track mouse movements and if it is being held or not
+    //Drag and Drop class
     //[SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    
+    //rectTransform store and change the position of an object/prefab
     
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
+    //Once something begins to drag, lower opacity and prevent it from changing the canvas in this state
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
+        //Debug.Log("Begin Drag");
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }
 
 
-    
+    //While it is dragging follow the mouse coordinates
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("Drag");
@@ -29,6 +34,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform.anchoredPosition += eventData.delta;
     }
 
+    //End the drag and reset opacity and canvas interaction.
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("End Drag");
@@ -36,12 +42,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvasGroup.blocksRaycasts = true;
     }
 
+    //Check if it is detected on the canvas
     public void OnPointerDown(PointerEventData eventData)
     {
         //Debug.Log("OnPointerDown");
 
     }
 
-
+    
 }
 
