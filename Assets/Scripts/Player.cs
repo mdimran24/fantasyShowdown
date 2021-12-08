@@ -17,7 +17,7 @@ public class Player : IEquatable<Player>
 
     // where the cards from the deck go
     public List<Card> handOfCards = new List<Card>();
-    public int handSize;
+    //public static int handSize;
     //Enables the player to do stuff with the cards
     public PlayerController controller;
    
@@ -32,9 +32,10 @@ public class Player : IEquatable<Player>
             handOfCards.Add(PlayerDeck.RemovefromShuffle(i));
             Debug.Log(handOfCards[i].cardName);
         }
-        handSize = handOfCards.Count;
+       // handSize = number;
     }
-
+  
+   
   //Turns, TBC
     public bool Equals(Player other)
     {

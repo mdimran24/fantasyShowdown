@@ -16,8 +16,11 @@ public class CardManager : MonoBehaviour
     public Player player;
     public Player enemy;
 
-    public string[] statuses;
-    public int chosenstat;
+    public static string[] statuses;
+    public static int chosenstat;
+
+    public Button ResetSelected;
+    public Button ConfirmSelected;
 
 
     //defines what part of the game we in
@@ -39,6 +42,17 @@ public class CardManager : MonoBehaviour
         player.controller.intlT.text = player.handOfCards[3].cardName;
         player.controller.wisT.text = player.handOfCards[4].cardName;
         player.controller.chaT.text = player.handOfCards[5].cardName;
+    }
+
+    private void Update()
+    {
+        if (SelectedItemSlot.hasBeenSelected)
+        {
+            ResetSelected.gameObject.SetActive(true);
+            ConfirmSelected.gameObject.SetActive(true);
+            
+        }
+     
     }
 
 
@@ -67,7 +81,7 @@ public class CardManager : MonoBehaviour
         if (!isDrawn)
         {
 
-            for (int j = 0; j < player.handSize; j++)
+            for (int j = 0; j < player.handOfCards.Count; j++)
             {
 
                 player.controller.InstantiateCards(j);
@@ -81,6 +95,8 @@ public class CardManager : MonoBehaviour
 
 
     }
+
+  
 
     public void SelectCardPrep()
     {
@@ -101,7 +117,9 @@ IEnumerator PlayerTurn()
     {
       SelectCardPrep();
         Debug.Log("Pick your card bro");
-        player.controller.statSel.gameObject.SetActive(true);
+     
+      
+
         //IEnumerators NEED to return something, you can let do this.
         yield return new WaitForSeconds(1f);
     }
@@ -114,28 +132,51 @@ IEnumerator PlayerTurn()
     //then it switched to the enemy's turn and calls the method for it.
 
     //now it takes the value from the selected card.
-    public void onStatClick(int i)
+    public void onStatClick()
     {
-
-        player.controller.fetchCard(i);
-        player.controller.statSel.gameObject.SetActive(false);
-        switch (statuses[chosenstat])
+        if (player.controller.selectedCard != null)
         {
-            case "strength": player.controller.selectedVal = player.controller.selectedCard.strength; break;
-            case "dexterity": player.controller.selectedVal = player.controller.selectedCard.dexterity; break;
-            case "constitution": player.controller.selectedVal = player.controller.selectedCard.constitution; break;
-            case "intelligence": player.controller.selectedVal = player.controller.selectedCard.intelligence; break;
-            case "wisdom": player.controller.selectedVal = player.controller.selectedCard.wisdom; break;
-            case "charisma": player.controller.selectedVal = player.controller.selectedCard.charisma; break;
-            default: player.controller.selectedVal = 0;  break;
+            switch (statuses[chosenstat])
+            {
+                case "strength": player.controller.selectedVal = player.controller.selectedCard.strength; break;
+                case "dexterity": player.controller.selectedVal = player.controller.selectedCard.dexterity; break;
+                case "constitution": player.controller.selectedVal = player.controller.selectedCard.constitution; break;
+                case "intelligence": player.controller.selectedVal = player.controller.selectedCard.intelligence; break;
+                case "wisdom": player.controller.selectedVal = player.controller.selectedCard.wisdom; break;
+                case "charisma": player.controller.selectedVal = player.controller.selectedCard.charisma; break;
+                default: player.controller.selectedVal = 0; break;
+            }
         }
-
        
-        Debug.Log("Card picked was" + player.controller.selectedCard.cardName);
+        Debug.Log("Card picked was " + player.controller.selectedCard.cardName);
         Debug.Log(player.controller.selectedVal.ToString());
         state = RoundState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
 
+    }
+
+    public void OnResetPressed()
+    {
+        SelectedItemSlot.hasBeenSelected = false;
+        GameObject cardTemp = player.controller.selectGO.GetComponent<RectTransform>().GetChild(0).gameObject;
+        cardTemp.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        cardTemp.transform.SetParent(player.controller.playerHand.transform, false);
+        ResetSelected.gameObject.SetActive(false);
+    }
+
+    public void OnConfirmPressed()
+    {
+      //  HasBeenConfirmed = true;
+        if (player.controller.selectGO.GetComponent<RectTransform>().childCount == 0)
+        {
+            Debug.Log("There is no card to confirm");
+        }
+        else
+        {
+            player.controller.selectedCard = player.controller.selectGO.GetComponent<RectTransform>().GetChild(0).GetComponent<ThisCard>();
+            Debug.Log(player.controller.selectedCard.cardName);
+            onStatClick();
+        }
     }
 
     //instantiates a card in the enemy's area, implies the enemy  has chosen a card.
