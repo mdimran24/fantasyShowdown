@@ -76,7 +76,8 @@ public class PlayerController : MonoBehaviour
 
     public void RemoveUsedCard()
     {
-        Destroy(physicalCards[valtoberemoved]);
+        Destroy(selectGO.GetComponent<RectTransform>().GetChild(0).gameObject);
+        
     }
 
    

@@ -225,12 +225,14 @@ IEnumerator PlayerTurn()
         if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
             player.score++;
+            state = RoundState.WON;
             NextRound();
            
         }
         else if (enemy.controller.selectedVal > player.controller.selectedVal)
         {
             enemy.score++;
+            state = RoundState.LOST;
             NextRound();
             
         }
@@ -241,25 +243,35 @@ IEnumerator PlayerTurn()
             
         }
 
-        if (player.score == 5)
-        {
-            state = RoundState.WON;
-        } else if (enemy.score == 5)
-        {
-            state = RoundState.LOST;
-        }
+      //  if (player.score == 5)
+      //  {
+      //      state = RoundState.WON;
+      //  } else if (enemy.score == 5)
+      // {
+      //      state = RoundState.LOST;
+      //  }
     }
 
     public void NextRound()
     {
         Debug.Log("Going to next round");
+        EndRound();
        
     }
 
     // Happens depending on the current game state. Sorta self explanatory
     public void EndRound()
     {
+        int removeid = player.controller.selectGO.GetComponent<RectTransform>().GetChild(0).GetComponent<ThisCard>().id;
+        for (int i = 0; i < player.handOfCards.Count; i++)
+        {
+            if (player.handOfCards[i].id == removeid)
+            {
+                player.handOfCards.RemoveAt(i);
+            }
+        }
         player.controller.RemoveUsedCard();
+
         if (state == RoundState.WON)
         {
             Debug.Log("You won. Commencing victory cry.");

@@ -30,11 +30,21 @@ public class Player : IEquatable<Player>
         for (int i = 0; i < number; i++)
         {
             handOfCards.Add(PlayerDeck.RemovefromShuffle(i));
-            Debug.Log(handOfCards[i].cardName);
+            
         }
-       // handSize = number;
+       // Debug.Log(handOfCards.Count);
     }
   
+    public void Removefromcardid(int cardid)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (handOfCards[i].id == cardid)
+            {
+                handOfCards.RemoveAt(i);
+            }
+        }
+    }
    
   //Turns, TBC
     public bool Equals(Player other)
