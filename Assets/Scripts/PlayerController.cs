@@ -11,71 +11,99 @@ public class PlayerController : MonoBehaviour
     public GameObject playerHand;
     public GameObject selectGO;
     public bool isDrawn = false;
- 
+
     // Physical manfestation of the stats to be chosen --- SHOULD NO LONGER BE IN THE CONTROL OF THE PLAYER !!!
-      public GameObject statSel;
-      public Button strB;
+    public GameObject statSel;
+    public Button strB;
     public Text strT;
-     public Button dexB;
+    public Button dexB;
     public Text dexT;
-      public Button conB;
+    public Button conB;
     public Text conT;
-      public Button intlB;
+    public Button intlB;
     public Text intlT;
-      public Button wisB;
+    public Button wisB;
     public Text wisT;
-      public Button chaB;
+    public Button chaB;
     public Text chaT;
+
+    public Button compareB;
     
-     public Button compareB;
 
     // Stores the details of the cards to be drawn / selected
-     public int selectedVal;
+    public int selectedVal;
     private int valtoberemoved;
     public ThisCard thisCard;
     public ThisCard selectedCard;
+
+    public static bool HasBeenConfirmed = false;
+
+    
 
    
 
     // Mathod that instantiates the cards one by one and assigns them details
     public void InstantiateCards(int onebyone)
     {
-            playerCard = Instantiate(playerCard, new Vector3(0, 0, 0), Quaternion.identity);
-         physicalCards.Add(playerCard);
-            playerCard.transform.SetParent(playerHand.transform, false);
-            thisCard = playerCard.GetComponent<ThisCard>();
-      //  strB.GetComponent<Text>().text = physicalCards[0].GetComponent<ThisCard>().cardName;
-            
-           
-        }
+        playerCard = Instantiate(playerCard, new Vector3(0, 0, 0), Quaternion.identity);
+        physicalCards.Add(playerCard);
+        playerCard.transform.SetParent(playerHand.transform, false);
+        thisCard = playerCard.GetComponent<ThisCard>();
+        //  strB.GetComponent<Text>().text = physicalCards[0].GetComponent<ThisCard>().cardName;
 
-   
+
+    }
+
 
     //Enables the player to select the stat -- MAKE IT RANDOMISED !!!
     public void fetchCard(int i)
     {
         valtoberemoved = i;
         //this now fetches which card in the hand.
-          switch (i)
+        switch (i)
         {
-            case 0:selectedCard = physicalCards[i].GetComponent<ThisCard>();  break;
+            case 0: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
             case 1: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
             case 2: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
-            case 3: selectedCard = physicalCards[i].GetComponent<ThisCard>();  break;
-            case 4: selectedCard = physicalCards[i].GetComponent<ThisCard>();  break;
+            case 3: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
+            case 4: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
             case 5: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
             default: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
         }
-       // Debug.Log()
-       
+        // Debug.Log()
+
     }
 
     public void RemoveUsedCard()
     {
-        Destroy(physicalCards[valtoberemoved]);
+        Destroy(selectGO.GetComponent<RectTransform>().GetChild(0).gameObject);
+        
     }
-  
 
+   
+
+ 
+
+    public void onStatClick()
+    {
+
+        //  player.controller.fetchCard(i);
+        //  player.controller.statSel.gameObject.SetActive(false);
+        if (selectedCard != null)
+        {
+            switch (CardManager.statuses[CardManager.chosenstat])
+            {
+                case "strength": selectedVal = selectedCard.strength; break;
+                case "dexterity": selectedVal = selectedCard.dexterity; break;
+                case "constitution": selectedVal = selectedCard.constitution; break;
+                case "intelligence": selectedVal = selectedCard.intelligence; break;
+                case "wisdom": selectedVal = selectedCard.wisdom; break;
+                case "charisma": selectedVal = selectedCard.charisma; break;
+                default: selectedVal = 0; break;
+            }
+        }
+
+    }
 }
 
   

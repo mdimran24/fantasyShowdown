@@ -13,10 +13,11 @@ public class Player : IEquatable<Player>
     //PLayer identification
     public string playerId;
     public string playerName;
+    public int score = 0;
 
     // where the cards from the deck go
     public List<Card> handOfCards = new List<Card>();
-    public int handSize;
+    //public static int handSize;
     //Enables the player to do stuff with the cards
     public PlayerController controller;
    
@@ -29,11 +30,22 @@ public class Player : IEquatable<Player>
         for (int i = 0; i < number; i++)
         {
             handOfCards.Add(PlayerDeck.RemovefromShuffle(i));
-            Debug.Log(handOfCards[i].cardName);
+            
         }
-        handSize = handOfCards.Count;
+       // Debug.Log(handOfCards.Count);
     }
-
+  
+    public void Removefromcardid(int cardid)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (handOfCards[i].id == cardid)
+            {
+                handOfCards.RemoveAt(i);
+            }
+        }
+    }
+   
   //Turns, TBC
     public bool Equals(Player other)
     {
