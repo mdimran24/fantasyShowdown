@@ -29,6 +29,9 @@ public class ThisCard : MonoBehaviour
     public Text wisdomText;
     public Text charismaText;
 
+    public Sprite thisCardArt;
+    public Image thisArt;
+
     // Start is called before the first frame update
     // Assign the details ont othe card gameobjects
     void Start()
@@ -45,6 +48,8 @@ public class ThisCard : MonoBehaviour
         wisdom = thisCard[0].wisdom;
         charisma = thisCard[0].charisma;
 
+        thisCardArt = thisCard[0].cardArt;
+
         nameText.text = "" + cardName;
         strengthText.text = "Strength - " + strength;
         dexterityText.text = "Dexterity - " + dexterity;
@@ -52,7 +57,7 @@ public class ThisCard : MonoBehaviour
         intelligenceText.text = "Intelligence - " + intelligence;
         wisdomText.text = "Wisdom - " + wisdom;
         charismaText.text = "Charisma - " + charisma;
-
+        thisArt.sprite = thisCardArt;
     }
 
     // Update is called once per frame

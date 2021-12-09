@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000989353821338176}
   - component: {fileID: 4000989353821338178}
   - component: {fileID: 4000989353821338179}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Constitution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4000989353974853308}
   - component: {fileID: 4000989353974853310}
   - component: {fileID: 4000989353974853311}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Card Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4000989354128650637}
   - component: {fileID: 4000989354128650639}
   - component: {fileID: 4000989354128650636}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4000989354279538114}
   - component: {fileID: 4000989354279538116}
   - component: {fileID: 4000989354279538117}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 4000989354727307478}
   - component: {fileID: 4000989354727307464}
   - component: {fileID: 4000989354727307465}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,9 +406,7 @@ GameObject:
   - component: {fileID: 4000989354763434119}
   - component: {fileID: 4000989354763434116}
   - component: {fileID: 4000989354763434118}
-  - component: {fileID: -1459440038730470178}
-  - component: {fileID: 7890797320795337213}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,30 +516,8 @@ MonoBehaviour:
   intelligenceText: {fileID: 4000989355943181513}
   wisdomText: {fileID: 4000989354805187288}
   charismaText: {fileID: 4000989355067114091}
---- !u!114 &-1459440038730470178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000989354763434114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c79b62409f8654c81794fe975723c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!225 &7890797320795337213
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000989354763434114}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  thisCardArt: {fileID: 0}
+  thisArt: {fileID: 4000989353974853311}
 --- !u!1 &4000989354805187238
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +529,7 @@ GameObject:
   - component: {fileID: 4000989354805187289}
   - component: {fileID: 4000989354805187291}
   - component: {fileID: 4000989354805187288}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Wisdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +609,7 @@ GameObject:
   - component: {fileID: 4000989355025691532}
   - component: {fileID: 4000989355025691534}
   - component: {fileID: 4000989355025691535}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Dexterity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +689,7 @@ GameObject:
   - component: {fileID: 4000989355067114088}
   - component: {fileID: 4000989355067114090}
   - component: {fileID: 4000989355067114091}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Charisma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +769,7 @@ GameObject:
   - component: {fileID: 4000989355651285577}
   - component: {fileID: 4000989355651285579}
   - component: {fileID: 4000989355651285576}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Card Art Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +846,7 @@ GameObject:
   - component: {fileID: 4000989355667002261}
   - component: {fileID: 4000989355667002263}
   - component: {fileID: 4000989355667002260}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Card Name Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +923,7 @@ GameObject:
   - component: {fileID: 4000989355943181526}
   - component: {fileID: 4000989355943181512}
   - component: {fileID: 4000989355943181513}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Intelligence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
