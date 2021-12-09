@@ -201,7 +201,7 @@ namespace GoFish
             {
                 if (connected)
                 { ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CHANGE FOR MULTI !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    SceneManager.LoadScene("Game");
+                    SceneManager.LoadScene("MultiplayerGame");
                 }
                 else
                 {

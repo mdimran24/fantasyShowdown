@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SWNetwork;
 
 
 //Generates a database of cards, use this formula to add a new card to the database: cardList.Add(new Card(int id, string cardName, int str, int dex, int con, int intel, int wis, int cha));

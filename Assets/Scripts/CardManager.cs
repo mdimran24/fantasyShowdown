@@ -26,14 +26,19 @@ public class CardManager : MonoBehaviour
     //defines what part of the game we in
     public RoundState state;
 
+     protected void Awake()
+    {
+        
+    }
 
     //Claims the game as started, shuffles cards, fills the player's hand with cards (should be for the enemy as well next time)
-    void Start()
+    protected void Start()
     {
-        state = RoundState.START;
         playerDeck.Shuffle();
         player.FillHand(6);
         enemy.FillHand(1);
+        state = RoundState.START;
+        
         Debug.Log(PlayerDeck.shuffleDeck.Count);
 
         player.controller.strT.text = player.handOfCards[0].cardName;
