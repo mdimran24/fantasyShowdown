@@ -16,12 +16,12 @@ public class PlayerAreaItemSlot : MonoBehaviour, IDropHandler
         }
         else
         {
-            if (GetComponent<RectTransform>().transform.childCount == 6)
+            if (GetComponent<RectTransform>().transform.childCount > 5)
            {
-                for (int i = 0; i < 6; i++)
+               for (int i = 0; i < 6; i++)
                 {
                     GetComponent<RectTransform>().transform.GetChild(i).GetComponent<DragDrop>().enabled = true;
-
+            
                 }
             }
         }
