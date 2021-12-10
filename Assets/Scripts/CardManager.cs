@@ -40,13 +40,6 @@ public class CardManager : MonoBehaviour
         state = RoundState.START;
         
         Debug.Log(PlayerDeck.shuffleDeck.Count);
-
-        player.controller.strT.text = player.handOfCards[0].cardName;
-        player.controller.dexT.text = player.handOfCards[1].cardName;
-        player.controller.conT.text = player.handOfCards[2].cardName;
-        player.controller.intlT.text = player.handOfCards[3].cardName;
-        player.controller.wisT.text = player.handOfCards[4].cardName;
-        player.controller.chaT.text = player.handOfCards[5].cardName;
     }
 
     private void Update()

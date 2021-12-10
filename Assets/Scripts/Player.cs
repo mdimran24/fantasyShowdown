@@ -7,7 +7,7 @@ using UnityEngine;
 
     [Serializable]
 
-public class Player : IEquatable<Player>
+public class Player : MonoBehaviour
 {
 
     //PLayer identification
@@ -46,18 +46,6 @@ public class Player : IEquatable<Player>
         }
     }
    
-  //Turns, TBC
-    public bool Equals(Player other)
-    {
-         if (playerId.Equals(other.playerId))
-          {
-              return true;
-          }
-          else
-          {
-        return false;
-          }
-    }
 }
 
 

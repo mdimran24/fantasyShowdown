@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     //Physical manifestation of the game on the player's end
     public List<GameObject> physicalCards = new List<GameObject>();
@@ -11,21 +12,6 @@ public class PlayerController : MonoBehaviour
     public GameObject playerHand;
     public GameObject selectGO;
     public bool isDrawn = false;
-
-    // Physical manfestation of the stats to be chosen --- SHOULD NO LONGER BE IN THE CONTROL OF THE PLAYER !!!
-    public GameObject statSel;
-    public Button strB;
-    public Text strT;
-    public Button dexB;
-    public Text dexT;
-    public Button conB;
-    public Text conT;
-    public Button intlB;
-    public Text intlT;
-    public Button wisB;
-    public Text wisT;
-    public Button chaB;
-    public Text chaT;
 
     public Button compareB;
     
@@ -38,17 +24,21 @@ public class PlayerController : MonoBehaviour
 
     public static bool HasBeenConfirmed = false;
 
-    
+    PhotonView view;
 
    
 
     // Mathod that instantiates the cards one by one and assigns them details
     public void InstantiateCards(int onebyone)
     {
+      //  if (view.IsMine){
         playerCard = Instantiate(playerCard, new Vector3(0, 0, 0), Quaternion.identity);
         physicalCards.Add(playerCard);
         playerCard.transform.SetParent(playerHand.transform, false);
         thisCard = playerCard.GetComponent<ThisCard>();
+     //   } else{
+        //    Debug.Log("You messed something up with the ismine stuff");
+       // }
         //  strB.GetComponent<Text>().text = physicalCards[0].GetComponent<ThisCard>().cardName;
 
 
