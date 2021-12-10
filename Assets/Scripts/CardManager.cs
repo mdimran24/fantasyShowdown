@@ -9,7 +9,7 @@ public enum RoundState { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
 public class CardManager : MonoBehaviour
 {
     //Has the player drawn their cards (offline)
-    private bool isDrawn = false;
+   
     // deck where the players gonna draw the cards from
     public PlayerDeck playerDeck;
     // players in question
@@ -73,26 +73,7 @@ public class CardManager : MonoBehaviour
     //isDrawn bool disables the player from drawing cards to infinity
     //j is the number of cards in the player's hand,
     //may also represent the index of the cards in the shuffled deck where it's drawing cards from.
-    public void OnClickDraw()
-    {
-
-        if (!isDrawn)
-        {
-
-            for (int j = 0; j < player.handOfCards.Count; j++)
-            {
-
-                player.controller.InstantiateCards(j);
-                player.controller.thisCard.thisId = player.handOfCards[j].id;
-               
-            }
-        }
-
-        isDrawn = true;
-        StartCoroutine(SetupBattle());
-
-
-    }
+   
 
   
 

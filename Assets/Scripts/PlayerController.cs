@@ -24,25 +24,27 @@ public class PlayerController : MonoBehaviourPun
 
     public static bool HasBeenConfirmed = false;
 
-    PhotonView view;
+    public PhotonView view;
 
    
 
     // Mathod that instantiates the cards one by one and assigns them details
     public void InstantiateCards(int onebyone)
     {
-      //  if (view.IsMine){
+        if (view.IsMine){
         playerCard = Instantiate(playerCard, new Vector3(0, 0, 0), Quaternion.identity);
         physicalCards.Add(playerCard);
         playerCard.transform.SetParent(playerHand.transform, false);
         thisCard = playerCard.GetComponent<ThisCard>();
-     //   } else{
-        //    Debug.Log("You messed something up with the ismine stuff");
-       // }
-        //  strB.GetComponent<Text>().text = physicalCards[0].GetComponent<ThisCard>().cardName;
+       } else{
+           Debug.Log("You messed something up with the ismine stuff");
+        }
+       
 
 
     }
+
+
 
 
     //Enables the player to select the stat -- MAKE IT RANDOMISED !!!
@@ -60,7 +62,7 @@ public class PlayerController : MonoBehaviourPun
             case 5: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
             default: selectedCard = physicalCards[i].GetComponent<ThisCard>(); break;
         }
-        // Debug.Log()
+      
 
     }
 

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     //public static int handSize;
     //Enables the player to do stuff with the cards
     public PlayerController controller;
+     private bool isDrawn = false;
    
 
     // takes cards from the deck and puts them in the player's hand.
@@ -44,6 +45,23 @@ public class Player : MonoBehaviour
                 handOfCards.RemoveAt(i);
             }
         }
+    }
+
+     public void OnClickDraw()
+    {
+
+        if (!isDrawn)
+        {
+
+            for (int j = 0; j < handOfCards.Count; j++)
+            {
+
+                controller.InstantiateCards(j);
+                controller.thisCard.thisId = handOfCards[j].id;
+               
+            }
+        }
+
     }
    
 }

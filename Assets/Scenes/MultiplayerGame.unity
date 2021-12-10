@@ -287,8 +287,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 329479551}
-        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+      - m_Target: {fileID: 1113992263}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClickDraw
         m_Mode: 1
         m_Arguments:
@@ -691,44 +691,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349215573}
   m_CullTransparentMesh: 1
---- !u!1 &352717905 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1806088067555308854, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
-  m_PrefabInstance: {fileID: 1806088067873945959}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &352717906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1806088067555308853, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
   m_PrefabInstance: {fileID: 1806088067873945959}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352717905}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3a941ebe1606714ba32806a3cc12dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &352717908
+--- !u!114 &352717909 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2254938108462802393, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
+  m_PrefabInstance: {fileID: 1806088067873945959}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352717905}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &548999051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1687,6 +1671,7 @@ MonoBehaviour:
   selectedVal: 0
   thisCard: {fileID: 0}
   selectedCard: {fileID: 0}
+  view: {fileID: 0}
 --- !u!4 &1777769772
 Transform:
   m_ObjectHideFlags: 0
@@ -1964,6 +1949,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 546889418809330327, guid: 58881f0cea3c8bb4fade45285b96ef37, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 849377977336757138, guid: 58881f0cea3c8bb4fade45285b96ef37, type: 3}
       propertyPath: controller
       value: 
@@ -2070,6 +2059,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1806088067555308853, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 352717909}
+    - target: {fileID: 1806088067555308853, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
       propertyPath: compareB
       value: 
       objectReference: {fileID: 916607487}
@@ -2084,6 +2077,10 @@ PrefabInstance:
     - target: {fileID: 1806088067555308854, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
       propertyPath: m_Name
       value: PlayerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254938108462802393, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
+      propertyPath: sceneViewId
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc209408ddcdaf4b9795d7c7ae3d666, type: 3}
@@ -2141,6 +2138,10 @@ PrefabInstance:
     - target: {fileID: 2320772587677678959, guid: bcb587ffea0c6d748aa85321d38b9e81, type: 3}
       propertyPath: m_Name
       value: CardDB
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880254152441914180, guid: bcb587ffea0c6d748aa85321d38b9e81, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb587ffea0c6d748aa85321d38b9e81, type: 3}
