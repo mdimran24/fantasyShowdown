@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: sahnewazam66@gmail.com
-  DevAccountToken: 7g4im4rhfqucwnbm4jzc49wqw598ikcm5im8sm4jfbm93yw6oa7o6rqqmqbandixo4rjzj78fd9skk8a6hsfwpemb85xs8yibm63u8bmyqqqtpomnyjnzet4frtz4xr8f9orf56ix6anoatmy4eptcqtxkznfaxa175frtncxouht55opweionf9t3y46pmz6g3dcntj
-  SelectedStudio: FantasyShowdownT6
-  SdkPath: Assets/PlayFabSDK
+  DevAccountEmail: 
+  DevAccountToken: 
+  SelectedStudio: 
+  SdkPath: 
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0

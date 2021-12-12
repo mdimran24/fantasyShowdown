@@ -379,8 +379,10 @@ m_ResolvedPackages:
     - 1.13.5
     - 1.14.1
     - 1.14.4
+    - 1.14.7
     - 1.15.1
     - 1.15.4
+    - 1.15.7
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -394,6 +396,7 @@ m_ResolvedPackages:
     compatible:
     - 1.15.1
     - 1.15.4
+    - 1.15.7
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -404,7 +407,7 @@ m_ResolvedPackages:
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
-    verified: 1.15.4
+    verified: 1.15.7
   dependencies:
   - name: com.unity.nuget.newtonsoft-json
     version: 2.0.0
@@ -2850,6 +2853,7 @@ m_ResolvedPackages:
     - 1.1.0-pre.9
     - 1.1.0-pre.10
     - 1.1.0-pre.11
+    - 1.1.0-pre.41
     compatible:
     - 1.0.1
     - 1.1.0-pre.7
@@ -2857,6 +2861,7 @@ m_ResolvedPackages:
     - 1.1.0-pre.9
     - 1.1.0-pre.10
     - 1.1.0-pre.11
+    - 1.1.0-pre.41
     verified: 1.0.1
   dependencies:
   - name: com.unity.modules.unitywebrequest
@@ -2946,6 +2951,7 @@ m_ResolvedPackages:
     - 3.2.11
     - 3.2.13
     - 3.2.14
+    - 3.2.15
     - 4.0.0
     - 4.0.1
     - 4.1.0
