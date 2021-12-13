@@ -28,7 +28,7 @@ public class CardManager : MonoBehaviour
 
      protected void Awake()
     {
-        
+       
     }
 
     //Claims the game as started, shuffles cards, fills the player's hand with cards (should be for the enemy as well next time)
@@ -49,6 +49,10 @@ public class CardManager : MonoBehaviour
             ResetSelected.gameObject.SetActive(true);
             ConfirmSelected.gameObject.SetActive(true);
             
+        } else
+        {
+            ResetSelected.gameObject.SetActive(false);
+            ConfirmSelected.gameObject.SetActive(false);
         }
      
     }
@@ -182,13 +186,14 @@ IEnumerator PlayerTurn()
     //a "compare" button will appear for the player allowing the player to carry out the comparison and conclude the game.
     IEnumerator EnemyTurn()
     {
-
+        yield return new WaitForSeconds(1f);
         enemy.controller.InstantiateCards(1);
         enemy.controller.thisCard.thisId = enemy.handOfCards[0].id;
+        enemy.controller.physicalCards[0].transform.Find("BackOfCard").gameObject.SetActive(true);
         //enemy.controller.fetchCard(0);
 
         player.controller.compareB.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+      
 
 
     }
@@ -198,6 +203,7 @@ IEnumerator PlayerTurn()
     //once that is done, the comparison is carried out
     public void EnemyMove()
     {
+        enemy.controller.physicalCards[0].transform.Find("BackOfCard").gameObject.SetActive(false);
         enemy.controller.fetchCard(0);
         switch (statuses[chosenstat])
         {
@@ -220,6 +226,7 @@ IEnumerator PlayerTurn()
     IEnumerator Compare()
     {
         yield return new WaitForSeconds(1f);
+       
         if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
             player.score++;
