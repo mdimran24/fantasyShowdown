@@ -45,6 +45,11 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void EmptyHand()
+    {
+        handOfCards.Clear();
+    }
    
 }
 

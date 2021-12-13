@@ -11,7 +11,8 @@ public class PlayerDeck : MonoBehaviour
     //where the cards are gonna be taken from in game, the main deck should be untouched.
     //static so that several scripts can reference it while only one deck is define throughout.
     public static List<Card> shuffleDeck = new List<Card>();
-
+   // CardDatabase db = Resources.Load<CardDatabase>("Spwanable/")
+   CardDatabase db = new CardDatabase();
     public int x;
     public static int deckSize;
     public int cardDatabaseSize;
@@ -19,18 +20,24 @@ public class PlayerDeck : MonoBehaviour
     // Start is called before the first frame update
     // fills the main deck with cards from the database.
     void Awake()
+    { 
+     FillDeck();
+        
+    }
+
+    public void FillDeck()
     {
+        db.CreatePack();
         x = 0;
         deckSize = 20;
         cardDatabaseSize = CardDatabase.cardList.Count;
 
-        for(int i=0; i<deckSize; i++)
+        for (int i = 0; i < deckSize; i++)
         {
             x = Random.Range(1, cardDatabaseSize);
-           deck.Add(CardDatabase.cardList[i]);
+            deck.Add(CardDatabase.cardList[i]);
         }
 
-        
     }
 
     // shuffles the deck
@@ -65,6 +72,12 @@ public class PlayerDeck : MonoBehaviour
         Card shufpicked = shuffleDeck[i];
         shuffleDeck.Remove(shufpicked);
         return shufpicked;
+    }
+
+    public void EmptyDeck()
+    {
+        deck = new List<Card>();
+        shuffleDeck = new List<Card>();
     }
 
   

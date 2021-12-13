@@ -6,6 +6,10 @@ public class SelectedItemSlot : MonoBehaviour, IDropHandler
 {
     public static bool hasBeenSelected;
 
+    void Start()
+    {
+        hasBeenSelected = false;
+    }
     //When the drag has been dropped if it is on a prefab with this script set it as a child if there is nothing else in the component
     public void OnDrop(PointerEventData eventData)
     {
@@ -19,6 +23,6 @@ public class SelectedItemSlot : MonoBehaviour, IDropHandler
             GetComponent<RectTransform>().transform.GetChild(0).GetComponent<DragDrop>().enabled = false;
             hasBeenSelected = true;
            
-        }
+        } 
     }
 }

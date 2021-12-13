@@ -70,10 +70,12 @@ public class PlayerController : MonoBehaviourPun
         
     }
 
-   
-
- 
-
+    public void emptyPhysical()
+    {
+        physicalCards.Clear();
+      //  if (physicalCards.Count == 0) { }
+      
+    }
     public void onStatClick()
     {
 

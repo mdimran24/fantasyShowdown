@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //parts of the game in question
 public enum RoundState { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
@@ -9,7 +10,7 @@ public enum RoundState { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
 public class CardManager : MonoBehaviour
 {
     //Has the player drawn their cards (offline)
-    private bool isDrawn = false;
+    private bool isDrawn;
     // deck where the players gonna draw the cards from
     public PlayerDeck playerDeck;
     // players in question
@@ -19,8 +20,15 @@ public class CardManager : MonoBehaviour
     public static string[] statuses;
     public static int chosenstat;
 
+
+    bool HasBeenConfirmed;
+
+
     public Button ResetSelected;
     public Button ConfirmSelected;
+    public Button DrawBtn;
+    public Button RestartBtn;
+    public Text Messenger;
 
 
     //defines what part of the game we in
@@ -28,31 +36,38 @@ public class CardManager : MonoBehaviour
 
      protected void Awake()
     {
-       
+        Messenger.text = "";
     }
 
     //Claims the game as started, shuffles cards, fills the player's hand with cards (should be for the enemy as well next time)
     protected void Start()
     {
+        isDrawn = false;
         playerDeck.Shuffle();
         player.FillHand(6);
         enemy.FillHand(1);
         state = RoundState.START;
+        Messenger.text = "Game Started";
         
         Debug.Log(PlayerDeck.shuffleDeck.Count);
     }
 
     private void Update()
     {
-        if (SelectedItemSlot.hasBeenSelected)
+        if (SelectedItemSlot.hasBeenSelected && !HasBeenConfirmed)
         {
             ResetSelected.gameObject.SetActive(true);
             ConfirmSelected.gameObject.SetActive(true);
-            
+            if (state == RoundState.PLAYERTURN)
+            {
+                 Messenger.text = "Status is: " + statuses[chosenstat].ToString();
+            }
+
         } else
         {
             ResetSelected.gameObject.SetActive(false);
             ConfirmSelected.gameObject.SetActive(false);
+            
         }
      
     }
@@ -67,9 +82,10 @@ public class CardManager : MonoBehaviour
     IEnumerator SetupBattle()
     {
         Debug.Log("Game started.");
-        yield return new WaitForSeconds(1f);
+       // yield return new WaitForSeconds(1f);
         state = RoundState.PLAYERTURN;
         StartCoroutine(PlayerTurn());
+        yield break;
     }
 
 
@@ -79,7 +95,7 @@ public class CardManager : MonoBehaviour
     //may also represent the index of the cards in the shuffled deck where it's drawing cards from.
     public void OnClickDraw()
     {
-
+       // player.controller.playerHand.GetComponent<PlayerAreaItemSlot>().enabled = true;
         if (!isDrawn)
         {
 
@@ -93,6 +109,7 @@ public class CardManager : MonoBehaviour
         }
 
         isDrawn = true;
+        DrawBtn.gameObject.SetActive(false);
         StartCoroutine(SetupBattle());
 
 
@@ -111,6 +128,7 @@ public class CardManager : MonoBehaviour
         statuses[5] = "charisma";
         chosenstat = Random.Range(0, statuses.Length);
         Debug.Log("Status is:" + statuses[chosenstat]);
+        Messenger.text = "Status is: " + statuses[chosenstat].ToString();
 
     }
 
@@ -119,11 +137,10 @@ IEnumerator PlayerTurn()
     {
       SelectCardPrep();
         Debug.Log("Pick your card bro");
-     
-      
-
+        yield return new WaitForSeconds(2f);
+        Messenger.text = "Drag your best card onto the black area!";
         //IEnumerators NEED to return something, you can let do this.
-        yield return new WaitForSeconds(1f);
+        yield break;
     }
 
     //Happens when a stat is clicked, index represents the button/stat in question (check inspector for the buttons)
@@ -136,6 +153,7 @@ IEnumerator PlayerTurn()
     //now it takes the value from the selected card.
     public void onStatClick()
     {
+      
         if (player.controller.selectedCard != null)
         {
             switch (statuses[chosenstat])
@@ -163,12 +181,15 @@ IEnumerator PlayerTurn()
         GameObject cardTemp = player.controller.selectGO.GetComponent<RectTransform>().GetChild(0).gameObject;
         cardTemp.GetComponent<CanvasGroup>().blocksRaycasts = true;
         cardTemp.transform.SetParent(player.controller.playerHand.transform, false);
-        ResetSelected.gameObject.SetActive(false);
+      
     }
 
     public void OnConfirmPressed()
     {
-      //  HasBeenConfirmed = true;
+         HasBeenConfirmed = true;
+         ResetSelected.gameObject.SetActive(false);
+         ConfirmSelected.gameObject.SetActive(false);
+
         if (player.controller.selectGO.GetComponent<RectTransform>().childCount == 0)
         {
             Debug.Log("There is no card to confirm");
@@ -186,14 +207,18 @@ IEnumerator PlayerTurn()
     //a "compare" button will appear for the player allowing the player to carry out the comparison and conclude the game.
     IEnumerator EnemyTurn()
     {
+        Messenger.text = "Please wait for oppoent";
         yield return new WaitForSeconds(1f);
+       
         enemy.controller.InstantiateCards(1);
+        Messenger.text = "Your enemy has chosen. Click Compare to proceed.";
         enemy.controller.thisCard.thisId = enemy.handOfCards[0].id;
         enemy.controller.physicalCards[0].transform.Find("BackOfCard").gameObject.SetActive(true);
         //enemy.controller.fetchCard(0);
 
         player.controller.compareB.gameObject.SetActive(true);
-      
+        yield break;
+
 
 
     }
@@ -230,6 +255,7 @@ IEnumerator PlayerTurn()
         if (player.controller.selectedVal > enemy.controller.selectedVal)
         {
             player.score++;
+           
             state = RoundState.WON;
             NextRound();
            
@@ -237,16 +263,20 @@ IEnumerator PlayerTurn()
         else if (enemy.controller.selectedVal > player.controller.selectedVal)
         {
             enemy.score++;
+            
             state = RoundState.LOST;
             NextRound();
             
         }
         else if (enemy.controller.selectedVal == player.controller.selectedVal)
         {
+            
             state = RoundState.DRAW;
-            NextRound();
+           NextRound();
             
         }
+      //  EndRound();
+          yield break;
 
       //  if (player.score == 5)
       //  {
@@ -257,6 +287,7 @@ IEnumerator PlayerTurn()
       //  }
     }
 
+
     public void NextRound()
     {
         Debug.Log("Going to next round");
@@ -264,33 +295,72 @@ IEnumerator PlayerTurn()
        
     }
 
+    public void ResetGame()
+    {
+        //for (int i = 0; i < player.handOfCards.Count + 1; i++)
+        //{
+        //    Destroy(player.controller.physicalCards[i]);
+        //}
+        //playerDeck.EmptyDeck();
+        //  player.controller.playerHand.GetComponent<PlayerAreaItemSlot>().enabled = false;
+
+
+        //Destroy(enemy.controller.physicalCards[0]);
+        //player.controller.emptyPhysical();
+        //enemy.controller.emptyPhysical();
+        //player.EmptyHand();
+        //enemy.EmptyHand();
+        //isDrawn = false;
+        //statuses = null;
+        //chosenstat = 0;
+
+        //state = RoundState.START;
+        //playerDeck.FillDeck();
+        //player.controller.playerCard = Resources.Load<GameObject>("Spawnable/Card");
+        //enemy.controller.playerCard = Resources.Load<GameObject>("Spawnable/Card");
+        //Start();
+        // SceneManager.UnloadSceneAsync("MultiplayerGame");
+
+        // Start();
+        SceneManager.LoadScene("MultiplayerGame");
+
+    }
+
     // Happens depending on the current game state. Sorta self explanatory
     public void EndRound()
     {
+        RestartBtn.gameObject.SetActive(true);
+       
         int removeid = player.controller.selectGO.GetComponent<RectTransform>().GetChild(0).GetComponent<ThisCard>().id;
         for (int i = 0; i < player.handOfCards.Count; i++)
         {
+           
             if (player.handOfCards[i].id == removeid)
             {
                 player.handOfCards.RemoveAt(i);
             }
         }
         player.controller.RemoveUsedCard();
+      
 
         if (state == RoundState.WON)
         {
             Debug.Log("You won. Commencing victory cry.");
+            Messenger.text = "Hurray! You won!";
             new WaitForSeconds(3f);
             // Application.OpenURL("https://www.youtube.com/watch?v=sAXZbfLzJUg");
         }
         else if (state == RoundState.LOST)
         {
             Debug.Log("You lost.");
+            Messenger.text = "You lost...";
         }
         else if (state == RoundState.DRAW)
         {
             Debug.Log("It's a draw!");
+            Messenger.text = "It's a draw!";
         }
+      //  SceneManager.LoadScene("End");
 
     }
 
