@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SWNetwork;
+//using SWNetwork;
 
 
 //Generates a database of cards, use this formula to add a new card to the database: cardList.Add(new Card(int id, string cardName, int str, int dex, int con, int intel, int wis, int cha,Resources.Load <Sprite>("Card Art/Card") ));));
@@ -10,7 +10,7 @@ public class CardDatabase : MonoBehaviour
 
     public static List<Card> cardList = new List<Card>();
 
-    void Awake()
+    public void CreatePack()
     {
         cardList.Add(new Card(0, "Example", 0, 0, 0, 0, 0, 0, Resources.Load <Sprite>("Card Art/1") ));
         cardList.Add(new Card(1, "Knight", 75, 25, 75, 35, 30, 60, Resources.Load<Sprite>("Card Art/Knight")));

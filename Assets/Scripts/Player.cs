@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using Photon.Pun;
 
 
     [Serializable]
@@ -11,30 +12,50 @@ public class Player : MonoBehaviour
 {
 
     //PLayer identification
-    public string playerId;
+    public int playerId;
     public string playerName;
-    public int score = 0;
+    public int score;
 
-    // where the cards from the deck go
-    public List<Card> handOfCards = new List<Card>();
-    //public static int handSize;
-    //Enables the player to do stuff with the cards
-    public PlayerController controller;
-     private bool isDrawn = false;
+     public List<GameObject> physicalCards = new List<GameObject>();
+    public GameObject playerCard;
+    public bool isDrawn = false;
+
+     public int selectedVal;
+    private int valtoberemoved;
+    public ThisCard thisCard;
+    public ThisCard selectedCard;
+
+  // [SerializeField]
+   // private Button getcardsbtn;
+   // [SerializeField]
+   // private PlayerDeck shareddeck;
+private int numOfCards = 6;
    
+    int incrementer = 1;
 
-    // takes cards from the deck and puts them in the player's hand.
-    //debug log is to make sure the cards intantiates are the same as the ones that fill the hand.
-    //sometimes it only logs 4 cards instead of 5 due to duplicates. Maybe there's a way around it.
-    public void FillHand(int number)
-    {
-        for (int i = 0; i < number; i++)
-        {
-            handOfCards.Add(PlayerDeck.RemovefromShuffle(i));
-            
-        }
-       // Debug.Log(handOfCards.Count);
+    public List<Card> handOfCards = new List<Card>();
+
+       public static bool HasBeenConfirmed = false;
+
+    public PhotonView view;
+
+   //public Button DrawButtonPlayer = MultiCardManager.DrawBtn;
+
+    public void Start(){
+      playerId = GetComponent<PhotonView>().ViewID;
+        playerName = "player" + incrementer;
+        incrementer++;
+        score = 0;
+     // getcardsbtn = GameObject.FindGameObjectWithTag("Startup").GetComponent<Button>();
+     // shareddeck = GameObject.FindGameObjectWithTag("Deck").GetComponent<PlayerDeck>();
+     //  getcardsbtn.onClick.AddListener(FillHand);
     }
+
+ 
+
+    
+
+   
   
     public void Removefromcardid(int cardid)
     {
@@ -47,22 +68,37 @@ public class Player : MonoBehaviour
         }
     }
 
-     public void OnClickDraw()
+    public void EmptyHand()
     {
-
-        if (!isDrawn)
-        {
-
-            for (int j = 0; j < handOfCards.Count; j++)
-            {
-
-                controller.InstantiateCards(j);
-                controller.thisCard.thisId = handOfCards[j].id;
-               
-            }
-        }
-
+        handOfCards.Clear();
     }
+
+    public void InstantiateCards()
+    {
+          for (int i = 0; i< numOfCards; i++){
+              playerCard = Instantiate(this.playerCard, new Vector3(0, 0, 0), Quaternion.identity);
+        
+          playerCard.GetComponent<ThisCard>().thisId = handOfCards[i].id;
+         physicalCards.Add(playerCard);
+
+          }
+    }
+
+   
+
+     public void RemoveUsedCard()
+    {
+      //  Destroy(selectGO.GetComponent<RectTransform>().GetChild(0).gameObject);
+        
+    }
+
+    public void emptyPhysical()
+    {
+        physicalCards.Clear();
+      //  if (physicalCards.Count == 0) { }
+      
+    }
+   
    
 }
 

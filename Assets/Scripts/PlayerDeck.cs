@@ -1,70 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 //this script builds a 20 card deck using cards from the database, for now it just uses random cards however in the future we can make a deck builder interface, for the MVP this will do
 
-public class PlayerDeck : MonoBehaviour
+public class PlayerDeck : MonoBehaviourPun
 {
 
     public List<Card> deck;
-    //where the cards are gonna be taken from in game, the main deck should be untouched.
-    //static so that several scripts can reference it while only one deck is define throughout.
-    public static List<Card> shuffleDeck = new List<Card>();
-
-    public int x;
+    public List<Card> shuffleDeck;
+   CardDatabase db = new CardDatabase();
+  
     public static int deckSize;
+
+    
     public int cardDatabaseSize;
 
-    // Start is called before the first frame update
-    // fills the main deck with cards from the database.
     void Awake()
+    { 
+     FillDeck();
+     Shuffle();
+    }
+
+    public void FillDeck()
     {
-        x = 0;
+        db.CreatePack();
+      
         deckSize = 20;
         cardDatabaseSize = CardDatabase.cardList.Count;
+        
 
-        for(int i=0; i<deckSize; i++)
+        for (int i = 0; i < deckSize; i++)
         {
-            x = Random.Range(1, cardDatabaseSize);
-           deck.Add(CardDatabase.cardList[i]);
+           
+            deck.Add(CardDatabase.cardList[i]);
+            //shuffleDeck.Add(CardDatabase.cardList[i]);
         }
+    
+    }
 
+     public void Shuffle()
+    {
+        shuffleDeck = new List<Card>();
+        for (int i = 0; i < deckSize; i++)
+        {
+           
+            shuffleDeck.Add(CardDatabase.cardList[i]);
+          
+        }
+           
+                
+            for (int i = 0; i < deckSize; i++)
+            {  
+                
+                 int j = Random.Range(0, i + 1);
+                 Card tmp = shuffleDeck[j];
+            shuffleDeck[j] = shuffleDeck[i];
+            shuffleDeck[i] = tmp;
+                
+            }     
         
     }
 
-    // shuffles the deck
-    //fills the shuffled deck in question.
+  
 
-    public void Shuffle()
+    public Card GrabShuffledCard()
     {
-      
-            if (shuffleDeck.Count == 0)
-            {
-            for (int i = 0; i < deckSize; i++)
-            {
-                shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
-            }
-            } else
-            {
-                shuffleDeck = new List<Card>();
-            for (int i = 0; i < deckSize; i++)
-            {
-                shuffleDeck.Add(deck[Random.Range(1, deckSize)]);
-            }
-                Debug.Log("Shuffled deck size after reset " + PlayerDeck.shuffleDeck.Count);
-            }
-        
-    }
-
-    //returns a card to be put in the player' hand from the shuffled deck.
-    // removes said card from the shuffled deck to avoid duplication
-   
-    public static Card RemovefromShuffle(int i)
-    {
-        Card shufpicked = shuffleDeck[i];
+        int rnd = Random.Range(0, deckSize);
+        Card shufpicked = shuffleDeck[rnd];
         shuffleDeck.Remove(shufpicked);
         return shufpicked;
+    }
+
+    public void EmptyDeck()
+    {
+        deck = new List<Card>();
+        shuffleDeck = new List<Card>();
     }
 
   
