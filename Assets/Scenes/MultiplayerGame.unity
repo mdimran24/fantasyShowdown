@@ -615,8 +615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottom: {fileID: 548999053}
-  Selector: {fileID: 1976346438}
+  opponentCards: {fileID: 676655545606877718}
   player: {fileID: 0}
+  dealer: {fileID: 706916247}
   ResetSelected: {fileID: 282249233}
   ConfirmSelected: {fileID: 545145510}
 --- !u!224 &349215574 stripped
@@ -2752,6 +2753,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 518fb910f43b51146854be61f519769f, type: 3}
+--- !u!1 &676655545606877718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 676655545282898240, guid: 518fb910f43b51146854be61f519769f, type: 3}
+  m_PrefabInstance: {fileID: 676655545606877717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1280901481358795369
 PrefabInstance:
   m_ObjectHideFlags: 0

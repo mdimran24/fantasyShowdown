@@ -16,9 +16,11 @@ public class MultiCardManager : MonoBehaviour
     
    
     public GameObject bottom;
-    public GameObject Selector;
+    public GameObject opponentCards;
+   // public GameObject Selector;
 
     public Player player;
+    public Dealer dealer;
    
 
     bool HasBeenConfirmed;
@@ -66,19 +68,22 @@ public class MultiCardManager : MonoBehaviour
 
   
   public void Draw(){
+      
  GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
          foreach (GameObject p in players){
              if (p.GetComponent<PhotonView>().IsMine){
                  player = p.GetComponent<Player>();
              }
          }
-
+dealer.DealCards();
         player.GetComponent<Player>().InstantiateCards();
         for(int i = 0; i<player.GetComponent<Player>().physicalCards.Count; i++){
         player.GetComponent<Player>().physicalCards[i].transform.SetParent(bottom.transform, false);    
     }
     PlayerTurn();
     
+    
+
      }
 
     private void PlayerTurn()
@@ -150,6 +155,11 @@ public class MultiCardManager : MonoBehaviour
         Debug.Log("Card picked was " + player.selectedCard.cardName);
         Debug.Log(player.selectedVal.ToString());
 
+    
+       // GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
+       // testcard.transform.SetParent(opponentCards.transform, false);
+        //testcard.GetComponent<ThisCard>().thisId = player.selectedCard.thisId;
+    
     }
       
   }
