@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 
 
@@ -24,6 +23,7 @@ public class Player : MonoBehaviour
     private int valtoberemoved;
     public ThisCard thisCard;
     public ThisCard selectedCard;
+    public GameObject selectGO;
 
   // [SerializeField]
    // private Button getcardsbtn;
@@ -46,6 +46,7 @@ private int numOfCards = 6;
         playerName = "player" + incrementer;
         incrementer++;
         score = 0;
+        selectGO = GameObject.FindGameObjectWithTag("Select");
      // getcardsbtn = GameObject.FindGameObjectWithTag("Startup").GetComponent<Button>();
      // shareddeck = GameObject.FindGameObjectWithTag("Deck").GetComponent<PlayerDeck>();
      //  getcardsbtn.onClick.AddListener(FillHand);

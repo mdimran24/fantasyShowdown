@@ -54,6 +54,7 @@ MonoBehaviour:
   selectedVal: 0
   thisCard: {fileID: 0}
   selectedCard: {fileID: 0}
+  selectGO: {fileID: 0}
   handOfCards: []
   view: {fileID: -3402946307738020698}
 --- !u!114 &-3402946307738020698

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Startup
   - Deck
+  - Select
   layers:
   - Default
   - TransparentFX
