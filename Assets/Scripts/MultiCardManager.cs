@@ -6,30 +6,35 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 
-//parts of the game in question
-public enum RoundStates { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
-
 public class MultiCardManager : MonoBehaviour
 {
- 
-    private bool isDrawn;
-    
-   
+    //the bottom of the screen representing the player's hand
     public GameObject bottom;
-    public GameObject opponentCards;
-   // public GameObject Selector;
 
+//the top right hand side of the screen representing the enemy cards
+    public GameObject opponentCards;
+
+    /*the player in question. Now note that both ends of the game basically have individual copies of this script
+    and only the photon-based code actually deals with sharing info across the network. Therefore there is only one player
+    variable as on this end, it represents you and on their end, it represents them. */
     public Player player;
+    //The one that hands the cards to everybody. I consider merging this with another script.
     public Dealer dealer;
    
-
+    //represents that the player has selected their card
     bool HasBeenConfirmed;
 
+//The reset button, meaning that their selected card goes back onto their hand.
  public Button ResetSelected;
+ //the confirm button meaning that the player has decided on which card to play
     public Button ConfirmSelected;
+
+    //the draw button, which instantates the cards in the player's hand
     public static Button DrawBtn;
 
+    //list of statuses that will be selected from
      public static string[] statuses;
+     //the status that has been picked
     public static int chosenstat;
 
 
@@ -48,6 +53,9 @@ public class MultiCardManager : MonoBehaviour
 
     }
  
+ /* Makes sure the card that has been dragged onto the select area can no longer be clickable
+ And also that the reset and confirm buttons don't appear when a card is not selected yet or 
+ when a card has already been played. */
   private void Update()
     {
         if (SelectedItemSlot.hasBeenSelected && !HasBeenConfirmed)
@@ -66,20 +74,28 @@ public class MultiCardManager : MonoBehaviour
     }
 
 
-  
+/* does the instantiation magic.
+This code's a bit messy because there's a small problem with the code order. */  
   public void Draw(){
       
+      /*Looks into all the players present in the game and if that player is you, then it 
+      sets the player variable to correspond to that*/
  GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
          foreach (GameObject p in players){
              if (p.GetComponent<PhotonView>().IsMine){
                  player = p.GetComponent<Player>();
              }
          }
+         /* Fills your hand. */
 dealer.DealCards();
+
+//makes the cards appear on the screen.
         player.GetComponent<Player>().InstantiateCards();
         for(int i = 0; i<player.GetComponent<Player>().physicalCards.Count; i++){
         player.GetComponent<Player>().physicalCards[i].transform.SetParent(bottom.transform, false);    
     }
+
+    // advances te game
     PlayerTurn();
     
     
@@ -93,6 +109,7 @@ dealer.DealCards();
        
     }
 
+    //creates the stat array and picks one at random, then lets you know about it.
      public void SelectCardPrep()
     {
        statuses = new string[6];
@@ -108,6 +125,7 @@ dealer.DealCards();
 
     }
 
+    // removes the card from the selected area and puts it back onto your hand.
      public void OnResetPressed()
     {
         SelectedItemSlot.hasBeenSelected = false;
@@ -117,24 +135,36 @@ dealer.DealCards();
       
     }
 
+    // the card disappears and is now stored to be played against your component
+    // YOU CANNOT UNDO THIS.
     public void OnConfirmPressed()
     {
+        //confirms you have indeed drawn your card. Should move this to the player class.
          HasBeenConfirmed = true;
+         //makes aforementioned buttons disappear.
          ResetSelected.gameObject.SetActive(false);
          ConfirmSelected.gameObject.SetActive(false);
 
+        //if your pressed the confirm button while there was no card inside.
         if (player.selectGO.GetComponent<RectTransform>().childCount == 0)
         {
-            Debug.Log("There is no card to confirm");
+            Debug.LogError("There is no card to confirm");
         }
         else
         {
+            //marks the card inside the area as the one to be played.
             player.selectedCard = player.selectGO.GetComponent<RectTransform>().GetChild(0).GetComponent<ThisCard>();
             Debug.Log(player.selectedCard.cardName);
+            //advances the game
             onStatClick();
         }
     }
 
+    /*picks the stat that has been picked from the card you have selected,
+    then lets you know of it.
+    Suggestion: create a method that returns a ThisCard object that contains the
+    same info as the selected card in order to be used in a RaiseEvent method.
+    Additional: A method that intantiated this card to the opponent, with the face down and all. */
       public void onStatClick()
     {
       
@@ -161,6 +191,8 @@ dealer.DealCards();
         //testcard.GetComponent<ThisCard>().thisId = player.selectedCard.thisId;
     
     }
+
+    //RPCs should be introduced for the turn based aspect here.
       
   }
 

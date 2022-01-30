@@ -7,25 +7,29 @@ using Photon.Pun;
 
 public class PlayerDeck : MonoBehaviourPun
 {
-
+    //original deck of cards
     public List<Card> deck;
+
+    //shuffled deck of cards
     public List<Card> shuffleDeck;
+
+    //database of cards.
    CardDatabase db = new CardDatabase();
-   [SerializeField]
-    private int i;
-  
+ 
+ //size of the deck
     public static int deckSize;
 
-    
+  //size of the database  
     public int cardDatabaseSize;
 
     void Awake()
     { 
      FillDeck();
      Shuffle();
-        i = 0;
+      
     }
 
+//crabs card from the database and puts them into the original deck.
     public void FillDeck()
     {
         db.CreatePack();
@@ -38,11 +42,12 @@ public class PlayerDeck : MonoBehaviourPun
         {
            
             deck.Add(CardDatabase.cardList[i]);
-            //shuffleDeck.Add(CardDatabase.cardList[i]);
+           
         }
     
     }
 
+//Creates the deck to be shuffled and, well, shuffles its cards.
      public void Shuffle()
     {
         shuffleDeck = new List<Card>();
@@ -67,7 +72,7 @@ public class PlayerDeck : MonoBehaviourPun
     }
 
   
-
+//provides a list of cards that will represent the player's hand of cards.
     public List<Card> giveHand()
     {
         List<Card> given = new List<Card>();
@@ -79,6 +84,7 @@ public class PlayerDeck : MonoBehaviourPun
         return given;
     }
 
+//Empties both original and shuffled decks
     public void EmptyDeck()
     {
         deck = new List<Card>();
