@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: []
   shuffleDeck: []
+  i: 0
   cardDatabaseSize: 0
 --- !u!114 &-8205085059842482327
 MonoBehaviour:

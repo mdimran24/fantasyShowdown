@@ -11,21 +11,14 @@ public class Dealer : MonoBehaviourPun
     public GameObject deck;
 
     private void Awake() {
-        if (PhotonNetwork.IsMasterClient){
-            deck = PhotonNetwork.Instantiate("Deck", new Vector3(0, 0, 0), Quaternion.identity); 
-        }
-     base.photonView.RPC("setup", RpcTarget.AllBuffered);
+        playerDeck = deck.GetComponent<PlayerDeck>();
     }
 
-    [PunRPC]
-    private void setup(){
-        // deck = PhotonNetwork.Instantiate("Deck", new Vector3(0, 0, 0), Quaternion.identity);
-        playerDeck = deck.GetComponent<PlayerDeck>(); 
-    }
+  
 
    public void Dealbtn(){
-          //DealCards();
-           base.photonView.RPC("DealCards", RpcTarget.All);
+         // DealCards();
+          base.photonView.RPC("DealCards", RpcTarget.All);
          
        
    }
@@ -37,12 +30,11 @@ public class Dealer : MonoBehaviourPun
        // Debug.Log(players.Length);
 
         foreach (GameObject p in players){
-            //if (p.GetComponent<PhotonView>().IsMine){
-            for (int i = 0; i< 6; i++){
-                Card dealt = playerDeck.GrabShuffledCard();
-                p.GetComponent<Player>().handOfCards.Add(dealt);
+            if (p.GetComponent<PhotonView>().IsMine){
+           
+                p.GetComponent<Player>().handOfCards = playerDeck.giveHand();
+        
             }
-           // }
         }
         
     }
