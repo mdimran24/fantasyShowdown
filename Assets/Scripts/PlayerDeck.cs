@@ -11,6 +11,7 @@ public class PlayerDeck : MonoBehaviourPun
     public List<Card> deck;
     public List<Card> shuffleDeck;
    CardDatabase db = new CardDatabase();
+    private int i;
   
     public static int deckSize;
 
@@ -21,6 +22,7 @@ public class PlayerDeck : MonoBehaviourPun
     { 
      FillDeck();
      Shuffle();
+        i = 0;
     }
 
     public void FillDeck()
@@ -67,8 +69,9 @@ public class PlayerDeck : MonoBehaviourPun
 
     public Card GrabShuffledCard()
     {
-        int rnd = Random.Range(0, deckSize);
-        Card shufpicked = shuffleDeck[rnd];
+  
+        Card shufpicked = shuffleDeck[i];
+        i++;
         shuffleDeck.Remove(shufpicked);
         return shufpicked;
     }
