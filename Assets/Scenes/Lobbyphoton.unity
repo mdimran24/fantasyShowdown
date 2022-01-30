@@ -219,6 +219,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1895134231}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MultiplayerGame
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5210292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +352,7 @@ Transform:
   m_Children:
   - {fileID: 2093823710}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &470128298
 GameObject:
@@ -407,7 +419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472908920
 GameObject:
@@ -453,7 +465,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583347712
 GameObject:
@@ -1279,6 +1291,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478141280}
   m_CullTransparentMesh: 1
+--- !u!1001 &1536407805
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68935181409142274, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738733550497441129, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
 --- !u!1 &1746799676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1508,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812377585}
   m_CullTransparentMesh: 1
+--- !u!114 &1895134231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5169686856150949949, guid: 9e269f5efe1605b4eb0b1fb5650c65d5, type: 3}
+  m_PrefabInstance: {fileID: 1536407805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0294706cb4f108d4d8299f723e8daa35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2093823709
 GameObject:
   m_ObjectHideFlags: 0
