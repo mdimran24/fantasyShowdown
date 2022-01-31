@@ -67,13 +67,15 @@ public class PlayerDeck : MonoBehaviourPun
 
   
 
-    public Card GrabShuffledCard()
+    public List<Card> GiveHand(int numofthem)
     {
-  
+        List<Card> given = new List<Card>();
+        for (int i =0; i< numofthem; i++){
         Card shufpicked = shuffleDeck[i];
-        i++;
+       given.Add(shufpicked);
         shuffleDeck.Remove(shufpicked);
-        return shufpicked;
+        }
+        return given;
     }
 
     public void EmptyDeck()

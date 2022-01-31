@@ -24,27 +24,54 @@ public class Dealer : MonoBehaviourPun
     
     }
 
+ private void OnEnable() {
+        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClientEventReceived;
+    }
 
-   public void Dealbtn(){
-          //DealCards();
-           base.photonView.RPC("DealCards", RpcTarget.All);
+private void OnDisable() {
+        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClientEventReceived;
+    }
+
+private void NetworkingClientEventReceived(EventData obj){
+    if (obj.Code == PASSHAND){
+        Card[] datas = (Card[]) obj.CustomData;
+
+        List<Card> temp = new List<Card>();
+        for (int i =0; i<6; i++){
+            Card addon = datas[i];
+            temp.Add(addon);
+        }
+
+       GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players){
+            if (!p.GetComponent<PhotonView>().IsMine){
+                p.GetComponent<Player>().handOfCards = temp;
+            }
+        }
+    }
+}
+    public void Dealbtn(){
+       if (PhotonNetwork.IsMasterClient){
+          DealCards();
+       }
+          // base.photonView.RPC("DealCards", RpcTarget.All);
          
        
    }
 
-[PunRPC]
+
     public void DealCards(){
       
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
        // Debug.Log(players.Length);
 
         foreach (GameObject p in players){
-            //if (p.GetComponent<PhotonView>().IsMine){
-            for (int i = 0; i< 6; i++){
-                Card dealt = playerDeck.GrabShuffledCard();
-                p.GetComponent<Player>().handOfCards.Add(dealt);
+            if (p.GetComponent<PhotonView>().IsMine && PhotonNetwork.IsMasterClient){
+                p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(6);
             }
-           // }
+           List<Card> otherplayer = playerDeck.GiveHand(6);
+        Card[] datas = otherplayer.ToArray();
+        PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);
         }
         
     }
