@@ -20,7 +20,6 @@ public class Dealer : MonoBehaviourPun
 
 
 //fills the hands of the players.
-[PunRPC]
     public void DealCards(){
       
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
