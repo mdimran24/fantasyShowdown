@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using ExitGames.Client.Photon;
 
 public class Dealer : MonoBehaviourPun
 {
@@ -10,18 +11,19 @@ public class Dealer : MonoBehaviourPun
     private PlayerDeck playerDeck;
     public GameObject deck;
 
+    private const byte PASSDECK = 0;
+    private const byte PASSHAND = 1;
+
     private void Awake() {
         if (PhotonNetwork.IsMasterClient){
             deck = PhotonNetwork.Instantiate("Deck", new Vector3(0, 0, 0), Quaternion.identity); 
+             playerDeck = deck.GetComponent<PlayerDeck>(); 
+           // object[] deckdata = new object[] {playerDeck};
+           //  PhotonNetwork.RaiseEvent(PASSDECK, deckdata, null, SendOptions.SendUnreliable);
         }
-     base.photonView.RPC("setup", RpcTarget.AllBuffered);
+    
     }
 
-    [PunRPC]
-    private void setup(){
-        // deck = PhotonNetwork.Instantiate("Deck", new Vector3(0, 0, 0), Quaternion.identity);
-        playerDeck = deck.GetComponent<PlayerDeck>(); 
-    }
 
    public void Dealbtn(){
           //DealCards();
