@@ -70,8 +70,8 @@ private void NetworkingClientEventReceived(EventData obj){
                 p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(6);
             }
            List<Card> otherplayer = playerDeck.GiveHand(6);
-        Card[] datas = otherplayer.ToArray();
-        PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);
+       // Object[] datas = otherplayer.ToArray();
+       // PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);
         }
         
     }
