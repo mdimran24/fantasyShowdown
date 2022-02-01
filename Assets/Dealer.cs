@@ -21,6 +21,8 @@ public class Dealer : MonoBehaviourPun
            // object[] deckdata = new object[] {playerDeck};
            //  PhotonNetwork.RaiseEvent(PASSDECK, deckdata, null, SendOptions.SendUnreliable);
         }
+        PhotonPeer.RegisterType(typeof(Card), (byte)'W' ,Card.Serialize, Card.Deserialize);
+        Debug.Log ( PhotonPeer.RegisterType(typeof(Card), (byte)'W' ,Card.Serialize, Card.Deserialize));
     
     }
 
@@ -34,11 +36,11 @@ private void OnDisable() {
 
 private void NetworkingClientEventReceived(EventData obj){
     if (obj.Code == PASSHAND){
-        Card[] datas = (Card[]) obj.CustomData;
+        object[] datas = (object[]) obj.CustomData;
 
         List<Card> temp = new List<Card>();
         for (int i =0; i<6; i++){
-            Card addon = datas[i];
+            Card addon = (Card) datas[i];
             temp.Add(addon);
         }
 
@@ -66,12 +68,12 @@ private void NetworkingClientEventReceived(EventData obj){
        // Debug.Log(players.Length);
 
         foreach (GameObject p in players){
-            if (p.GetComponent<PhotonView>().IsMine && PhotonNetwork.IsMasterClient){
+            if (base.photonView.IsMine){
                 p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(6);
             }
            List<Card> otherplayer = playerDeck.GiveHand(6);
-       // Object[] datas = otherplayer.ToArray();
-       // PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);
+        object[] datas = new object[] { otherplayer[0], otherplayer[1], otherplayer[2], otherplayer[3], otherplayer[4], otherplayer[5]};
+        PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendUnreliable);
         }
         
     }
