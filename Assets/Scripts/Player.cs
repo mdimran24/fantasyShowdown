@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
    // private Button getcardsbtn;
    // [SerializeField]
    // private PlayerDeck shareddeck;
-private int numOfCards = 6;
+private int numOfCards = 3;
    
     int incrementer = 1;
 

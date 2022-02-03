@@ -39,14 +39,14 @@ private void NetworkingClientEventReceived(EventData obj){
         object[] datas = (object[]) obj.CustomData;
 
         List<Card> temp = new List<Card>();
-        for (int i =0; i<6; i++){
-            Card addon = (Card) datas[i];
+        for (int i =0; i<3; i++){
+            Card addon = new Card((int) datas[i], "test", (int) datas[i], 0, 0, 0, 0, 0, null);
             temp.Add(addon);
         }
 
        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players){
-            if (!p.GetComponent<PhotonView>().IsMine){
+            if (!base.photonView.IsMine){
                 p.GetComponent<Player>().handOfCards = temp;
             }
         }
@@ -66,17 +66,25 @@ private void NetworkingClientEventReceived(EventData obj){
       
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
        // Debug.Log(players.Length);
-
+        int[] numstopasstest = new int[3];
         foreach (GameObject p in players){
             if (base.photonView.IsMine){
-                p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(6);
+                p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(3);
+                 List<Card> otherplayer = playerDeck.GiveHand(3);
+                 for (int i=0; i<3; i++){
+                     numstopasstest[i] = otherplayer[i].id;
+                 } 
+                 } else {
+                     return;
+                 }
             }
-           List<Card> otherplayer = playerDeck.GiveHand(6);
-        object[] datas = new object[] { otherplayer[0], otherplayer[1], otherplayer[2], otherplayer[3], otherplayer[4], otherplayer[5]};
+          
+        object[] datas = new object[] {numstopasstest[0], numstopasstest[1], numstopasstest[2]};
         PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendUnreliable);
         }
-        
+
     }
   
-}
+
+
     
