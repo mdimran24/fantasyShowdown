@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 
 
     [Serializable]
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPunObservable
 {
 
     //PLayer identification
@@ -98,8 +96,36 @@ private int numOfCards = 3;
       //  if (physicalCards.Count == 0) { }
       
     }
-   
-   
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting) {
+            Debug.Log("Sending number of cards for " + this.playerId + ": " + handOfCards.Count);
+            stream.SendNext(handOfCards.Count);
+            foreach (Card c in handOfCards) {
+                Debug.Log($"sending card ID for {this.playerId}: {c.id}");
+                stream.SendNext(c.id);
+            }
+        } else {
+            int nCards = (int) stream.ReceiveNext();
+            Debug.Log("Received number of cards for " + this.playerId + ": " + nCards);
+            if (nCards != handOfCards.Count) {
+                handOfCards.Clear();
+                for (int i = 0; i < nCards; i++) {
+                    handOfCards.Add(new Card(0, "dummy", 0, 0, 0, 0, 0, 0, null));
+                }
+            }
+
+            for (int i = 0; i< nCards; i++) {
+                int cardId = (int) stream.ReceiveNext();
+                Debug.Log("Received card ID for " + this.playerId + ": " + cardId);
+                if (handOfCards[i].id != cardId) {
+                    handOfCards[i].id = cardId;
+                    // update anything else in the card...
+                }
+            }
+        }
+    }
 }
 
 

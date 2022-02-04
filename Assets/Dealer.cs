@@ -35,7 +35,8 @@ private void OnDisable() {
     }
 
 private void NetworkingClientEventReceived(EventData obj){
-    if (obj.Code == PASSHAND){
+    if (obj.Code == PASSHAND && !PhotonNetwork.IsMasterClient){
+        Debug.Log("Received event: " + obj);
         object[] datas = (object[]) obj.CustomData;
 
         List<Card> temp = new List<Card>();
@@ -46,7 +47,9 @@ private void NetworkingClientEventReceived(EventData obj){
 
        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players){
-            if (!base.photonView.IsMine){
+            PhotonView playerView = p.GetComponent<PhotonView>();
+            if (playerView.IsMine){
+                Debug.Log("Received hand from master client: " + temp);
                 p.GetComponent<Player>().handOfCards = temp;
             }
         }
@@ -56,31 +59,32 @@ private void NetworkingClientEventReceived(EventData obj){
        if (PhotonNetwork.IsMasterClient){
           DealCards();
        }
-          // base.photonView.RPC("DealCards", RpcTarget.All);
-         
-       
    }
 
 
     public void DealCards(){
+        if (!base.photonView.IsMine){
+            return;
+        }
       
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
        // Debug.Log(players.Length);
         int[] numstopasstest = new int[3];
         foreach (GameObject p in players){
-            if (base.photonView.IsMine){
+            PhotonView v = p.GetComponent<PhotonView>();
+            if (v.IsMine) {
                 p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(3);
+            } else {
                  List<Card> otherplayer = playerDeck.GiveHand(3);
                  for (int i=0; i<3; i++){
                      numstopasstest[i] = otherplayer[i].id;
                  } 
-                 } else {
-                     return;
-                 }
+                 object[] datas = new object[] {numstopasstest[0], numstopasstest[1], numstopasstest[2]};
+                 Debug.Log("raising event with datas " + datas);
+                 PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);
             }
-          
-        object[] datas = new object[] {numstopasstest[0], numstopasstest[1], numstopasstest[2]};
-        PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendUnreliable);
+        }
+
         }
 
     }
