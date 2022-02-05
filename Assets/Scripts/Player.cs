@@ -9,52 +9,54 @@ using Photon.Pun;
 public class Player : MonoBehaviour, IPunObservable
 {
 
-    //PLayer identification
+    //Payer identification
     public int playerId;
+
+    //player's name and score, will be relevant later on.
     public string playerName;
     public int score;
 
+    //hand of cards but represented as card gameobjects
      public List<GameObject> physicalCards = new List<GameObject>();
+
+    // acts as temporary card for several methods. There's perhaps a better place to put it.
     public GameObject playerCard;
+
+    //WILL BE USED, determined whether the player has drawn their cards or not
+    //prevents them from instantiating cards to infinity.
     public bool isDrawn = false;
 
+    //WILL BE USED
+    //Value of the selected status of the selected card
      public int selectedVal;
+     //UNSURE
     private int valtoberemoved;
+    //Also a temp variable
     public ThisCard thisCard;
+    //Represents details of the card that has been selected
     public ThisCard selectedCard;
 
-  // [SerializeField]
-   // private Button getcardsbtn;
-   // [SerializeField]
-   // private PlayerDeck shareddeck;
+//number of cards that each player will have in their hand. Should be 6
+//also look into it to avoid magic numbers
 private int numOfCards = 3;
    
-    int incrementer = 1;
-
+    // Players hand of cards
     public List<Card> handOfCards = new List<Card>();
 
+    //If the player has already selected the card to play with.
        public static bool HasBeenConfirmed = false;
 
+    //Network identity of object
     public PhotonView view;
 
-   //public Button DrawButtonPlayer = MultiCardManager.DrawBtn;
-
+    //player's ID is the same as the ID of the Photon view
     public void Start(){
       playerId = GetComponent<PhotonView>().ViewID;
-        playerName = "player" + incrementer;
-        incrementer++;
+        playerName = "player";  
         score = 0;
-     // getcardsbtn = GameObject.FindGameObjectWithTag("Startup").GetComponent<Button>();
-     // shareddeck = GameObject.FindGameObjectWithTag("Deck").GetComponent<PlayerDeck>();
-     //  getcardsbtn.onClick.AddListener(FillHand);
     }
 
- 
-
-    
-
-   
-  
+    //Removes a specific card by finding its ID (Now sure where it's useable??)
     public void Removefromcardid(int cardid)
     {
         for (int i = 0; i < 6; i++)
@@ -66,30 +68,34 @@ private int numOfCards = 3;
         }
     }
 
+    //empty the player's hand
     public void EmptyHand()
     {
         handOfCards.Clear();
     }
 
+    //turn the player's hand of cards into tangible form
     public void InstantiateCards()
     {
           for (int i = 0; i< numOfCards; i++){
               playerCard = Instantiate(this.playerCard, new Vector3(0, 0, 0), Quaternion.identity);
         
-          playerCard.GetComponent<ThisCard>().thisId = handOfCards[i].id;
+        playerCard.GetComponent<ThisCard>().thisId = handOfCards[i].id;
          physicalCards.Add(playerCard);
-
           }
     }
 
    
-
+    //WILL BE USED LATER
+    //Once a round has ended, this command is used to discard the card that has already been played
      public void RemoveUsedCard()
     {
       //  Destroy(selectGO.GetComponent<RectTransform>().GetChild(0).gameObject);
         
     }
 
+    //WILL BE USED LATER
+    //Makes the physical cards disappear, but the actual cards are still there.
     public void emptyPhysical()
     {
         physicalCards.Clear();
@@ -97,6 +103,9 @@ private int numOfCards = 3;
       
     }
 
+    //IMPORTANT
+    //MAKES HAND SYNCHRONISATION POSSIBLE
+    //Essentially makes it possible for Photon to identify players to send events to
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting) {

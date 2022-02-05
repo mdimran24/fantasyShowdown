@@ -11,7 +11,6 @@ public class PlayerDeck : MonoBehaviourPun
     public List<Card> deck;
     public List<Card> shuffleDeck;
    CardDatabase db = new CardDatabase();
-    private int i;
   
     public static int deckSize;
 
@@ -22,22 +21,21 @@ public class PlayerDeck : MonoBehaviourPun
     { 
      FillDeck();
      Shuffle();
-        i = 0;
     }
 
     public void FillDeck()
     {
+        //create pack from the database
         db.CreatePack();
-      
+        //setup a number of cards that will actually be playable.
         deckSize = 20;
         cardDatabaseSize = CardDatabase.cardList.Count;
         
 
         for (int i = 0; i < deckSize; i++)
         {
-           
+           //add sai cards into the deck
             deck.Add(CardDatabase.cardList[i]);
-            //shuffleDeck.Add(CardDatabase.cardList[i]);
         }
     
     }
@@ -47,7 +45,8 @@ public class PlayerDeck : MonoBehaviourPun
         shuffleDeck = new List<Card>();
         for (int i = 0; i < deckSize; i++)
         {
-           
+           //first make the shuffledeck basically a duplicate of the original deck
+           //this is done by just using the same procedure
             shuffleDeck.Add(CardDatabase.cardList[i]);
           
         }
@@ -55,7 +54,7 @@ public class PlayerDeck : MonoBehaviourPun
                 
             for (int i = 0; i < deckSize; i++)
             {  
-                
+                //shuffle cards around without complications
                  int j = Random.Range(0, i + 1);
                  Card tmp = shuffleDeck[j];
             shuffleDeck[j] = shuffleDeck[i];
@@ -66,11 +65,13 @@ public class PlayerDeck : MonoBehaviourPun
     }
 
   
-
+    //Give a list of cards to act as the hand of each player.
     public List<Card> GiveHand(int numofthem)
     {
+        //list of cards that will be returned
         List<Card> given = new List<Card>();
         for (int i =0; i< numofthem; i++){
+            //fill the hand
         Card shufpicked = shuffleDeck[i];
        given.Add(shufpicked);
         shuffleDeck.Remove(shufpicked);
@@ -78,6 +79,7 @@ public class PlayerDeck : MonoBehaviourPun
         return given;
     }
 
+    //clears both decks.
     public void EmptyDeck()
     {
         deck = new List<Card>();
