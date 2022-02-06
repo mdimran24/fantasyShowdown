@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ForestWipe
+  m_Controller: {fileID: 9100000, guid: 459ac178cdfc5d44e869a244914faacb, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3585282699d7ca847b3796dd4e8bca99, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e4e7e44020e33ab458d159490d9935f9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3ceb9ea880b8f304b82c8261f5e98ef6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ebee344b40ad1644f916238b61fec3c1, type: 2}

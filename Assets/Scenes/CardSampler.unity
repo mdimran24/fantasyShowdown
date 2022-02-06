@@ -547,8 +547,6 @@ MonoBehaviour:
     charisma: 0
     cardArt: {fileID: 0}
   shuffleDeck: []
-  x: 0
-  deckSize: 0
   cardDatabaseSize: 0
 --- !u!4 &1540014076
 Transform:
@@ -673,6 +671,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2069947806}
     m_Modifications:
+    - target: {fileID: 3188308419124404440, guid: 14ad83c15fb5714408a79791da185073, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000989354763434114, guid: 14ad83c15fb5714408a79791da185073, type: 3}
       propertyPath: m_Name
       value: Card
