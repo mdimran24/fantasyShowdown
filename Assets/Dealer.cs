@@ -86,23 +86,23 @@ private void NetworkingClientEventReceived(EventData obj){
      
         //temporary array of integers to put the IDs to be passed in
         //IDs represent cards to be sent to the other player
-        int[] numstopasstest = new int[3];
+        int[] numstopasstest = new int[6];
         foreach (GameObject p in players){
             PhotonView v = p.GetComponent<PhotonView>();
             //if this is you out of the players
             if (v.IsMine) {
                 //you as ther master have access to the deck, fill hand as normal
-                p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(3);
+                p.GetComponent<Player>().handOfCards = playerDeck.GiveHand(6);
             } else {
                 //if this is not you out of the players
                 //create a temporary list of cards
-                 List<Card> otherplayer = playerDeck.GiveHand(3);
-                 for (int i=0; i<3; i++){
+                 List<Card> otherplayer = playerDeck.GiveHand(6);
+                 for (int i=0; i<6; i++){
                      //take the IDs of those cards and put them into the array
                      numstopasstest[i] = otherplayer[i].id;
                  } 
                  //put the elements of said array into a datas array to be specifically sent across the network
-                 object[] datas = new object[] {numstopasstest[0], numstopasstest[1], numstopasstest[2]};
+                 object[] datas = new object[] {numstopasstest[0], numstopasstest[1], numstopasstest[2], numstopasstest[3], numstopasstest[4], numstopasstest[5]};
                  Debug.Log("raising event with datas " + datas);
                  //Actually send it to the other player.
                  PhotonNetwork.RaiseEvent(PASSHAND, datas, null, SendOptions.SendReliable);

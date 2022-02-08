@@ -28,7 +28,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 926.2229, y: 473.57666, z: 5.738337}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +51,7 @@ MonoBehaviour:
   playerCard: {fileID: 4000989354763434114, guid: 14ad83c15fb5714408a79791da185073, type: 3}
   isDrawn: 0
   selectedVal: 0
+  selectGO: {fileID: 0}
   thisCard: {fileID: 0}
   selectedCard: {fileID: 0}
   handOfCards: []

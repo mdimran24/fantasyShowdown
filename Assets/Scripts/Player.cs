@@ -31,6 +31,11 @@ public class Player : MonoBehaviour, IPunObservable
      public int selectedVal;
      //UNSURE
     private int valtoberemoved;
+
+  /* Represents the top left side of the game screen, where you drop the card you want to select 
+   Is here instead to avoid any sort of interference.*/
+    public GameObject selectGO;
+
     //Also a temp variable
     public ThisCard thisCard;
     //Represents details of the card that has been selected
@@ -38,7 +43,7 @@ public class Player : MonoBehaviour, IPunObservable
 
 //number of cards that each player will have in their hand. Should be 6
 //also look into it to avoid magic numbers
-private int numOfCards = 3;
+private int numOfCards = 6;
    
     // Players hand of cards
     public List<Card> handOfCards = new List<Card>();
@@ -54,6 +59,10 @@ private int numOfCards = 3;
       playerId = GetComponent<PhotonView>().ViewID;
         playerName = "player";  
         score = 0;
+           /* the aforementioned area for selected cards is tagged with "select". 
+    This is a really handy way to retrieve objects without assiging them in the inspector
+    and even without having them in the scene right away. */
+        selectGO = GameObject.FindGameObjectWithTag("Select");
     }
 
     //Removes a specific card by finding its ID (Now sure where it's useable??)
