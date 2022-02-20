@@ -14,20 +14,21 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(LoadLevel());
     }
-    public void loadscene(string scenename)
-    {
-
-        StartCoroutine(LoadLevel(scenename));
-    }
 
     IEnumerator LoadLevel()
     {
         //Play Animation
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        //SceneManager.LoadScene(sceneName);
     }
 
+
+
+    public void loadscene(string scenename)
+    {
+
+        StartCoroutine(LoadLevel(scenename));
+    }
     IEnumerator LoadLevel(string sceneName)
     {
         //Play Animation
