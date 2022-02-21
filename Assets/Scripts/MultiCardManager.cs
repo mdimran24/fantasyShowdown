@@ -70,12 +70,13 @@ private void OnDisable() {
         foreach (GameObject p in players){
             PhotonView playerView = p.GetComponent<PhotonView>();
             //if that player is you
-            if (playerView.IsMine){
+            if (!playerView.IsMine){
                 Card testcardp = new Card((int) datas[0], "test", 0, 0, 0, 0, 0, 0, null);
              GameObject testcard =  PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
-             testcard.transform.SetParent(opponentCards.transform, false);
+            
              //testcard.GetComponent<Card>().Id = (byte) datas[0];
              testcard.GetComponent<ThisCard>().thisId = testcardp.id;
+              testcard.transform.SetParent(opponentCards.transform, false);
             }
         }
          }
