@@ -37,6 +37,10 @@ public class TurnManager : MonoBehaviour
         //Go through all the players and figure out who is who
     }
 
+    
+
+
+
     public void Update(){
         if (you.selectedCard != null){
             //make card gameobject visible and pass the details onto it. make it so that it's visible on the corresponding end.

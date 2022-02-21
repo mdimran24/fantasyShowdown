@@ -45,7 +45,7 @@ private void NetworkingClientEventReceived(EventData obj){
         object[] datas = (object[]) obj.CustomData;
         //create temporary hand of cards to pass over to the player.
         List<Card> temp = new List<Card>();
-        for (int i =0; i<3; i++){
+        for (int i =0; i<6; i++){
             //fill the hand with new blank cards that take in the datas[] elements for IDs
             //turns into actual cards once instantiated.
             //rest of the fields are irellevant

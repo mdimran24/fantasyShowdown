@@ -39,14 +39,49 @@ public class MultiCardManager : MonoBehaviour
      public static string[] statuses;
      //the status that has been picked
     public static int chosenstat;
+    [SerializeField]
+    private TurnManager turnmanager;
+    public const byte PASS_STAT = 2;
 
 
     protected void Start()
     {
     
         Messenger.text = "Game Started";
+        
 
     }
+
+     private void OnEnable() {
+        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClientEventReceived;
+    }
+
+private void OnDisable() {
+        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClientEventReceived;
+    }
+
+    private void NetworkingClientEventReceived(EventData obj){
+         if (obj.Code == PASS_STAT){
+               Debug.Log("Received event: " + obj);
+        //extract the data and put it into an array
+        object[] datas = (object[]) obj.CustomData;
+
+          GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players){
+            PhotonView playerView = p.GetComponent<PhotonView>();
+            //if that player is you
+            if (playerView.IsMine){
+                Card testcardp = new Card((int) datas[0], "test", 0, 0, 0, 0, 0, 0, null);
+             GameObject testcard =  PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
+             testcard.transform.SetParent(opponentCards.transform, false);
+             //testcard.GetComponent<Card>().Id = (byte) datas[0];
+             testcard.GetComponent<ThisCard>().thisId = testcardp.id;
+            }
+        }
+         }
+}
+
+    // Event is received if the object listens for it. Otherwise when OnDisable.
  
  /* Makes sure the card that has been dragged onto the select area can no longer be clickable
  And also that the reset and confirm buttons don't appear when a card is not selected yet or 
@@ -180,11 +215,11 @@ public class MultiCardManager : MonoBehaviour
        
         Debug.Log("Card picked was " + player.selectedCard.cardName);
         Debug.Log(player.selectedVal.ToString());
-
-    
-       // GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
-       // testcard.transform.SetParent(opponentCards.transform, false);
-        //testcard.GetComponent<ThisCard>().thisId = player.selectedCard.thisId;
+         object[] stat = new object[] {player.selectedCard.id};
+                 Debug.Log("raising event with datas " + stat);
+                 //Actually send it to the other player.
+                 PhotonNetwork.RaiseEvent(PASS_STAT, stat, null, SendOptions.SendReliable);
+        
     
     }
 
