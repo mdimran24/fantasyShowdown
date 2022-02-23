@@ -7,7 +7,7 @@ using Photon.Pun;
 using ExitGames.Client.Photon;
 
 //This has been written in gitpod and is yet to be tested
-public class TurnManager : MonoBehaviour
+public class Turnmanager : MonoBehaviour
 {
     /* Theory: Store 2 cards that represent the players' selected cards. Can also be null.
 
@@ -28,22 +28,35 @@ public class TurnManager : MonoBehaviour
     */
 
     [SerializeField]
-    private GameObject enemyCard; //card to be displayed. Might also be a list but this is for simplicity's sake
+    //private GameObject enemyCard; //card to be displayed. Might also be a list but this is for simplicity's sake
     //ALTERNATIVELY we pick cards directly from the players below. The card above might be just for display purposes.
-    private Player you;
-    private Player me; //???
+    private Player player1;
+    [SerializeField]
+    private Player player2; 
 
     public void Start(){
         //Go through all the players and figure out who is who
+       
+     
     }
+    
 
     
 
 
 
     public void Update(){
-        if (you.selectedCard != null){
+        //if (you.selectedCard != null){
             //make card gameobject visible and pass the details onto it. make it so that it's visible on the corresponding end.
+        //}
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    foreach (GameObject p in players){
+        //if this player is you, instantiate your cards and place them as needed.
+        if(PhotonNetwork.IsMasterClient){
+              player1 = p.GetComponent<Player>();
+            } else {
+                player2 = p.GetComponent<Player>();
+            }
         }
     }
 
