@@ -55,6 +55,7 @@ MonoBehaviour:
   thisCard: {fileID: 0}
   selectedCard: {fileID: 0}
   handOfCards: []
+  HasBeenConfirmed: 0
   view: {fileID: -3402946307738020698}
 --- !u!114 &-3402946307738020698
 MonoBehaviour:

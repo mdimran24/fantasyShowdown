@@ -10,7 +10,7 @@ using ExitGames.Client.Photon;
 //CRINA: I HAVE EXTRA PARTS IN ANOTHER BRANCH, HANG ON.
 public enum RoundStates { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
 
-public class MultiCardManager : MonoBehaviour
+public class MultiCardManager : MonoBehaviourPunCallbacks
 {
     //Represents the area that holds the player's cards, at the bottom of the screen
     public GameObject bottom;
@@ -39,18 +39,21 @@ public class MultiCardManager : MonoBehaviour
     [SerializeField]
     private Turnmanager turnmanager;
     public const byte PASS_STAT = 2;
-    [SerializeField]
-    private bool bothplayersdrawn = false;
+   // [SerializeField]
+   // private bool bothplayersdrawn = false;
 
+  
 
     protected void Start()
     {
         turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
+       
     }
 
     private void OnEnable()
     {
+       // player.HasBeenConfirmed = false;
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClientEventReceived;
     }
 
@@ -114,8 +117,9 @@ public class MultiCardManager : MonoBehaviour
         {
             if (p.GetComponent<Player>().selectedCard != null)
             {
-              Comparison();
+              
             }
+          //  players.
         }
      
 
@@ -220,12 +224,12 @@ public class MultiCardManager : MonoBehaviour
         {
             switch (statuses[chosenstat])
             {
-                case "strength": player.selectedVal = player.selectedCard.strength; break;
-                case "dexterity": player.selectedVal = player.selectedCard.dexterity; break;
-                case "constitution": player.selectedVal = player.selectedCard.constitution; break;
-                case "intelligence": player.selectedVal = player.selectedCard.intelligence; break;
-                case "wisdom": player.selectedVal = player.selectedCard.wisdom; break;
-                case "charisma": player.selectedVal = player.selectedCard.charisma; break;
+                case "strength": player.selectedVal =  player.selectedCard.strength; break;
+                case "dexterity": player.selectedVal =  player.selectedCard.dexterity; break;
+                case "constitution": player.selectedVal =  player.selectedCard.constitution; break;
+                case "intelligence": player.selectedVal =  player.selectedCard.intelligence; break;
+                case "wisdom": player.selectedVal =  player.selectedCard.wisdom; break;
+                case "charisma": player.selectedVal =  player.selectedCard.charisma; break;
                 default: player.selectedVal = 0; break;
             }
         }
@@ -237,9 +241,12 @@ public class MultiCardManager : MonoBehaviour
         //Actually send it to the other player.
         PhotonNetwork.RaiseEvent(PASS_STAT, stat, null, SendOptions.SendReliable);
 
-       
+       player.HasBeenConfirmed = true;
+     //  base.photonView.RPC("RPCSetConfirmed", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer, player.HasBeenConfirmed);
       //  Comparison();
     }
+
+   
 
     public void Comparison()
     {

@@ -49,7 +49,7 @@ private int numOfCards = 6;
     public List<Card> handOfCards = new List<Card>();
 
     //If the player has already selected the card to play with.
-       public static bool HasBeenConfirmed = false;
+       public bool HasBeenConfirmed = false;
 
     //Network identity of object
     public PhotonView view;
@@ -118,15 +118,19 @@ private int numOfCards = 6;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting) {
-            Debug.Log("Sending number of cards for " + this.playerId + ": " + handOfCards.Count);
+           // Debug.Log("Sending number of cards for " + this.playerId + ": " + handOfCards.Count);
             stream.SendNext(handOfCards.Count);
             foreach (Card c in handOfCards) {
-                Debug.Log($"sending card ID for {this.playerId}: {c.id}");
+               // Debug.Log($"sending card ID for {this.playerId}: {c.id}");
                 stream.SendNext(c.id);
             }
+
+            stream.SendNext(HasBeenConfirmed);
+            stream.SendNext(selectedVal);
+        
         } else {
             int nCards = (int) stream.ReceiveNext();
-            Debug.Log("Received number of cards for " + this.playerId + ": " + nCards);
+           // Debug.Log("Received number of cards for " + this.playerId + ": " + nCards);
             if (nCards != handOfCards.Count) {
                 handOfCards.Clear();
                 for (int i = 0; i < nCards; i++) {
@@ -134,6 +138,9 @@ private int numOfCards = 6;
                 }
             }
 
+
+                 
+           
             for (int i = 0; i< nCards; i++) {
                 int cardId = (int) stream.ReceiveNext();
                 Debug.Log("Received card ID for " + this.playerId + ": " + cardId);
@@ -142,6 +149,11 @@ private int numOfCards = 6;
                     // update anything else in the card...
                 }
             }
+             HasBeenConfirmed = (bool) stream.ReceiveNext();
+            
+                 selectedVal = (int) stream.ReceiveNext();
+             Debug.Log("Received stat for" + MultiCardManager.chosenstat + ": " + selectedVal + " of card " + selectedCard.cardName);
+            
         }
     }
 }
