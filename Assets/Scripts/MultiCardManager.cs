@@ -161,15 +161,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     public void SelectCardPrep()
     {
         statuses = new string[6];
-        statuses[0] = "strength";
-        statuses[1] = "dexterity";
-        statuses[2] = "constitution";
-        statuses[3] = "intelligence";
-        statuses[4] = "wisdom";
-        statuses[5] = "charisma";
+        statuses[0] = "Strength";
+        statuses[1] = "Dexterity";
+        statuses[2] = "Constitution";
+        statuses[3] = "Intelligence";
+        statuses[4] = "Wisdom";
+        statuses[5] = "Charisma";
         chosenstat = Random.Range(0, statuses.Length);
         Debug.Log("Status is:" + statuses[chosenstat]);
-        //Messenger.text = "Status is: " + statuses[chosenstat].ToString();
+        Messenger.text = "Status is: " + statuses[chosenstat].ToString();
 
     }
 

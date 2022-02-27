@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,5 +46,9 @@ public class Card
     return new byte[] { c.Id };
   }
 
+    public static implicit operator Card(GameObject v)
+    {
+        throw new NotImplementedException();
+    }
 }
 

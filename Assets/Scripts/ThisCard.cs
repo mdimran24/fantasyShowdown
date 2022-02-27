@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 
 // This script allows me to pull cards from the database using just their card ID and add them on to a playable game object
@@ -60,8 +61,12 @@ public class ThisCard : MonoBehaviour
         thisArt.sprite = thisCardArt;
     }
 
+
     // Update is called once per frame
     void Update()
     {
     }
+
+
+
 }
