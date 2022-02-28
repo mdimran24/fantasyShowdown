@@ -82,8 +82,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
                     GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
 
                     //testcard.GetComponent<Card>().Id = (byte) datas[0];
+                     testcard.transform.Find("Frame").gameObject.SetActive(false);
+                    testcard.transform.Find("BackOfCard").gameObject.SetActive(true);
                     testcard.GetComponent<ThisCard>().thisId = testcardp.id;
                     testcard.transform.SetParent(opponentCards.transform, false);
+                    
                 }
             }
         }
