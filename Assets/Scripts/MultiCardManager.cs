@@ -39,6 +39,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private Turnmanager turnmanager;
     public const byte PASS_STAT = 2;
+    public const byte PASS_CHOSEN = 3;
    // [SerializeField]
    // private bool bothplayersdrawn = false;
 
@@ -85,6 +86,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
                     testcard.transform.SetParent(opponentCards.transform, false);
                 }
             }
+        }
+
+        if (obj.Code == PASS_CHOSEN){
+            object[] datas = (object[])obj.CustomData;
+            chosenstat = (int) datas[0];
         }
     }
 
@@ -160,6 +166,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     //creates the stat array and picks one at random, then lets you know about it.
     public void SelectCardPrep()
     {
+        if (PhotonNetwork.IsMasterClient){
         statuses = new string[6];
         statuses[0] = "Strength";
         statuses[1] = "Dexterity";
@@ -170,6 +177,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         chosenstat = Random.Range(0, statuses.Length);
         Debug.Log("Status is:" + statuses[chosenstat]);
         Messenger.text = "Status is: " + statuses[chosenstat].ToString();
+        object[] datas = new object[] {chosenstat};
+        PhotonNetwork.RaiseEvent(PASS_CHOSEN, datas, null, SendOptions.SendReliable);
+        }
 
     }
 
@@ -222,18 +232,19 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
 
         if (player.selectedCard != null)
         {
-            switch (statuses[chosenstat])
+           // Debug.Log(statuses[chosenstat].ToString());
+            switch (chosenstat)
             {
-                case "strength": player.selectedVal =  player.selectedCard.strength; break;
-                case "dexterity": player.selectedVal =  player.selectedCard.dexterity; break;
-                case "constitution": player.selectedVal =  player.selectedCard.constitution; break;
-                case "intelligence": player.selectedVal =  player.selectedCard.intelligence; break;
-                case "wisdom": player.selectedVal =  player.selectedCard.wisdom; break;
-                case "charisma": player.selectedVal =  player.selectedCard.charisma; break;
-                default: player.selectedVal = 0; break;
+                case 0: player.selectedVal = player.selectedCard.strength; break;
+                case 1: player.selectedVal = player.selectedCard.dexterity; break;
+                case 2: player.selectedVal = player.selectedCard.constitution; break;
+                case 3: player.selectedVal = player.selectedCard.intelligence; break;
+                case 4: player.selectedVal = player.selectedCard.wisdom; break;
+                case 5: player.selectedVal = player.selectedCard.charisma; break;
+                default: player.selectedVal = 0; Debug.Log("Something went wrong with value selection."); break;
             }
         }
-
+        
         Debug.Log("Card picked was " + player.selectedCard.cardName);
         Debug.Log(player.selectedVal.ToString());
         object[] stat = new object[] { player.selectedCard.id };

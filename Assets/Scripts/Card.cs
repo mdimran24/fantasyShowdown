@@ -31,24 +31,5 @@ public class Card
         this.cardArt = art;
     }
 
-     public byte Id { get; set; }
-
-  public static object Deserialize(byte[] data)
-  {
-    var result = new Card(0, null, 0, 0, 0, 0, 0, 0, null);
-    result.Id = data[0];
-    return result;
-  }
-
-  public static byte[] Serialize(object customType)
-  {
-    var c = (Card)customType;
-    return new byte[] { c.Id };
-  }
-
-    public static implicit operator Card(GameObject v)
-    {
-        throw new NotImplementedException();
-    }
 }
 

@@ -127,6 +127,7 @@ private int numOfCards = 6;
 
             stream.SendNext(HasBeenConfirmed);
             stream.SendNext(selectedVal);
+             Debug.LogError("Sending stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
         
         } else {
             int nCards = (int) stream.ReceiveNext();
@@ -152,7 +153,7 @@ private int numOfCards = 6;
              HasBeenConfirmed = (bool) stream.ReceiveNext();
             
                  selectedVal = (int) stream.ReceiveNext();
-             Debug.Log("Received stat for" + MultiCardManager.chosenstat + ": " + selectedVal + " of card " + selectedCard.cardName);
+             Debug.LogError("Received stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
             
         }
     }
