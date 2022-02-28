@@ -41,7 +41,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     public const byte PASS_STAT = 2;
     public const byte PASS_CHOSEN = 3;
    // [SerializeField]
-   // private bool bothplayersdrawn = false;
+    private bool bothplayersdrawn = false;
 
   
 
@@ -121,15 +121,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
            
        }
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject p in players)
-        {
-            if (p.GetComponent<Player>().selectedCard != null)
-            {
-              
-            }
-          //  players.
-        }
+      
      
 
     }
@@ -256,18 +248,25 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         PhotonNetwork.RaiseEvent(PASS_STAT, stat, null, SendOptions.SendReliable);
 
        player.HasBeenConfirmed = true;
-     //  base.photonView.RPC("RPCSetConfirmed", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer, player.HasBeenConfirmed);
-      //  Comparison();
+         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if (p.GetComponent<Player>().HasBeenConfirmed == true)
+            {
+             bothplayersdrawn = true;
+            } 
+          //  players.
+        }
+        Comparer();
+      
     }
 
-   
-
-    public void Comparison()
-    {
-       // if (bothplayersdrawn){
-            Debug.LogError("Both players drew their cards.");
-       // }
+    private void Comparer(){
+        if (!bothplayersdrawn){
+            Debug.Log("Not both");
+        } else {
+            Debug.Log("Yes both");
+        }
     }
-
 }
 
