@@ -262,7 +262,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
 
        player.HasBeenConfirmed = true;
        
-      // bothplayersdrawn();
+      
         Comparer();
       
     }
@@ -274,6 +274,19 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
             Debug.Log("Not both");
         } else {
             Debug.Log("Yes both");
+
+             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+             List<int> values = new List<int>();
+        foreach (GameObject p in players)
+        {
+         values.Add(p.GetComponent<Player>().selectedVal); 
+        }
+        values.Sort();
+        if (values[0] == player.selectedVal){
+            Messenger.text = "You lost!";
+        } else {
+            Messenger.text = "You won!";
+        }
         }
     }
 }
