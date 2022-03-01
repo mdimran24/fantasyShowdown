@@ -12,6 +12,8 @@ public enum RoundStates { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
 
 public class MultiCardManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    private RoundStates currState;
     //Represents the area that holds the player's cards, at the bottom of the screen
     public GameObject bottom;
 
@@ -38,6 +40,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     public static int chosenstat;
     [SerializeField]
     private Turnmanager turnmanager;
+
+    public Dealer dealer;
     public const byte PASS_STAT = 2;
     public const byte PASS_CHOSEN = 3;
    // [SerializeField]
@@ -47,11 +51,14 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
 
     protected void Start()
     {
+        currState = RoundStates.START;
         turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
+     //   dealer.Dealbtn();
        
     }
 
+    
     private void OnEnable()
     {
        // player.HasBeenConfirmed = false;
@@ -142,7 +149,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     //This button provides cards for the player who clicks it
     public void Draw()
     {
-        
+        dealer.Dealbtn();
         //look for players
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
@@ -284,10 +291,16 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         values.Sort();
         if (values[0] == player.selectedVal){
             Messenger.text = "You lost!";
+            Debug.LogError("You lost!");
         } else {
             Messenger.text = "You won!";
-        }
+            Debug.LogError("You won!");
+            player.winner = true;
+                    }
         }
     }
+
+    
+
 }
 
