@@ -44,8 +44,10 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     public Dealer dealer;
     public const byte PASS_STAT = 2;
     public const byte PASS_CHOSEN = 3;
-   // [SerializeField]
-  //  private bool bothplayersdrawn = false;
+    [SerializeField]
+    private bool bothplayerscards = false;
+    [SerializeField]
+    private bool gotresults = false;
 
   
 
@@ -101,7 +103,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         if (obj.Code == PASS_CHOSEN){
             object[] datas = (object[])obj.CustomData;
             chosenstat = (int) datas[0];
+            Messenger.text = (string) datas[1];
         }
+
     }
 
     // Event is received if the object listens for it. Otherwise when OnDisable.
@@ -128,8 +132,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
            
        }
 
-      
+     // if (bothplayersjoined() && !bothplayerscards){
+     //     Draw();
+         
+     // }
      
+     if(bothplayersdrawn() && !gotresults){
+         Comparer();
+         gotresults = true;
+     }
 
     }
 
@@ -144,6 +155,14 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
           
         }
         return true;
+     }
+
+     private bool bothplayersjoined(){
+          GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+          if (players.Length == 2){
+              return true;
+          }
+          return false;
      }
 
     //This button provides cards for the player who clicks it
@@ -165,6 +184,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+         bothplayerscards = true;
         PlayerTurn();
 
     }
@@ -192,7 +212,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         chosenstat = Random.Range(0, statuses.Length);
         Debug.Log("Status is:" + statuses[chosenstat]);
         Messenger.text = "Status is: " + statuses[chosenstat].ToString();
-        object[] datas = new object[] {chosenstat};
+        object[] datas = new object[] {chosenstat, Messenger.text};
         PhotonNetwork.RaiseEvent(PASS_CHOSEN, datas, null, SendOptions.SendReliable);
         }
 
@@ -270,7 +290,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
        player.HasBeenConfirmed = true;
        
       
-        Comparer();
+       // Comparer();
       
     }
 
@@ -300,7 +320,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         }
     }
 
-    
+ 
 
 }
 
