@@ -452,10 +452,11 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 2
+  Synchronization: 1
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 329479553}
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -486,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be12314a90b6a334d85eba8ba591a1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currState: 0
   bottom: {fileID: 548999053}
   opponentCards: {fileID: 676655545606877718}
   player: {fileID: 0}
@@ -494,6 +496,8 @@ MonoBehaviour:
   Messenger: {fileID: 1484435225}
   turnmanager: {fileID: 0}
   dealer: {fileID: 706916247}
+  bothplayerscards: 0
+  gotresults: 0
 --- !u!114 &329479554
 MonoBehaviour:
   m_ObjectHideFlags: 0

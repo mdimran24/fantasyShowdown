@@ -8,9 +8,9 @@ using ExitGames.Client.Photon;
 
 //parts of the game in question
 //CRINA: I HAVE EXTRA PARTS IN ANOTHER BRANCH, HANG ON.
-public enum RoundStates { START, PLAYERTURN, ENEMYTURN, WON, LOST, DRAW }
+public enum RoundStates { START, PLAYING, CONCLUSION }
 
-public class MultiCardManager : MonoBehaviourPunCallbacks
+public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField]
     private RoundStates currState;
@@ -44,6 +44,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     public Dealer dealer;
     public const byte PASS_STAT = 2;
     public const byte PASS_CHOSEN = 3;
+
+    public const byte RECEIVESTATE = 4;
     [SerializeField]
     private bool bothplayerscards = false;
     [SerializeField]
@@ -54,10 +56,21 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     protected void Start()
     {
         currState = RoundStates.START;
-        turnmanager = GetComponent<Turnmanager>();
+        //turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
      //   dealer.Dealbtn();
        
+       GameFlow();
+         //Debug.Log("Both joined");
+     
+    }
+
+    private void GameFlow(){
+        switch (currState){
+            case (RoundStates.START) : StartCoroutine(checkforboth()); break;
+            case (RoundStates.PLAYING) : StartCoroutine(starter()); break;
+            case (RoundStates.CONCLUSION) : break;
+        }
     }
 
     
@@ -106,6 +119,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
             Messenger.text = (string) datas[1];
         }
 
+        if (obj.Code == RECEIVESTATE){
+            Debug.Log("Rased event to receive state");
+            object[] datas = (object[]) obj.CustomData;
+            currState = (RoundStates) datas[0];
+            GameFlow();
+        }
+
     }
 
     // Event is received if the object listens for it. Otherwise when OnDisable.
@@ -132,10 +152,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
            
        }
 
-     // if (bothplayersjoined() && !bothplayerscards){
-     //     Draw();
-         
-     // }
      
      if(bothplayersdrawn() && !gotresults){
          Comparer();
@@ -161,8 +177,29 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
           GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
           if (players.Length == 2){
               return true;
+             
           }
           return false;
+     }
+
+    public IEnumerator checkforboth(){
+         yield return new WaitForSeconds(1);
+        if (bothplayersjoined()){
+       currState = RoundStates.PLAYING;
+       object[] datas = new object[] {currState};
+       PhotonNetwork.RaiseEvent(RECEIVESTATE,  datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+       if (!PhotonNetwork.IsMasterClient){
+       yield return new WaitForSeconds(1);
+       GameFlow();
+       }
+       } else {
+           Debug.Log("Checked and nothing");
+       }
+    }
+     public IEnumerator starter(){
+         Debug.Log("Starter");
+         yield return new WaitForSeconds(1);
+         Draw();
      }
 
     //This button provides cards for the player who clicks it
@@ -177,12 +214,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
             if (p.GetComponent<PhotonView>().IsMine)
             {
                 player = p.GetComponent<Player>();
+              
                 p.GetComponent<Player>().InstantiateCards();
                 for (int i = 0; i < p.GetComponent<Player>().physicalCards.Count; i++)
                 {
                     p.GetComponent<Player>().physicalCards[i].transform.SetParent(bottom.transform, false);
                 }
-            }
+              }
         }
          bothplayerscards = true;
         PlayerTurn();
@@ -250,10 +288,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
             Debug.Log(player.selectedCard.cardName);
             //advances the game
             onStatClick();
-
-
-
-
         }
     }
 
@@ -264,7 +298,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
  Additional: A method that intantiated this card to the opponent, with the face down and all. */
     public void onStatClick()
     {
-
         if (player.selectedCard != null)
         {
            // Debug.Log(statuses[chosenstat].ToString());
@@ -279,7 +312,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
                 default: player.selectedVal = 0; Debug.Log("Something went wrong with value selection."); break;
             }
         }
-        
         Debug.Log("Card picked was " + player.selectedCard.cardName);
         Debug.Log(player.selectedVal.ToString());
         object[] stat = new object[] { player.selectedCard.id };
@@ -288,13 +320,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
         PhotonNetwork.RaiseEvent(PASS_STAT, stat, null, SendOptions.SendReliable);
 
        player.HasBeenConfirmed = true;
-       
-      
-       // Comparer();
-      
-    }
 
-   
+    }
 
     private void Comparer(){
         if (bothplayersdrawn() == false){
@@ -321,6 +348,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks
     }
 
  
-
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting) {
+            stream.SendNext(currState);
+            Debug.Log("Sending current state" + currState.ToString());
+        } else {
+            currState = (RoundStates) stream.ReceiveNext();
+            Debug.Log("Sending current state" + currState.ToString());
+        }
+    }
 }
 
