@@ -10,12 +10,15 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.NickName = MasterManager.GameSettings.ScreenName;
+        PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
         _ = PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
+        print(PhotonNetwork.LocalPlayer.NickName);
     }
 
     public override void OnJoinedLobby()
