@@ -14,7 +14,7 @@ public class CardDatabase : MonoBehaviour
     {
         cardList.Add(new Card(0, "Example", 0, 0, 0, 0, 0, 0, Resources.Load <Sprite>("Card Art/1") ));
         cardList.Add(new Card(1, "Knight", 75, 25, 75, 35, 30, 60, Resources.Load<Sprite>("Card Art/Knight")));
-        cardList.Add(new Card(2, "Warlock", 25, 35, 50, 60, 40, 75, Resources.Load <Sprite>("Card Art/Warlcok") ));
+        cardList.Add(new Card(2, "Warlock", 25, 35, 50, 60, 40, 75, Resources.Load <Sprite>("Card Art/Warlock") ));
         cardList.Add(new Card(3, "Wizard", 20, 30, 15, 100, 75, 65, Resources.Load <Sprite>("Card Art/Wizard") ));
         cardList.Add(new Card(4, "Shaman", 30, 50, 60, 40, 100, 50, Resources.Load <Sprite>("Card Art/Shaman") ));
         cardList.Add(new Card(5, "Barbarian", 85, 55, 65, 15, 30, 40, Resources.Load <Sprite>("Card Art/Barbarian") ));
