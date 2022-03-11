@@ -12,7 +12,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = MasterManager.GameSettings.ScreenName;
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
-        _ = PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
@@ -23,7 +23,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Lobbyphoton");
+      SceneManager.LoadScene("Lobbyphoton");
     }
 
   

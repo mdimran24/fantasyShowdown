@@ -3,24 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
-    public InputField create;
-    public InputField join;
+    public Text create;
 
-    public void CreateRoom()
+       private RoomsCanvases roomsCanvases;
+   public void FirstInitialize(RoomsCanvases canvases){
+       roomsCanvases = canvases;
+   }
+
+    public void OnClickCreateRoom()
     {
-        PhotonNetwork.CreateRoom(create.text);
+        if (!PhotonNetwork.IsConnected){
+            return;
+            Debug.Log("You are not connected");
+        } 
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 2;
+        PhotonNetwork.JoinOrCreateRoom(create.text, options, TypedLobby.Default);
+      
     }
 
-    public void JoinRoom()
+    public override void OnCreatedRoom()
     {
-        PhotonNetwork.JoinRoom(join.text);
+        Debug.Log("created room successfully", this);
+        roomsCanvases.currentRoomCanvas.Show();
+
+      
     }
 
-    public override void OnJoinedRoom()
+    public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        PhotonNetwork.LoadLevel("MultiplayerGame");
+          Debug.Log("room creation failed" + message , this);
+        
     }
 }
