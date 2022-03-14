@@ -74,13 +74,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     
-    private void OnEnable()
+    public override void OnEnable()
     {
        // player.HasBeenConfirmed = false;
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClientEventReceived;
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
         PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClientEventReceived;
     }

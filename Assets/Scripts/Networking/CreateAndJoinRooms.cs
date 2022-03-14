@@ -18,7 +18,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnected){
             return;
-            Debug.Log("You are not connected");
+           
         } 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 2;

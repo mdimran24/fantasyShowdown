@@ -10,6 +10,7 @@ public class PlayerListing : MonoBehaviour
    private Text playerName;
   
   public Photon.Realtime.Player PhotonPlayer { get; private set;}
+  public bool Ready = false;
 
    public void SetPlayerInfo(Photon.Realtime.Player player){
        PhotonPlayer = player;
