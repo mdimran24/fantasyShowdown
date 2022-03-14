@@ -51,32 +51,34 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     private bool gotresults = false;
 
-  
+
 
     protected void Start()
     {
         currState = RoundStates.START;
         //turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
-     //   dealer.Dealbtn();
-       
-       GameFlow();
-         //Debug.Log("Both joined");
-     
+        //   dealer.Dealbtn();
+
+        GameFlow();
+        //Debug.Log("Both joined");
+
     }
 
-    private void GameFlow(){
-        switch (currState){
-            case (RoundStates.START) : StartCoroutine(checkforboth()); break;
-            case (RoundStates.PLAYING) : StartCoroutine(starter()); break;
-            case (RoundStates.CONCLUSION) : break;
+    private void GameFlow()
+    {
+        switch (currState)
+        {
+            case (RoundStates.START): StartCoroutine(checkforboth()); break;
+            case (RoundStates.PLAYING): StartCoroutine(starter()); break;
+            case (RoundStates.CONCLUSION): break;
         }
     }
 
-    
+
     public override void OnEnable()
     {
-       // player.HasBeenConfirmed = false;
+        // player.HasBeenConfirmed = false;
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClientEventReceived;
     }
 
@@ -104,25 +106,27 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                     GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
 
                     //testcard.GetComponent<Card>().Id = (byte) datas[0];
-                     testcard.transform.Find("Frame").gameObject.SetActive(false);
+                    testcard.transform.Find("Frame").gameObject.SetActive(false);
                     testcard.transform.Find("BackOfCard").gameObject.SetActive(true);
                     testcard.GetComponent<ThisCard>().thisId = testcardp.id;
                     testcard.transform.SetParent(opponentCards.transform, false);
-                    
+
                 }
             }
         }
 
-        if (obj.Code == PASS_CHOSEN){
+        if (obj.Code == PASS_CHOSEN)
+        {
             object[] datas = (object[])obj.CustomData;
-            chosenstat = (int) datas[0];
-            Messenger.text = (string) datas[1];
+            chosenstat = (int)datas[0];
+            Messenger.text = (string)datas[1];
         }
 
-        if (obj.Code == RECEIVESTATE){
+        if (obj.Code == RECEIVESTATE)
+        {
             Debug.Log("Rased event to receive state");
-            object[] datas = (object[]) obj.CustomData;
-            currState = (RoundStates) datas[0];
+            object[] datas = (object[])obj.CustomData;
+            currState = (RoundStates)datas[0];
             GameFlow();
         }
 
@@ -146,66 +150,73 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             ConfirmSelected.gameObject.SetActive(false);
         }
 
-       if (Input.GetKeyDown(KeyCode.Escape)){
-           PhotonNetwork.Disconnect();
-           SceneManager.LoadScene("Loading");
-           
-       }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene("Loading");
 
-     
-     if(bothplayersdrawn() && !gotresults){
-         Comparer();
-         gotresults = true;
-     }
+        }
+
+
+        if (bothplayersdrawn() && !gotresults)
+        {
+            Comparer();
+            gotresults = true;
+        }
 
     }
 
-     private bool bothplayersdrawn(){
-           GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    private bool bothplayersdrawn()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
         {
             if (p.GetComponent<Player>().HasBeenConfirmed != true)
             {
                 return false;
-            } 
-          
+            }
+
         }
         return true;
-     }
+    }
 
     //  private bool bothplayersjoined(){
     //       GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
     //       if (players.Length == 2){
     //           return true;
-             
+
     //       }
     //       return false;
     //  }
 
-    public IEnumerator checkforboth(){
+    public IEnumerator checkforboth()
+    {
          yield return new WaitForSeconds(1);
-       // if (bothplayersjoined()){
-       currState = RoundStates.PLAYING;
-       object[] datas = new object[] {currState};
-       PhotonNetwork.RaiseEvent(RECEIVESTATE,  datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-    //    if (!PhotonNetwork.IsMasterClient){
-    //    yield return new WaitForSeconds(1);
-    //    GameFlow();
-    //    }
-    //    } else {
-    //        Debug.Log("Checked and nothing");
-    //    }
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            currState = RoundStates.PLAYING;
+            object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+            
+        }
+        
     }
-     public IEnumerator starter(){
-         Debug.Log("Starter");
-         yield return new WaitForSeconds(1);
-         Draw();
-     }
+    public IEnumerator starter()
+    {
+          dealer.Dealbtn();
+        Debug.LogError("Starter");
+        yield return new WaitForSeconds(1);
+        //  foreach (KeyValuePair<int, Photon.Realtime.Player> playerview in PhotonNetwork.CurrentRoom.Players){
+        //    playerview.Value.
+        Draw();
+
+    }
 
     //This button provides cards for the player who clicks it
     public void Draw()
     {
-        dealer.Dealbtn();
+        
+      
         //look for players
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
@@ -214,15 +225,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             if (p.GetComponent<PhotonView>().IsMine)
             {
                 player = p.GetComponent<Player>();
-              
+
                 p.GetComponent<Player>().InstantiateCards();
                 for (int i = 0; i < p.GetComponent<Player>().physicalCards.Count; i++)
                 {
                     p.GetComponent<Player>().physicalCards[i].transform.SetParent(bottom.transform, false);
                 }
-              }
+            }
         }
-         bothplayerscards = true;
+        bothplayerscards = true;
         PlayerTurn();
 
     }
@@ -239,19 +250,20 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     //creates the stat array and picks one at random, then lets you know about it.
     public void SelectCardPrep()
     {
-        if (PhotonNetwork.IsMasterClient){
-        statuses = new string[6];
-        statuses[0] = "Strength";
-        statuses[1] = "Dexterity";
-        statuses[2] = "Constitution";
-        statuses[3] = "Intelligence";
-        statuses[4] = "Wisdom";
-        statuses[5] = "Charisma";
-        chosenstat = Random.Range(0, statuses.Length);
-        Debug.Log("Status is:" + statuses[chosenstat]);
-        Messenger.text = "Status is: " + statuses[chosenstat].ToString();
-        object[] datas = new object[] {chosenstat, Messenger.text};
-        PhotonNetwork.RaiseEvent(PASS_CHOSEN, datas, null, SendOptions.SendReliable);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            statuses = new string[6];
+            statuses[0] = "Strength";
+            statuses[1] = "Dexterity";
+            statuses[2] = "Constitution";
+            statuses[3] = "Intelligence";
+            statuses[4] = "Wisdom";
+            statuses[5] = "Charisma";
+            chosenstat = Random.Range(0, statuses.Length);
+            Debug.Log("Status is:" + statuses[chosenstat]);
+            Messenger.text = "Status is: " + statuses[chosenstat].ToString();
+            object[] datas = new object[] { chosenstat, Messenger.text };
+            PhotonNetwork.RaiseEvent(PASS_CHOSEN, datas, null, SendOptions.SendReliable);
         }
 
     }
@@ -300,7 +312,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (player.selectedCard != null)
         {
-           // Debug.Log(statuses[chosenstat].ToString());
+            // Debug.Log(statuses[chosenstat].ToString());
             switch (chosenstat)
             {
                 case 0: player.selectedVal = player.selectedCard.strength; break;
@@ -319,42 +331,52 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         //Actually send it to the other player.
         PhotonNetwork.RaiseEvent(PASS_STAT, stat, null, SendOptions.SendReliable);
 
-       player.HasBeenConfirmed = true;
+        player.HasBeenConfirmed = true;
 
     }
 
-    private void Comparer(){
-        if (bothplayersdrawn() == false){
+    private void Comparer()
+    {
+        if (bothplayersdrawn() == false)
+        {
             Debug.Log("Not both");
-        } else {
+        }
+        else
+        {
             Debug.Log("Yes both");
 
-             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-             List<int> values = new List<int>();
-        foreach (GameObject p in players)
-        {
-         values.Add(p.GetComponent<Player>().selectedVal); 
-        }
-        values.Sort();
-        if (values[0] == player.selectedVal){
-            Messenger.text = "You lost!";
-            Debug.LogError("You lost!");
-        } else {
-            Messenger.text = "You won!";
-            Debug.LogError("You won!");
-            player.winner = true;
-                    }
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            List<int> values = new List<int>();
+            foreach (GameObject p in players)
+            {
+                values.Add(p.GetComponent<Player>().selectedVal);
+            }
+            values.Sort();
+            if (values[0] == player.selectedVal)
+            {
+                Messenger.text = "You lost!";
+                Debug.LogError("You lost!");
+            }
+            else
+            {
+                Messenger.text = "You won!";
+                Debug.LogError("You won!");
+                player.winner = true;
+            }
         }
     }
 
- 
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting) {
+        if (stream.IsWriting)
+        {
             stream.SendNext(currState);
             Debug.Log("Sending current state" + currState.ToString());
-        } else {
-            currState = (RoundStates) stream.ReceiveNext();
+        }
+        else
+        {
+            currState = (RoundStates)stream.ReceiveNext();
             Debug.Log("Sending current state" + currState.ToString());
         }
     }
