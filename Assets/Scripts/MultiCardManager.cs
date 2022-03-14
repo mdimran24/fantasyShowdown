@@ -173,28 +173,28 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         return true;
      }
 
-     private bool bothplayersjoined(){
-          GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-          if (players.Length == 2){
-              return true;
+    //  private bool bothplayersjoined(){
+    //       GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    //       if (players.Length == 2){
+    //           return true;
              
-          }
-          return false;
-     }
+    //       }
+    //       return false;
+    //  }
 
     public IEnumerator checkforboth(){
          yield return new WaitForSeconds(1);
-        if (bothplayersjoined()){
+       // if (bothplayersjoined()){
        currState = RoundStates.PLAYING;
        object[] datas = new object[] {currState};
        PhotonNetwork.RaiseEvent(RECEIVESTATE,  datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-       if (!PhotonNetwork.IsMasterClient){
-       yield return new WaitForSeconds(1);
-       GameFlow();
-       }
-       } else {
-           Debug.Log("Checked and nothing");
-       }
+    //    if (!PhotonNetwork.IsMasterClient){
+    //    yield return new WaitForSeconds(1);
+    //    GameFlow();
+    //    }
+    //    } else {
+    //        Debug.Log("Checked and nothing");
+    //    }
     }
      public IEnumerator starter(){
          Debug.Log("Starter");
