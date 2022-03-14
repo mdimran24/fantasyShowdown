@@ -8,7 +8,9 @@ using ExitGames.Client.Photon;
 
 //parts of the game in question
 //CRINA: I HAVE EXTRA PARTS IN ANOTHER BRANCH, HANG ON.
-public enum RoundStates { START, PLAYING, CONCLUSION }
+public enum RoundStates { START, PLAYING, CONCLUSION, NEWROUND, END }
+
+
 
 public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -51,6 +53,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     private bool gotresults = false;
 
+    [SerializeField]
+    private int maxRounds = 5;
+    [SerializeField]
+    private int currentRound = 1;
+
 
 
     protected void Start()
@@ -71,7 +78,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             case (RoundStates.START): StartCoroutine(checkforboth()); break;
             case (RoundStates.PLAYING): StartCoroutine(starter()); break;
-            case (RoundStates.CONCLUSION): break;
+            case (RoundStates.CONCLUSION): StartCoroutine(StartConcluding()); break;
+            case (RoundStates.NEWROUND): StartCoroutine(AdvanceRound()); break;
         }
     }
 
@@ -158,11 +166,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
 
-        if (bothplayersdrawn() && !gotresults)
-        {
-            Comparer();
-            gotresults = true;
-        }
+       
 
     }
 
@@ -333,6 +337,20 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
         player.HasBeenConfirmed = true;
 
+         if (bothplayersdrawn() && !gotresults)
+        {
+            currState = RoundStates.CONCLUSION;
+             object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+            Debug.LogError("Changed state to conclusion");
+            GameFlow();
+        }
+
+    }
+
+    private IEnumerator StartConcluding(){
+        yield return new WaitForSeconds(1);
+        Comparer();
     }
 
     private void Comparer()
@@ -361,8 +379,21 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 Messenger.text = "You won!";
                 Debug.LogError("You won!");
-                player.winner = true;
+               
             }
+
+            currState = RoundStates.NEWROUND;
+        }
+    }
+
+    private IEnumerator AdvanceRound(){
+        yield return new WaitForSeconds(1);
+        currentRound++;
+        if (currentRound > maxRounds){
+            currState = RoundStates.END;
+            Debug.Log("Game Over");
+        } else {
+            //Reset part of the parameters, let the game start again
         }
     }
 
