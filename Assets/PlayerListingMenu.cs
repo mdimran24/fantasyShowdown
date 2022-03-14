@@ -153,10 +153,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
          int index = listings.FindIndex(x => x.PhotonPlayer == player);
         if (index != -1)
         {
-            Debug.Log("the player left");
             listings[index].Ready = ready;
-            Destroy(listings[index].gameObject);
-            listings.RemoveAt(index);
+           
         }
     }
 }
