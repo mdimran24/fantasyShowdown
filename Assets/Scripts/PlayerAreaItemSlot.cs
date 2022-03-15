@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class PlayerAreaItemSlot : MonoBehaviour, IDropHandler
 {
+
+    [SerializeField]
+    private Player player;
+
+    public void Start(){
+        
+    }
     public void Update()
     {
         if (SelectedItemSlot.hasBeenSelected)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Player.numOfCards-1; i++)
             {
                 GetComponent<RectTransform>().transform.GetChild(i).GetComponent<DragDrop>().enabled = false;
                 //continue;
@@ -16,14 +23,13 @@ public class PlayerAreaItemSlot : MonoBehaviour, IDropHandler
         }
         else
         {
-            if (GetComponent<RectTransform>().transform.childCount > 5)
-           {
-               for (int i = 0; i < 6; i++)
+            
+               for (int i = 0; i < Player.numOfCards; i++)
                 {
                     GetComponent<RectTransform>().transform.GetChild(i).GetComponent<DragDrop>().enabled = true;
             
                 }
-            }
+            
         }
     }
     //When the drag has been dropped if it is on a prefab with this script set it as a child. This variant of the script allows for multiple child components

@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IPunObservable
 
 //number of cards that each player will have in their hand. Should be 6
 //also look into it to avoid magic numbers
-private int numOfCards = 6;
+public int numOfCards = 6;
    
     // Players hand of cards
     public List<Card> handOfCards = new List<Card>();
@@ -101,10 +101,14 @@ private int numOfCards = 6;
     //Once a round has ended, this command is used to discard the card that has already been played
      public void RemoveUsedCard()
     {
+        int index = handOfCards.FindIndex(x => x.id == selectedCard.id);
+        handOfCards.RemoveAt(index);
         selectedCard = null;
         if (view.IsMine){
         Destroy(selectGO.GetComponent<Transform>().GetChild(0).gameObject);
         }
+       
+
         
     }
 

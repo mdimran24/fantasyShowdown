@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class SelectedItemSlot : MonoBehaviour, IDropHandler
 {
+    [SerializeField]
     public static bool hasBeenSelected;
 
     void Start()
