@@ -48,6 +48,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     public const byte PASS_CHOSEN = 3;
 
     public const byte RECEIVESTATE = 4;
+    public const byte CURRENTROUND = 5;
     [SerializeField]
     private bool bothplayerscards = false;
     [SerializeField]
@@ -68,7 +69,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         //   dealer.Dealbtn();
 
         GameFlow();
-        //Debug.Log("Both joined");
+       
 
     }
 
@@ -79,7 +80,10 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             case (RoundStates.START): StartCoroutine(checkforboth()); break;
             case (RoundStates.PLAYING): StartCoroutine(starter()); break;
             case (RoundStates.CONCLUSION): StartCoroutine(StartConcluding()); break;
-            case (RoundStates.NEWROUND): StartCoroutine(AdvanceRound()); break;
+            case (RoundStates.NEWROUND): currentRound++;
+        object[] rdatas = new object[] { currentRound };
+        PhotonNetwork.RaiseEvent(CURRENTROUND, rdatas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+         StartCoroutine(AdvanceRound()); break;
         }
     }
 
@@ -136,6 +140,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             object[] datas = (object[])obj.CustomData;
             currState = (RoundStates)datas[0];
             GameFlow();
+        }
+
+        if (obj.Code == CURRENTROUND){
+            object[] datas = (object[]) obj.CustomData;
+            currentRound = (int) datas[0];
         }
 
     }
@@ -207,12 +216,17 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     public IEnumerator starter()
     {
+        if (currentRound == 1){
           dealer.Dealbtn();
+        
         Debug.LogError("Starter");
         yield return new WaitForSeconds(1);
         //  foreach (KeyValuePair<int, Photon.Realtime.Player> playerview in PhotonNetwork.CurrentRoom.Players){
         //    playerview.Value.
         Draw();
+        } else {
+            PlayerTurn();
+        }
 
     }
 
@@ -343,7 +357,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
              object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.LogError("Changed state to conclusion");
-            GameFlow();
+           // GameFlow();
         }
 
     }
@@ -382,19 +396,35 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                
             }
 
+
             currState = RoundStates.NEWROUND;
+             object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+            Debug.LogError("Starting new round...");
+           GameFlow();
         }
     }
 
     private IEnumerator AdvanceRound(){
         yield return new WaitForSeconds(1);
-        currentRound++;
         if (currentRound > maxRounds){
             currState = RoundStates.END;
             Debug.Log("Game Over");
         } else {
-            //Reset part of the parameters, let the game start again
-        }
+            Debug.Log("Removing card...");
+            player.RemoveUsedCard();
+            Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
+            player.HasBeenConfirmed = false;
+            SelectedItemSlot.hasBeenSelected = false;
+            
+           }
+            Debug.Log("Advanving next round...");
+          currState = RoundStates.PLAYING;
+               object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+          //  GameFlow(); 
+        
+         
     }
 
 
@@ -403,12 +433,14 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(currState);
-            Debug.Log("Sending current state" + currState.ToString());
+           // stream.SendNext(currentRound);
+           // Debug.Log("Sending current state" + currState.ToString());
         }
         else
         {
             currState = (RoundStates)stream.ReceiveNext();
-            Debug.Log("Sending current state" + currState.ToString());
+           // currentRound = (int) stream.ReceiveNext();
+           // Debug.Log("Sending current state" + currState.ToString());
         }
     }
 }

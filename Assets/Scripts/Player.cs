@@ -101,7 +101,10 @@ private int numOfCards = 6;
     //Once a round has ended, this command is used to discard the card that has already been played
      public void RemoveUsedCard()
     {
-      //  Destroy(selectGO.GetComponent<RectTransform>().GetChild(0).gameObject);
+        selectedCard = null;
+        if (view.IsMine){
+        Destroy(selectGO.GetComponent<Transform>().GetChild(0).gameObject);
+        }
         
     }
 
