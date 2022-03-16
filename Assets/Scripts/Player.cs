@@ -26,7 +26,8 @@ public class Player : MonoBehaviour, IPunObservable
     //prevents them from instantiating cards to infinity.
     public bool isDrawn = false;
 
-    public int winnerstreak;
+
+    public bool isWinner;
 
     //WILL BE USED
     //Value of the selected status of the selected card
@@ -57,8 +58,8 @@ public int numOfCards = 6;
 
     //player's ID is the same as the ID of the Photon view
     public void Start(){
-      playerId = GetComponent<PhotonView>().ViewID;
-        playerName = "player";  
+         playerId = GetComponent<PhotonView>().ViewID;
+        playerName = PhotonNetwork.LocalPlayer.NickName;  
         score = 0;
            /* the aforementioned area for selected cards is tagged with "select". 
     This is a really handy way to retrieve objects without assiging them in the inspector
@@ -135,7 +136,7 @@ public int numOfCards = 6;
 
             stream.SendNext(HasBeenConfirmed);
             stream.SendNext(selectedVal);
-            stream.SendNext(winnerstreak);
+            stream.SendNext(score);
            //  Debug.LogError("Sending stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
         
         } else {
@@ -162,7 +163,7 @@ public int numOfCards = 6;
              HasBeenConfirmed = (bool) stream.ReceiveNext();
             
                  selectedVal = (int) stream.ReceiveNext();
-            winnerstreak = (int) stream.ReceiveNext();
+            score = (int) stream.ReceiveNext();
            //  Debug.LogError("Received stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
             
         }

@@ -88,6 +88,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             case (RoundStates.PLAYING): StartCoroutine(starter()); break;
             case (RoundStates.CONCLUSION): StartCoroutine(StartConcluding()); break;
             case (RoundStates.NEWROUND): incrementAsMaster(); StartCoroutine(AdvanceRound()); break;
+            case (RoundStates.END): determineWinner(); break;
         }
     }
 
@@ -164,7 +165,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                 return;
             }
 
-            if (currState != RoundStates.NEWROUND || currState == RoundStates.CONCLUSION)
+            if (currState != RoundStates.NEWROUND || currState == RoundStates.CONCLUSION || currState == RoundStates.END)
             {
                 GameFlow();
             }
@@ -406,15 +407,18 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 Messenger.text = "You lost!";
                 
-                ;
+                
                 Winnerstreak.text += "X";
             }
             else
             {
                 Messenger.text = "You won!";
-                
+                player.score++;
                 
                 Winnerstreak.text += "V";
+            }
+            if (values[0] == values[1]){
+                Messenger.text = "It's a draw!";
             }
     }
 
@@ -429,6 +433,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.Log("Game Over");
+            GameFlow();
         }
         else
         {
@@ -448,6 +453,29 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         yield return new WaitForSeconds(1);
         GameFlow();
+    }
+
+    private void determineWinner(){
+         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            List<int> scores = new List<int>();
+            foreach (GameObject p in players)
+            {
+                scores.Add(p.GetComponent<Player>().score);
+            }
+            //sort this list so that the first value will always be the smallest.
+            scores.Sort();
+             if (scores[0] == player.score)
+            {
+                Messenger.text = "You lost this game. Better luck next time.";
+                
+            }
+            else
+            {
+                Messenger.text = "You won this game! Congrats!";
+               player.isWinner = true;
+                
+               
+            }
     }
 
 
