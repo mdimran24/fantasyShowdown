@@ -31,8 +31,7 @@ public class Player : MonoBehaviour, IPunObservable
     //WILL BE USED
     //Value of the selected status of the selected card
      public int selectedVal;
-     //UNSURE
-    private int valtoberemoved;
+ 
 
   /* Represents the top left side of the game screen, where you drop the card you want to select 
    Is here instead to avoid any sort of interference.*/

@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 
 //parts of the game in question
-//CRINA: I HAVE EXTRA PARTS IN ANOTHER BRANCH, HANG ON.
 public enum RoundStates { START, PLAYING, CONCLUSION, NEWROUND, END }
-
-
 
 public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -35,28 +31,37 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
     //represents that the player has selected their card
     bool HasBeenConfirmed;
+
     //HUD messenger text
     public Text Messenger;
-    //list of statuses that will be selected from
     [SerializeField]
     private Text HUDRounds;
+    [SerializeField]
+    private Text Winnerstreak;
 
-    public Text Winnerstreak;
+    //list of statuses that will be selected from
     public static string[] statuses;
     //the status that has been picked
     public static int chosenstat;
 
+//Dealer that hands the cards to the players
     public Dealer dealer;
+
+    //Photon raiseevent stuff
     public const byte PASS_STAT = 2;
     public const byte PASS_CHOSEN = 3;
-
     public const byte RECEIVESTATE = 4;
     public const byte CURRENTROUND = 5;
+
+//Have both players got their cards instantiated?
     [SerializeField]
     private bool bothplayerscards = false;
+
+//is the comparison done?
     [SerializeField]
     private bool gotresults = false;
 
+//self explanatory
     [SerializeField]
     private int maxRounds = 5;
     [SerializeField]
@@ -67,12 +72,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     protected void Start()
     {
         currState = RoundStates.START;
-        //turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
         HUDRounds.text = "Round " + currentRound.ToString() + " of 5";
         Winnerstreak.text = "";
-        //   dealer.Dealbtn();
-
         GameFlow();
 
 
@@ -89,6 +91,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+//Proceeds to next round, otherwise this would end up happening twice.
     private void incrementAsMaster()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -101,6 +104,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
+//Photon stuff
     public override void OnEnable()
     {
         // player.HasBeenConfirmed = false;
@@ -114,6 +118,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void NetworkingClientEventReceived(EventData obj)
     {
+        //raise event making it possible for the deck to be shared.
         if (obj.Code == PASS_STAT)
         {
             Debug.Log("Received event: " + obj);
@@ -130,7 +135,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                     Card testcardp = new Card((int)datas[0], "test", 0, 0, 0, 0, 0, 0, null);
                     GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
 
-                    //testcard.GetComponent<Card>().Id = (byte) datas[0];
                     testcard.transform.Find("Frame").gameObject.SetActive(false);
                     testcard.transform.Find("BackOfCard").gameObject.SetActive(true);
                     testcard.GetComponent<ThisCard>().thisId = testcardp.id;
@@ -140,6 +144,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
+        //raiseevent that shares the chosen start as well as the HUD message
         if (obj.Code == PASS_CHOSEN)
         {
             object[] datas = (object[])obj.CustomData;
@@ -147,11 +152,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             Messenger.text = (string)datas[1];
         }
 
+        //shares the current game state, keeps whole thing on track.
         if (obj.Code == RECEIVESTATE)
         {
             Debug.Log("Rased event to receive state");
             object[] datas = (object[])obj.CustomData;
             currState = (RoundStates)datas[0];
+            //these are random but the game breaks without them.
             if (currState == RoundStates.PLAYING && currentRound > 1)
             {
                 return;
@@ -163,6 +170,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
 
+    //shares count of rounds.
         if (obj.Code == CURRENTROUND)
         {
             object[] datas = (object[])obj.CustomData;
@@ -189,19 +197,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             ResetSelected.gameObject.SetActive(false);
             ConfirmSelected.gameObject.SetActive(false);
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PhotonNetwork.Disconnect();
-            SceneManager.LoadScene("Loading");
-
-        }
-
-
-
-
     }
 
+//determines the the game is good to go to start comparing cards.
     private bool bothplayersdrawn()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -211,20 +209,12 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 return false;
             }
-
         }
         return true;
     }
 
-    //  private bool bothplayersjoined(){
-    //       GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-    //       if (players.Length == 2){
-    //           return true;
-
-    //       }
-    //       return false;
-    //  }
-
+   
+//roll call for both players before proceeding.
     public IEnumerator checkforboth()
     {
         yield return new WaitForSeconds(1);
@@ -234,10 +224,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             yield return new WaitForSeconds(1);
-            // GameFlow();
         }
 
     }
+
+    //actually starts the game
     public IEnumerator starter()
     {
         if (currentRound == 1)
@@ -246,10 +237,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
             Debug.LogError("Starter");
             yield return new WaitForSeconds(1);
-            //  foreach (KeyValuePair<int, Photon.Realtime.Player> playerview in PhotonNetwork.CurrentRoom.Players){
-            //    playerview.Value.
             Draw();
         }
+        //if the game is already in progress, don't draw another hand of cards.
         else
         {
             PlayerTurn();
@@ -285,8 +275,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     private void PlayerTurn()
     {
         SelectCardPrep();
-        Debug.Log("Pick your card bro");
-
     }
 
 
@@ -376,6 +364,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
         player.HasBeenConfirmed = true;
 
+    //now that both players confirmed their cards, proceed further.
         if (bothplayersdrawn() && !gotresults)
         {
             currState = RoundStates.CONCLUSION;
@@ -387,6 +376,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+    //calls for comparison
     private IEnumerator StartConcluding()
     {
         yield return new WaitForSeconds(1);
@@ -399,15 +389,19 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         GameFlow();
     }
 
+    //this one tells you if you won or not.
     private void Comparer()
     {
+        //look for players, take the selected value from each of them and put them in a list.
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             List<int> values = new List<int>();
             foreach (GameObject p in players)
             {
                 values.Add(p.GetComponent<Player>().selectedVal);
             }
+            //sort this list so that the first value will always be the smallest.
             values.Sort();
+            //if that value is yours, you lost. if not, you won.
             if (values[0] == player.selectedVal)
             {
                 Messenger.text = "You lost!";
@@ -424,9 +418,11 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
     }
 
+//determined whether the game is over or not.
     private IEnumerator AdvanceRound()
     {
         yield return new WaitForSeconds(1);
+        //if all 5 rounds are played, end the game.
         if (currentRound > maxRounds)
         {
             currState = RoundStates.END;
@@ -436,14 +432,16 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            Debug.Log("Removing card...");
+            //else, partially reset the game and loop it over.
+            
             player.RemoveUsedCard();
             Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
+
             HasBeenConfirmed = false;
             SelectedItemSlot.hasBeenSelected = false;
             player.HasBeenConfirmed = false;
             gotresults = false;
-            Debug.Log("Advanving next round...");
+
             currState = RoundStates.PLAYING;
             object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
