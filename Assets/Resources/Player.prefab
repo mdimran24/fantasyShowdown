@@ -56,6 +56,7 @@ MonoBehaviour:
   selectGO: {fileID: 0}
   thisCard: {fileID: 0}
   selectedCard: {fileID: 0}
+  numOfCards: 6
   handOfCards: []
   HasBeenConfirmed: 0
   view: {fileID: -3402946307738020698}

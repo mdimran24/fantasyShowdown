@@ -2,20 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 public class PlayerAreaItemSlot : MonoBehaviour, IDropHandler
 {
 
     [SerializeField]
     private Player player;
 
-    public void Start(){
-        
+    public void FindPlayer(){
+         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            //if this player is you, instantiate your cards and place them as needed.
+            if (p.GetComponent<PhotonView>().IsMine)
+            {
+                player = p.GetComponent<Player>();
+            }
+        }
     }
+
     public void Update()
     {
+        if (player == null){
+            FindPlayer();
+        }
+
         if (SelectedItemSlot.hasBeenSelected)
         {
-            for (int i = 0; i < Player.numOfCards-1; i++)
+            for (int i = 0; i < player.handOfCards.Count-1; i++)
             {
                 GetComponent<RectTransform>().transform.GetChild(i).GetComponent<DragDrop>().enabled = false;
                 //continue;
@@ -24,7 +38,7 @@ public class PlayerAreaItemSlot : MonoBehaviour, IDropHandler
         else
         {
             
-               for (int i = 0; i < Player.numOfCards; i++)
+               for (int i = 0; i < player.handOfCards.Count; i++)
                 {
                     GetComponent<RectTransform>().transform.GetChild(i).GetComponent<DragDrop>().enabled = true;
             

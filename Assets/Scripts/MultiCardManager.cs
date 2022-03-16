@@ -80,10 +80,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             case (RoundStates.START): StartCoroutine(checkforboth()); break;
             case (RoundStates.PLAYING): StartCoroutine(starter()); break;
             case (RoundStates.CONCLUSION): StartCoroutine(StartConcluding()); break;
-            case (RoundStates.NEWROUND): currentRound++;
-        object[] rdatas = new object[] { currentRound };
+            case (RoundStates.NEWROUND): incrementAsMaster(); StartCoroutine(AdvanceRound()); break;
+        }
+    }
+
+    private void incrementAsMaster(){
+        if (PhotonNetwork.IsMasterClient){
+            currentRound++;
+            object[] rdatas = new object[] { currentRound };
         PhotonNetwork.RaiseEvent(CURRENTROUND, rdatas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-         StartCoroutine(AdvanceRound()); break;
         }
     }
 
@@ -139,7 +144,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log("Rased event to receive state");
             object[] datas = (object[])obj.CustomData;
             currState = (RoundStates)datas[0];
+if (currState == RoundStates.PLAYING && currentRound > 1){
+    return;
+}
+
+            if (currState != RoundStates.NEWROUND || currState == RoundStates.CONCLUSION){
             GameFlow();
+            }
         }
 
         if (obj.Code == CURRENTROUND){
@@ -210,7 +221,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             currState = RoundStates.PLAYING;
             object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-            
+            yield return new WaitForSeconds(1); 
+           // GameFlow();
         }
         
     }
@@ -233,8 +245,6 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     //This button provides cards for the player who clicks it
     public void Draw()
     {
-        
-      
         //look for players
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject p in players)
@@ -357,7 +367,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
              object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.LogError("Changed state to conclusion");
-           // GameFlow();
+            GameFlow();
         }
 
     }
@@ -365,6 +375,12 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     private IEnumerator StartConcluding(){
         yield return new WaitForSeconds(1);
         Comparer();
+        currState = RoundStates.NEWROUND;
+             object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+            Debug.LogError("Starting new round...");
+             yield return new WaitForSeconds(1);
+             GameFlow();
     }
 
     private void Comparer()
@@ -397,32 +413,32 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
 
 
-            currState = RoundStates.NEWROUND;
-             object[] datas = new object[] { currState };
-            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-            Debug.LogError("Starting new round...");
-           GameFlow();
+            
         }
     }
 
     private IEnumerator AdvanceRound(){
         yield return new WaitForSeconds(1);
-        if (currentRound > maxRounds){
+        if (currentRound >= maxRounds){
             currState = RoundStates.END;
+               object[] datas = new object[] { currState };
+            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.Log("Game Over");
         } else {
             Debug.Log("Removing card...");
             player.RemoveUsedCard();
             Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
-            player.HasBeenConfirmed = false;
+            HasBeenConfirmed = false;
             SelectedItemSlot.hasBeenSelected = false;
-            
-           }
-            Debug.Log("Advanving next round...");
+            player.HasBeenConfirmed = false;
+            gotresults = false;
+              Debug.Log("Advanving next round...");
           currState = RoundStates.PLAYING;
                object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-          //  GameFlow(); 
+           }
+           yield return new WaitForSeconds(1);
+            GameFlow(); 
         
          
     }
