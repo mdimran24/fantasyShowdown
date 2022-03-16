@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IPunObservable
     //prevents them from instantiating cards to infinity.
     public bool isDrawn = false;
 
-    public bool winner;
+    public int winnerstreak;
 
     //WILL BE USED
     //Value of the selected status of the selected card
@@ -136,6 +136,7 @@ public int numOfCards = 6;
 
             stream.SendNext(HasBeenConfirmed);
             stream.SendNext(selectedVal);
+            stream.SendNext(winnerstreak);
            //  Debug.LogError("Sending stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
         
         } else {
@@ -162,6 +163,7 @@ public int numOfCards = 6;
              HasBeenConfirmed = (bool) stream.ReceiveNext();
             
                  selectedVal = (int) stream.ReceiveNext();
+            winnerstreak = (int) stream.ReceiveNext();
            //  Debug.LogError("Received stat for" + MultiCardManager.chosenstat + ": " + selectedVal);
             
         }

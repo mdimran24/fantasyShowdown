@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using ExitGames.Client.Photon;
@@ -28,20 +29,22 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     public Player player;
 
     //The reset button, meaning that their selected card goes back onto their hand.
-    public Button ResetSelected;
+    public UnityEngine.UI.Button ResetSelected;
     //the confirm button meaning that the player has decided on which card to play
-    public Button ConfirmSelected;
+    public UnityEngine.UI.Button ConfirmSelected;
 
     //represents that the player has selected their card
     bool HasBeenConfirmed;
     //HUD messenger text
     public Text Messenger;
     //list of statuses that will be selected from
+    [SerializeField]
+    private Text HUDRounds;
+
+    public Text Winnerstreak;
     public static string[] statuses;
     //the status that has been picked
     public static int chosenstat;
-    [SerializeField]
-    private Turnmanager turnmanager;
 
     public Dealer dealer;
     public const byte PASS_STAT = 2;
@@ -66,10 +69,12 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         currState = RoundStates.START;
         //turnmanager = GetComponent<Turnmanager>();
         Messenger.text = "Game Started";
+        HUDRounds.text = "Round " + currentRound.ToString() + " of 5";
+        Winnerstreak.text = "";
         //   dealer.Dealbtn();
 
         GameFlow();
-       
+
 
     }
 
@@ -84,12 +89,15 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void incrementAsMaster(){
-        if (PhotonNetwork.IsMasterClient){
+    private void incrementAsMaster()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
             currentRound++;
             object[] rdatas = new object[] { currentRound };
-        PhotonNetwork.RaiseEvent(CURRENTROUND, rdatas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+            PhotonNetwork.RaiseEvent(CURRENTROUND, rdatas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
         }
+        HUDRounds.text = "Round " + currentRound.ToString() + " of 5";
     }
 
 
@@ -144,18 +152,22 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log("Rased event to receive state");
             object[] datas = (object[])obj.CustomData;
             currState = (RoundStates)datas[0];
-if (currState == RoundStates.PLAYING && currentRound > 1){
-    return;
-}
+            if (currState == RoundStates.PLAYING && currentRound > 1)
+            {
+                return;
+            }
 
-            if (currState != RoundStates.NEWROUND || currState == RoundStates.CONCLUSION){
-            GameFlow();
+            if (currState != RoundStates.NEWROUND || currState == RoundStates.CONCLUSION)
+            {
+                GameFlow();
             }
         }
 
-        if (obj.Code == CURRENTROUND){
-            object[] datas = (object[]) obj.CustomData;
-            currentRound = (int) datas[0];
+        if (obj.Code == CURRENTROUND)
+        {
+            object[] datas = (object[])obj.CustomData;
+            currentRound = (int)datas[0];
+            HUDRounds.text = "Round " + currentRound.ToString() + " of 5";
         }
 
     }
@@ -186,7 +198,7 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
         }
 
 
-       
+
 
     }
 
@@ -215,28 +227,31 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
 
     public IEnumerator checkforboth()
     {
-         yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             currState = RoundStates.PLAYING;
             object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-            yield return new WaitForSeconds(1); 
-           // GameFlow();
+            yield return new WaitForSeconds(1);
+            // GameFlow();
         }
-        
+
     }
     public IEnumerator starter()
     {
-        if (currentRound == 1){
-          dealer.Dealbtn();
-        
-        Debug.LogError("Starter");
-        yield return new WaitForSeconds(1);
-        //  foreach (KeyValuePair<int, Photon.Realtime.Player> playerview in PhotonNetwork.CurrentRoom.Players){
-        //    playerview.Value.
-        Draw();
-        } else {
+        if (currentRound == 1)
+        {
+            dealer.Dealbtn();
+
+            Debug.LogError("Starter");
+            yield return new WaitForSeconds(1);
+            //  foreach (KeyValuePair<int, Photon.Realtime.Player> playerview in PhotonNetwork.CurrentRoom.Players){
+            //    playerview.Value.
+            Draw();
+        }
+        else
+        {
             PlayerTurn();
         }
 
@@ -361,10 +376,10 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
 
         player.HasBeenConfirmed = true;
 
-         if (bothplayersdrawn() && !gotresults)
+        if (bothplayersdrawn() && !gotresults)
         {
             currState = RoundStates.CONCLUSION;
-             object[] datas = new object[] { currState };
+            object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.LogError("Changed state to conclusion");
             GameFlow();
@@ -372,27 +387,20 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
 
     }
 
-    private IEnumerator StartConcluding(){
+    private IEnumerator StartConcluding()
+    {
         yield return new WaitForSeconds(1);
         Comparer();
         currState = RoundStates.NEWROUND;
-             object[] datas = new object[] { currState };
-            PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-            Debug.LogError("Starting new round...");
-             yield return new WaitForSeconds(1);
-             GameFlow();
+        object[] datas = new object[] { currState };
+        PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
+        Debug.LogError("Starting new round...");
+        yield return new WaitForSeconds(1);
+        GameFlow();
     }
 
     private void Comparer()
     {
-        if (bothplayersdrawn() == false)
-        {
-            Debug.Log("Not both");
-        }
-        else
-        {
-            Debug.Log("Yes both");
-
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             List<int> values = new List<int>();
             foreach (GameObject p in players)
@@ -403,28 +411,31 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
             if (values[0] == player.selectedVal)
             {
                 Messenger.text = "You lost!";
-                Debug.LogError("You lost!");
+                
+                ;
+                Winnerstreak.text += "X";
             }
             else
             {
                 Messenger.text = "You won!";
-                Debug.LogError("You won!");
-               
+                
+                
+                Winnerstreak.text += "V";
             }
-
-
-            
-        }
     }
 
-    private IEnumerator AdvanceRound(){
+    private IEnumerator AdvanceRound()
+    {
         yield return new WaitForSeconds(1);
-        if (currentRound >= maxRounds){
+        if (currentRound > maxRounds)
+        {
             currState = RoundStates.END;
-               object[] datas = new object[] { currState };
+            object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
             Debug.Log("Game Over");
-        } else {
+        }
+        else
+        {
             Debug.Log("Removing card...");
             player.RemoveUsedCard();
             Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
@@ -432,15 +443,13 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
             SelectedItemSlot.hasBeenSelected = false;
             player.HasBeenConfirmed = false;
             gotresults = false;
-              Debug.Log("Advanving next round...");
-          currState = RoundStates.PLAYING;
-               object[] datas = new object[] { currState };
+            Debug.Log("Advanving next round...");
+            currState = RoundStates.PLAYING;
+            object[] datas = new object[] { currState };
             PhotonNetwork.RaiseEvent(RECEIVESTATE, datas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
-           }
-           yield return new WaitForSeconds(1);
-            GameFlow(); 
-        
-         
+        }
+        yield return new WaitForSeconds(1);
+        GameFlow();
     }
 
 
@@ -449,14 +458,10 @@ if (currState == RoundStates.PLAYING && currentRound > 1){
         if (stream.IsWriting)
         {
             stream.SendNext(currState);
-           // stream.SendNext(currentRound);
-           // Debug.Log("Sending current state" + currState.ToString());
         }
         else
         {
             currState = (RoundStates)stream.ReceiveNext();
-           // currentRound = (int) stream.ReceiveNext();
-           // Debug.Log("Sending current state" + currState.ToString());
         }
     }
 }

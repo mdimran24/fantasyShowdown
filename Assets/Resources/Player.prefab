@@ -51,7 +51,7 @@ MonoBehaviour:
   physicalCards: []
   playerCard: {fileID: 4000989354763434114, guid: 14ad83c15fb5714408a79791da185073, type: 3}
   isDrawn: 0
-  winner: 0
+  winnerstreak: 0
   selectedVal: 0
   selectGO: {fileID: 0}
   thisCard: {fileID: 0}

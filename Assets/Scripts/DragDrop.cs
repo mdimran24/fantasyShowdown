@@ -32,6 +32,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("Drag");
+        Debug.Log (canvas.GetComponent<RectTransform>().sizeDelta);
+       // float scaler =  (1920*1080) / (canvas.GetComponent<RectTransform>().sizeDelta.x * canvas.GetComponent<RectTransform>().sizeDelta.y);
+       // Debug.Log.(canvas.GetComponent<Canvas>().
         
         rectTransform.anchoredPosition += eventData.delta;
        
