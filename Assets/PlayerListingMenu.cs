@@ -58,7 +58,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
         else
         {
-            readyOrNotText.text = "Not r";
+            readyOrNotText.text = "Not r"; 
         }
     }
 
@@ -143,6 +143,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient)
         {
             SetReadyUp(!ready);
+            
             base.photonView.RPC("RPC_ChangeReadyState", RpcTarget.MasterClient,PhotonNetwork.LocalPlayer, ready);
         }
     }
@@ -154,6 +155,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         if (index != -1)
         {
             listings[index].Ready = ready;
+           listings[index].readyicon.gameObject.SetActive(ready);
            
         }
     }
