@@ -16,6 +16,8 @@ public class Player : MonoBehaviour, IPunObservable
     public string playerName;
     public int score;
 
+    public ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable();
+
     //hand of cards but represented as card gameobjects
      public List<GameObject> physicalCards = new List<GameObject>();
 
