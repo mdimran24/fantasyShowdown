@@ -44,6 +44,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     //the status that has been picked
     public static int chosenstat;
 
+    public GameObject enemyscard;
+
 //Dealer that hands the cards to the players
     public Dealer dealer;
 
@@ -60,6 +62,8 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
 //is the comparison done?
     [SerializeField]
     private bool gotresults = false;
+    [SerializeField]
+    private bool isadraw = false;
 
 //self explanatory
     [SerializeField]
@@ -97,7 +101,9 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            if (!isadraw){
             currentRound++;
+            }
             object[] rdatas = new object[] { currentRound };
             PhotonNetwork.RaiseEvent(CURRENTROUND, rdatas, Photon.Realtime.RaiseEventOptions.Default, SendOptions.SendReliable);
         }
@@ -133,13 +139,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                 //if that player is you
                 if (!playerView.IsMine)
                 {
-                    Card testcardp = new Card((int)datas[0], "test", 0, 0, 0, 0, 0, 0, null);
-                    GameObject testcard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
+                    Card enemyscardp = new Card((int)datas[0], "test", 0, 0, 0, 0, 0, 0, null);
+                    enemyscard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
 
-                    testcard.transform.Find("Frame").gameObject.SetActive(false);
-                    testcard.transform.Find("BackOfCard").gameObject.SetActive(true);
-                    testcard.GetComponent<ThisCard>().thisId = testcardp.id;
-                    testcard.transform.SetParent(opponentCards.transform, false);
+                    enemyscard.transform.Find("Frame").gameObject.SetActive(false);
+                    enemyscard.transform.Find("BackOfCard").gameObject.SetActive(true);
+                    enemyscard.GetComponent<ThisCard>().thisId = enemyscardp.id;
+                    enemyscard.transform.SetParent(opponentCards.transform, false);
 
                 }
             }
@@ -232,7 +238,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
     //actually starts the game
     public IEnumerator starter()
     {
-        if (currentRound == 1)
+        if (currentRound == 1 && !isadraw)
         {
             dealer.Dealbtn();
 
@@ -240,11 +246,13 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             yield return new WaitForSeconds(1);
             Draw();
         }
+        
         //if the game is already in progress, don't draw another hand of cards.
         else
         {
             PlayerTurn();
         }
+        isadraw = false;
 
     }
 
@@ -419,7 +427,10 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
             if (values[0] == values[1]){
                 Messenger.text = "It's a draw!";
+                isadraw = true;
             }
+            enemyscard.transform.Find("Frame").gameObject.SetActive(true);
+            enemyscard.transform.Find("BackOfCard").gameObject.SetActive(false);
     }
 
 //determined whether the game is over or not.
@@ -438,10 +449,14 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             //else, partially reset the game and loop it over.
-            
-            player.RemoveUsedCard();
-            Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
+            if (isadraw){
+                OnResetPressed();
 
+            } else {
+            player.RemoveUsedCard();
+           
+            }
+             Destroy(opponentCards.GetComponent<Transform>().GetChild(0).gameObject);
             HasBeenConfirmed = false;
             SelectedItemSlot.hasBeenSelected = false;
             player.HasBeenConfirmed = false;
@@ -471,11 +486,12 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
             }
             else
             {
+                player.isWinner = true;
                 Messenger.text = "You won this game! Congrats!";
-               player.isWinner = true;
-                
                
+
             }
+             PhotonNetwork.LoadLevel("GameOver");
     }
 
 
