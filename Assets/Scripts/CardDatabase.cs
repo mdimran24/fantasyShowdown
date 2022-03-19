@@ -12,7 +12,7 @@ public class CardDatabase : MonoBehaviour
 
     public void CreatePack()
     {
-        cardList.Add(new Card(0, "Example", 0, 0, 0, 0, 0, 0, Resources.Load <Sprite>("Card Art/1") ));
+        //cardList.Add(new Card(0, "Example", 0, 0, 0, 0, 0, 0, Resources.Load<Sprite>("Card Art/1")));
         cardList.Add(new Card(1, "Knight", 75, 25, 75, 35, 30, 60, Resources.Load<Sprite>("Card Art/Knight")));
         cardList.Add(new Card(2, "Warlock", 25, 35, 50, 60, 40, 75, Resources.Load <Sprite>("Card Art/Warlock") ));
         cardList.Add(new Card(3, "Wizard", 20, 30, 15, 100, 75, 65, Resources.Load <Sprite>("Card Art/Wizard") ));
