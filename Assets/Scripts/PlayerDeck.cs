@@ -34,7 +34,7 @@ public class PlayerDeck : MonoBehaviourPun
 
         for (int i = 0; i < deckSize; i++)
         {
-           //add sai cards into the deck
+           //add said cards into the deck
             deck.Add(CardDatabase.cardList[i]);
         }
     

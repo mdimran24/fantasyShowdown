@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "347283371193",
+    "firebase_url": "https://fantasy-showdown-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fantasy-showdown",
+    "storage_bucket": "fantasy-showdown.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347283371193:android:e90e374725fbe2e5781768",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.FantasyShowdown1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347283371193-b39nmaco0j0r1sun479n8f79u978v9c9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7HajpjajE71oXJtS-Rz1iWGG2ezRjklM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347283371193-b39nmaco0j0r1sun479n8f79u978v9c9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

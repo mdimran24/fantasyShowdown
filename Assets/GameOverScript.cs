@@ -42,10 +42,14 @@ public class GameOverScript : MonoBehaviour
         if (thisplayer.isWinner)
         {
             winConclusion.text = "You won this game! Congrats!";
+            var addWin = new FirebaseManager();
+            addWin.AddWins();
         }
         else
         {
             winConclusion.text = "You lost this game. Better luck next time.";
+            var addLosses = new FirebaseManager();
+            addLosses.AddLosses();
         }
         winsnum.text = thisplayer.score.ToString();
         lossnum.text = (5 - thisplayer.score).ToString();

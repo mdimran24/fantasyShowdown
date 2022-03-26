@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "347283371193",
+    "firebase_url": "https://fantasy-showdown-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "fantasy-showdown",
     "storage_bucket": "fantasy-showdown.appspot.com"
   },

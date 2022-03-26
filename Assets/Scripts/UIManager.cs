@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
 
     
     public GameObject loginUI;
-    public GameObject registerUI;
+    public GameObject userDataUI;
+    public GameObject leaderboardUI;
 
     private void Awake()
     {
@@ -23,15 +24,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ClearScreen() {
+        loginUI.SetActive(false);
+        userDataUI.SetActive(false);
+        leaderboardUI.SetActive(false);
+    }
+
     
     public void LoginScreen() 
     {
+        ClearScreen();
         loginUI.SetActive(true);
-        registerUI.SetActive(false);
+
     }
-    public void RegisterScreen() 
+
+    public void UserDataScreen()
     {
-        loginUI.SetActive(false);
-        registerUI.SetActive(true);
+        ClearScreen();
+        userDataUI.SetActive(true);
+    }
+
+    public void LeaderboardScreen()
+    {
+        ClearScreen();
+        leaderboardUI.SetActive(true);
     }
 }
