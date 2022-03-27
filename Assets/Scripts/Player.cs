@@ -104,6 +104,7 @@ public int numOfCards = 6;
      public void RemoveUsedCard()
     {
         int index = handOfCards.FindIndex(x => x.id == selectedCard.id);
+        index = Mathf.Abs(index);
         handOfCards.RemoveAt(index);
         selectedCard = null;
         if (view.IsMine){
@@ -147,7 +148,7 @@ public int numOfCards = 6;
             if (nCards != handOfCards.Count) {
                 handOfCards.Clear();
                 for (int i = 0; i < nCards; i++) {
-                    handOfCards.Add(new Card(0, "dummy", 0, 0, 0, 0, 0, 0, null));
+                    handOfCards.Add(new Card(0, "dummy", 0, 0, 0, 0, 0, 0, null, "test"));
                 }
             }
 

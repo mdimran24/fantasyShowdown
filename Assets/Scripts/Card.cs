@@ -16,9 +16,12 @@ public class Card
     public int wisdom;
     public int charisma;
     public Sprite cardArt;
+    public string lore;
+
+
 
     // constructor for the card class, made another script that creates a List of cards instead of a database, this saves us from hosting a database which is fine for a small number of cards
-    public Card(int id, string cardName, int str, int dex, int con, int intel, int wis, int cha, Sprite art)
+    public Card(int id, string cardName, int str, int dex, int con, int intel, int wis, int cha, Sprite art, string lore)
     {
         this.id = id;
         this.cardName = cardName;
@@ -29,6 +32,9 @@ public class Card
         this.wisdom = wis;
         this.constitution = con;
         this.cardArt = art;
+        this.lore = lore;
+
+
     }
 
 }

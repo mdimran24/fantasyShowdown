@@ -140,7 +140,7 @@ public class MultiCardManager : MonoBehaviourPunCallbacks, IPunObservable
                 //if that player is you
                 if (!playerView.IsMine)
                 {
-                    Card enemyscardp = new Card((int)datas[0], "test", 0, 0, 0, 0, 0, 0, null);
+                    Card enemyscardp = new Card((int)datas[0], "test", 0, 0, 0, 0, 0, 0, null, "test");
                     enemyscard = PhotonNetwork.Instantiate("Card", new Vector3(0, 0, 0), Quaternion.identity);
 
                     enemyscard.transform.Find("Frame").gameObject.SetActive(false);

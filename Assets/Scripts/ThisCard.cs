@@ -21,6 +21,7 @@ public class ThisCard : MonoBehaviour
     public int intelligence;
     public int wisdom;
     public int charisma;
+    public string lore;
 
     public Text nameText;
     public Text strengthText;
@@ -29,9 +30,11 @@ public class ThisCard : MonoBehaviour
     public Text intelligenceText;
     public Text wisdomText;
     public Text charismaText;
+    public Text loreText;
 
     public Sprite thisCardArt;
     public Image thisArt;
+
 
     // Start is called before the first frame update
     // Assign the details ont othe card gameobjects
@@ -42,12 +45,15 @@ public class ThisCard : MonoBehaviour
 
         id = thisCard[0].id;
         cardName = thisCard[0].cardName;
+
         strength = thisCard[0].strength;
         dexterity = thisCard[0].dexterity;
         constitution = thisCard[0].constitution;
         intelligence = thisCard[0].intelligence;
         wisdom = thisCard[0].wisdom;
         charisma = thisCard[0].charisma;
+        lore = thisCard[0].lore;
+
 
         thisCardArt = thisCard[0].cardArt;
 
@@ -58,6 +64,8 @@ public class ThisCard : MonoBehaviour
         intelligenceText.text = "Intelligence - " + intelligence;
         wisdomText.text = "Wisdom - " + wisdom;
         charismaText.text = "Charisma - " + charisma;
+        loreText.text = "" + lore;
+
         thisArt.sprite = thisCardArt;
     }
 
