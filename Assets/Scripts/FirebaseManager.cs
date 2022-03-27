@@ -9,6 +9,7 @@ using System.Linq;
 
 public class FirebaseManager : MonoBehaviour
 {
+        public static FirebaseManager instance;
 
         //Firebase variables
         [Header("Firebase")]
@@ -40,21 +41,42 @@ public class FirebaseManager : MonoBehaviour
         public TMP_Text tiesField;
         public GameObject scoreElement;
         public Transform leaderboardContent;
+        public bool hasCheckedLogin;
 
         private void Awake()
         {
-                FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+                DontDestroyOnLoad(gameObject);
+                if(instance == null)
                 {
-                        dependencyStatus = task.Result;
-                        if (dependencyStatus == DependencyStatus.Available)
-                        {
-                                IntializeFirebase();
-                        }
-                        else
-                        {
-                                Debug.LogError("Couldn't resolve Firebase dependencies:" + dependencyStatus);
-                        }
-                });
+                        instance = this;
+                }
+                else if (instance != this)
+                {
+                        Destroy(instance.gameObject);
+                        instance = this;
+                }
+        }
+
+        private void Start()
+        {
+                StartCoroutine(CheckAndFixDependencies());
+        }
+
+        private IEnumerator CheckAndFixDependencies()
+        {
+                var checkAndFixDependenciesTask = FirebaseApp.CheckAndFixDependenciesAsync();
+
+                yield return new WaitUntil(predicate: () => checkAndFixDependenciesTask.IsCompleted);
+
+                var dependencyResult = checkAndFixDependenciesTask.Result;
+
+                if(dependencyResult == DependencyStatus.Available)
+                {
+                        IntializeFirebase();
+                }
+                else{
+                        Debug.LogError($"Could not resolve all Firebase Dependencies: {dependencyResult}");
+                }
         }
 
         // Starts up firebase
@@ -62,7 +84,46 @@ public class FirebaseManager : MonoBehaviour
         {
                 Debug.Log("Setting up Authentication");
                 auth = FirebaseAuth.DefaultInstance;
+
+                StartCoroutine(CheckAutoLogin());
+
+                auth.StateChanged += AuthStateChanged;
+                AuthStateChanged(this, null);
+
                 DBref = FirebaseDatabase.DefaultInstance.RootReference;
+        }
+
+        private IEnumerator CheckAutoLogin()
+        {
+                yield return new WaitForEndOfFrame();
+                if(User != null)
+                {
+                        var reloadUserTask = User.ReloadAsync();
+
+                        yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
+
+                }
+
+        }       
+
+        private void AuthStateChanged(object sender, System.EventArgs eventArgs)
+        {
+                if(auth.CurrentUser != User)
+                {
+                        bool singedIn = User != auth.CurrentUser && auth.CurrentUser != null;
+
+                        if(!singedIn && User != null)
+                        {
+                                Debug.Log("Signed Out");
+                        }
+
+                        User = auth.CurrentUser;
+
+                        if (singedIn)
+                        {
+                                Debug.Log($"Singed In: {User.DisplayName}");
+                        }
+                }
         }
 
         public void ClearLoginFields(){
@@ -86,12 +147,30 @@ public class FirebaseManager : MonoBehaviour
                 auth.SignOut();
                 UIManager.instance.LoginScreen();
                 ClearLoginFields();
+                StartCoroutine(LoadUserData());
         }
 
         public void LeaderboardButton()
         {
                 StartCoroutine(LoadLeaderboardData());
         }
+
+        public void ProfileButton()
+        {
+                if(User != null)
+                {
+                        StartCoroutine(LoadUserData());
+                }
+        }
+
+        private void FixedUpdate()
+    {
+            if(auth != null && hasCheckedLogin == false)
+            {
+                    CheckAutoLogin();
+                    hasCheckedLogin = true;
+            }
+    }
 
         // Handles the login authentication
         private IEnumerator Login(string _email, string _password)
@@ -221,7 +300,7 @@ public class FirebaseManager : MonoBehaviour
         }
 
         private IEnumerator UpdateUsernameAuth(string _username)
-    {
+  {
                 //Create a user profile and set the username
                 UserProfile profile = new UserProfile { DisplayName = _username };
 
@@ -308,7 +387,7 @@ public class FirebaseManager : MonoBehaviour
         }
         else if (DBTask.Result.Value == null)
         {
-            
+            usernameField.text = "Not Logged in";
             winField.text = "0";
             lossField.text = "0";
             tiesField.text = "0";
@@ -317,7 +396,8 @@ public class FirebaseManager : MonoBehaviour
         {
             
             DataSnapshot snapshot = DBTask.Result;
-
+            
+            usernameField.text = snapshot.Child("username").Value.ToString();
             winField.text = snapshot.Child("wins").Value.ToString();
             lossField.text = snapshot.Child("losses").Value.ToString();
             tiesField.text = snapshot.Child("ties").Value.ToString();
@@ -383,4 +463,5 @@ public class FirebaseManager : MonoBehaviour
                 UIManager.instance.LeaderboardScreen();
             }
     }
+
 }

@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject loginUI;
     public GameObject userDataUI;
     public GameObject leaderboardUI;
+    public GameObject profileUI;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
         loginUI.SetActive(false);
         userDataUI.SetActive(false);
         leaderboardUI.SetActive(false);
+        profileUI.SetActive(false);
     }
 
     
@@ -48,5 +50,11 @@ public class UIManager : MonoBehaviour
     {
         ClearScreen();
         leaderboardUI.SetActive(true);
+    }
+
+    public void ProfileScreen()
+    {
+        ClearScreen();
+        profileUI.SetActive(true);
     }
 }
