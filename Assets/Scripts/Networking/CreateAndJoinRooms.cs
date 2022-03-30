@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System.IO;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public Text create;
 
        private RoomsCanvases roomsCanvases;
+       public CheckForProfanities checker;
    public void FirstInitialize(RoomsCanvases canvases){
        roomsCanvases = canvases;
+       checker = GetComponent<CheckForProfanities>();
    }
 
     public void OnClickCreateRoom()
@@ -22,9 +25,18 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         } 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 2;
-        PhotonNetwork.JoinOrCreateRoom(create.text, options, TypedLobby.Default);
+        if (checker.CheckforProfanities()){
+            Debug.Log("You cannot use profanities in your room name!");
+            StartCoroutine(checker.Popup());
+            return;
+        } else {
+             PhotonNetwork.JoinOrCreateRoom(create.text, options, TypedLobby.Default);
+        }
+      
       
     }
+
+    
 
     public override void OnCreatedRoom()
     {
@@ -39,4 +51,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
           Debug.Log("room creation failed" + message , this);
         
     }
+
+    
 }
