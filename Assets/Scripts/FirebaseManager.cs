@@ -43,6 +43,7 @@ public class FirebaseManager : MonoBehaviour
         public Transform leaderboardContent;
         public bool hasCheckedLogin;
 
+        //Ensures the autentication works when scenes are changed 
         private void Awake()
         {
                 DontDestroyOnLoad(gameObject);
@@ -62,6 +63,25 @@ public class FirebaseManager : MonoBehaviour
                 StartCoroutine(CheckAndFixDependencies());
         }
 
+        // Allows me to call variables and methods from other scripts
+        private static FirebaseManager _singleton;
+        public static FirebaseManager Singleton
+        {
+                get => _singleton;
+                private set
+                {
+                        if (_singleton == null)
+                        {
+                                _singleton = value;
+                        }
+                        else if (_singleton != value)
+                        {
+                                Debug.Log($"{nameof(FirebaseManager)} instance already exists, destroying object!");
+                                Destroy(value.gameObject);
+                }
+    }
+}
+        //checks to ensure all firebase dependencies are installed and throws an error if they are not
         private IEnumerator CheckAndFixDependencies()
         {
                 var checkAndFixDependenciesTask = FirebaseApp.CheckAndFixDependenciesAsync();
@@ -93,11 +113,13 @@ public class FirebaseManager : MonoBehaviour
                 DBref = FirebaseDatabase.DefaultInstance.RootReference;
         }
 
+        // checks if the player is logged in on loading up the game
         private IEnumerator CheckAutoLogin()
         {
                 yield return new WaitForEndOfFrame();
                 if(User != null)
                 {
+                        User = auth.CurrentUser;
                         var reloadUserTask = User.ReloadAsync();
 
                         yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
@@ -106,6 +128,7 @@ public class FirebaseManager : MonoBehaviour
 
         }       
 
+        //checks if the authentication state has changed
         private void AuthStateChanged(object sender, System.EventArgs eventArgs)
         {
                 if(auth.CurrentUser != User)
@@ -126,6 +149,7 @@ public class FirebaseManager : MonoBehaviour
                 }
         }
 
+        // clears the login fields
         public void ClearLoginFields(){
                 emailLoginField.text = "";
                 passwordLoginField.text = "";
@@ -143,6 +167,7 @@ public class FirebaseManager : MonoBehaviour
                 StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
         }
 
+        //Function for the signout button
         public void SignOutButton(){
                 auth.SignOut();
                 UIManager.instance.LoginScreen();
@@ -150,11 +175,13 @@ public class FirebaseManager : MonoBehaviour
                 StartCoroutine(LoadUserData());
         }
 
+        //Function for the Leaderboard Button
         public void LeaderboardButton()
         {
                 StartCoroutine(LoadLeaderboardData());
         }
 
+        //Function for the profile button
         public void ProfileButton()
         {
                 if(User != null)
@@ -163,6 +190,7 @@ public class FirebaseManager : MonoBehaviour
                 }
         }
 
+        //Function that updates the auth data if a user is alogged in
         private void FixedUpdate()
     {
             if(auth != null && hasCheckedLogin == false)
@@ -260,7 +288,7 @@ public class FirebaseManager : MonoBehaviour
                                                 break;
                                         case AuthError.EmailAlreadyInUse:
                                                 registerFail = "Email Already In Use";
-                                                break;                                        
+                                                break;                                      
                                 }
                                 warningRegisterText.text = registerFail;
                         }
@@ -336,6 +364,7 @@ public class FirebaseManager : MonoBehaviour
                 }
     }
 
+        //Function to manually update the number of wins a player has in the database
     private IEnumerator UpdateWins(int _wins) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("wins").SetValueAsync(_wins);
 
@@ -349,6 +378,7 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        //Function to manually update the number of losses a player has in the database
         private IEnumerator UpdateLosses(int _losses) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("losses").SetValueAsync(_losses);
 
@@ -362,6 +392,7 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        //Function to manually update the number of wins a player has in the database
         private IEnumerator UpdateTies(int _ties) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("ties").SetValueAsync(_ties);
 
@@ -375,6 +406,7 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        //Function to load the currently logged in users data from the database
     private IEnumerator LoadUserData () 
     {
             var DBTask = DBref.Child("users").Child(User.UserId).GetValueAsync();
@@ -404,6 +436,7 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+        // Function to increase the number of wins in the database for the current user by 1
     public IEnumerator AddWins(){
             var DBTask = DBref.Child("users").Child(User.UserId).Child("wins").SetValueAsync("wins" + 1);
 
@@ -417,6 +450,7 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        // Function to increase the number of losses in the database for the current user by 1
     public IEnumerator AddLosses(){
             var DBTask = DBref.Child("users").Child(User.UserId).Child("losses").SetValueAsync("losses" + 1);
 
@@ -430,6 +464,7 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        // Function to call all the data in the user database and store it into a game object
     private IEnumerator LoadLeaderboardData()
     {
             var DBTask = DBref.Child("users").OrderByChild("wins").GetValueAsync();
@@ -463,5 +498,4 @@ public class FirebaseManager : MonoBehaviour
                 UIManager.instance.LeaderboardScreen();
             }
     }
-
 }

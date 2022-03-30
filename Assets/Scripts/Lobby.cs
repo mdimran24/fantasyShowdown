@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -286,16 +286,16 @@ namespace GoFish
         {
             nickname = NicknameInputField.text;
             Debug.Log($"OnConfirmNicknameClicked: {nickname}");
-
+            
             if (Debugging)
             {
-                ShowJoinedRoomPopover();
-                ShowReadyToStartUI();
+                    ShowJoinedRoomPopover();
+                    ShowReadyToStartUI();
             }
             else
             {
-				//Use nickname as player custom id to check into SocketWeaver.
-				Checkin();
+				    //Use nickname as player custom id to check into SocketWeaver.
+				    Checkin();
             }
         }
     }
