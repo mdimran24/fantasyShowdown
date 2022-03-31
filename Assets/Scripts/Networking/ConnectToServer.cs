@@ -13,7 +13,11 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = MasterManager.GameSettings.ScreenName;
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
+        if (!PhotonNetwork.IsConnected){
         PhotonNetwork.ConnectUsingSettings();
+        } else {
+            OnJoinedLobby();
+        }
     }
 
     public override void OnConnectedToMaster()
