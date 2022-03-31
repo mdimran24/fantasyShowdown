@@ -705,7 +705,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 174593851}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -3273,6 +3273,7 @@ MonoBehaviour:
   tiesField: {fileID: 0}
   scoreElement: {fileID: 0}
   leaderboardContent: {fileID: 0}
+  hasCheckedLogin: 0
 --- !u!4 &2039057472
 Transform:
   m_ObjectHideFlags: 0

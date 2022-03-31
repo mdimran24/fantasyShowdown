@@ -12,8 +12,12 @@ public class GameSettings : ScriptableObject
 [SerializeField]
 private string _screenName = "Player";
 public string ScreenName{ get {
+  if (!FirebaseManager.isLoggedIn){
     int rndm = Random.Range(0, 99);
     return _screenName + rndm.ToString();
+  } else {
+    return FirebaseManager.YourName;
+  }
      }}
 
 }

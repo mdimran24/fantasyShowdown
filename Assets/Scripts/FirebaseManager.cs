@@ -11,6 +11,9 @@ public class FirebaseManager : MonoBehaviour
 {
         public static FirebaseManager instance;
 
+        public static string YourName;
+        public static bool isLoggedIn;
+
         //Firebase variables
         [Header("Firebase")]
         public DependencyStatus dependencyStatus;
@@ -138,6 +141,8 @@ public class FirebaseManager : MonoBehaviour
                         if(!singedIn && User != null)
                         {
                                 Debug.Log("Signed Out");
+                                isLoggedIn = false;
+                                YourName = "";
                         }
 
                         User = auth.CurrentUser;
@@ -145,6 +150,8 @@ public class FirebaseManager : MonoBehaviour
                         if (singedIn)
                         {
                                 Debug.Log($"Singed In: {User.DisplayName}");
+                                YourName = User.DisplayName;
+                                isLoggedIn = true;
                         }
                 }
         }
