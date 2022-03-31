@@ -38,22 +38,33 @@ public class GameOverScript : MonoBehaviour
             }
         }
 
-
-        if (thisplayer.isWinner)
+          if (thisplayer.isWinner)
         {
-            winConclusion.text = "You won this game! Congrats!";
-            FirebaseManager.wins++;
+            winConclusion.text = "You won this game! Congrats!"; 
         }
         else
         {
             winConclusion.text = "You lost this game. Better luck next time.";
-            FirebaseManager.losses++;
          
         }
+
+       
         winsnum.text = thisplayer.score.ToString();
         lossnum.text = (5 - thisplayer.score).ToString();
         
 
+    }
+
+    public void updatestatsfirst(){
+         if (thisplayer.isWinner)
+        {
+            FirebaseManager.wins++;
+        }
+        else
+        {
+            FirebaseManager.losses++;
+         
+        }
     }
 
     public void BackToLobby()

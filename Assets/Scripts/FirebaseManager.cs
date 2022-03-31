@@ -13,8 +13,8 @@ public class FirebaseManager : MonoBehaviour
 
         public static string YourName;
         public static bool isLoggedIn;
-        public int wins;
-        public int losses;
+       // public int wins;
+      //  public int losses;
 
         public static int wins;
 
@@ -214,6 +214,10 @@ public class FirebaseManager : MonoBehaviour
             }
     }
 
+        public void updateaccountstats(){
+                StartCoroutine(UpdateLosses(losses));
+                StartCoroutine(UpdateWins(wins));
+        }
         // Handles the login authentication
         private IEnumerator Login(string _email, string _password)
         {
@@ -445,9 +449,9 @@ public class FirebaseManager : MonoBehaviour
             
             usernameField.text = snapshot.Child("username").Value.ToString();
             winField.text = snapshot.Child("wins").Value.ToString();
-         //   wins =  (int) snapshot.Child("wins").Value;
+           wins =  int.Parse(snapshot.Child("wins").Value.ToString());
             lossField.text = snapshot.Child("losses").Value.ToString();
-          //  losses = (int) snapshot.Child("losses").Value;
+           losses = int.Parse(snapshot.Child("losses").Value.ToString());
             
            // tiesField.text = snapshot.Child("ties").Value.ToString();
         }
