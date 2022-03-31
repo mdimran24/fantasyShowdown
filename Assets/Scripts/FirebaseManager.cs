@@ -14,6 +14,10 @@ public class FirebaseManager : MonoBehaviour
         public static string YourName;
         public static bool isLoggedIn;
 
+        public static int wins;
+
+        public static int losses;
+
         //Firebase variables
         [Header("Firebase")]
         public DependencyStatus dependencyStatus;
@@ -429,7 +433,7 @@ public class FirebaseManager : MonoBehaviour
             usernameField.text = "Not Logged in";
             winField.text = "0";
             lossField.text = "0";
-            tiesField.text = "0";
+           // tiesField.text = "0";
         }
         else
         {
@@ -438,8 +442,11 @@ public class FirebaseManager : MonoBehaviour
             
             usernameField.text = snapshot.Child("username").Value.ToString();
             winField.text = snapshot.Child("wins").Value.ToString();
+         //   wins =  (int) snapshot.Child("wins").Value;
             lossField.text = snapshot.Child("losses").Value.ToString();
-            tiesField.text = snapshot.Child("ties").Value.ToString();
+          //  losses = (int) snapshot.Child("losses").Value;
+            
+           // tiesField.text = snapshot.Child("ties").Value.ToString();
         }
     }
 
@@ -456,6 +463,10 @@ public class FirebaseManager : MonoBehaviour
 
             }
     }
+
+   // public static void AddWinsstatic(){
+    //         StartCoroutine(AddWins());
+   // }
 
         // Function to increase the number of losses in the database for the current user by 1
     public IEnumerator AddLosses(){
