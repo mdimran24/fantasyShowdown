@@ -42,12 +42,23 @@ public class GameOverScript : MonoBehaviour
         if (thisplayer.isWinner)
         {
             winConclusion.text = "You won this game! Congrats!";
-           // StartCoroutine(FirebaseManager.Singleton.AddWins());
+
+            if(FirebaseManager.Singleton.User != null)
+            {
+                StartCoroutine(FirebaseManager.Singleton.GetWins());
+                StartCoroutine(FirebaseManager.Singleton.UpdateWins(FirebaseManager.Singleton.wins++));
+            }
+            
         }
         else
         {
             winConclusion.text = "You lost this game. Better luck next time.";
-           // StartCoroutine(FirebaseManager.Singleton.AddLosses());
+
+            if(FirebaseManager.Singleton.User != null)
+            {
+                StartCoroutine(FirebaseManager.Singleton.GetLosses());
+                StartCoroutine(FirebaseManager.Singleton.UpdateLosses(FirebaseManager.Singleton.losses++));
+            }
         }
         winsnum.text = thisplayer.score.ToString();
         lossnum.text = (5 - thisplayer.score).ToString();

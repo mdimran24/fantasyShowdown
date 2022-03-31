@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41125792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 41125794}
+  - component: {fileID: 41125793}
+  m_Layer: 0
+  m_Name: Firebase Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &41125793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41125792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b6ce262fa48c148b51526bb37027c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyStatus: 0
+  emailLoginField: {fileID: 0}
+  passwordLoginField: {fileID: 0}
+  warningLoginText: {fileID: 0}
+  confirmLoginText: {fileID: 0}
+  usernameRegisterField: {fileID: 0}
+  emailRegisterField: {fileID: 0}
+  passwordRegisterField: {fileID: 0}
+  passwordRegisterVerifyField: {fileID: 0}
+  warningRegisterText: {fileID: 0}
+  usernameField: {fileID: 0}
+  winField: {fileID: 0}
+  lossField: {fileID: 0}
+  tiesField: {fileID: 0}
+  scoreElement: {fileID: 0}
+  leaderboardContent: {fileID: 0}
+  hasCheckedLogin: 0
+--- !u!4 &41125794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41125792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8642733, y: 3.530034, z: 204.79456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &283328358
 GameObject:
   m_ObjectHideFlags: 0

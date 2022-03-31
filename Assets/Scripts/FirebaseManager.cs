@@ -13,6 +13,8 @@ public class FirebaseManager : MonoBehaviour
 
         public static string YourName;
         public static bool isLoggedIn;
+        public int wins;
+        public int losses;
 
         //Firebase variables
         [Header("Firebase")]
@@ -197,6 +199,7 @@ public class FirebaseManager : MonoBehaviour
                 }
         }
 
+
         //Function that updates the auth data if a user is alogged in
         private void FixedUpdate()
     {
@@ -372,7 +375,7 @@ public class FirebaseManager : MonoBehaviour
     }
 
         //Function to manually update the number of wins a player has in the database
-    private IEnumerator UpdateWins(int _wins) {
+    public IEnumerator UpdateWins(int _wins) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("wins").SetValueAsync(_wins);
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -386,7 +389,7 @@ public class FirebaseManager : MonoBehaviour
     }
 
         //Function to manually update the number of losses a player has in the database
-        private IEnumerator UpdateLosses(int _losses) {
+        public IEnumerator UpdateLosses(int _losses) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("losses").SetValueAsync(_losses);
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -400,7 +403,7 @@ public class FirebaseManager : MonoBehaviour
     }
 
         //Function to manually update the number of wins a player has in the database
-        private IEnumerator UpdateTies(int _ties) {
+        public IEnumerator UpdateTies(int _ties) {
             var DBTask = DBref.Child("users").Child(User.UserId).Child("ties").SetValueAsync(_ties);
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -443,32 +446,50 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+    
+
         // Function to increase the number of wins in the database for the current user by 1
-    public IEnumerator AddWins(){
-            var DBTask = DBref.Child("users").Child(User.UserId).Child("wins").SetValueAsync("wins" + 1);
+    public IEnumerator GetWins(){
+
+            var DBTask = DBref.Child("users").Child(User.UserId).GetValueAsync();
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
-            if (DBTask.Exception != null){
+            if (DBTask.Exception != null)
+            {
                     Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
             }
-            else {
+            else
+            {
+                DataSnapshot snapshot = DBTask.Result;
+
+                wins = int.Parse(snapshot.Child("wins").Value.ToString());
 
             }
+
+           
     }
 
         // Function to increase the number of losses in the database for the current user by 1
-    public IEnumerator AddLosses(){
-            var DBTask = DBref.Child("users").Child(User.UserId).Child("losses").SetValueAsync("losses" + 1);
+    public IEnumerator GetLosses(){
+
+            var DBTask = DBref.Child("users").Child(User.UserId).GetValueAsync();
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
-            if (DBTask.Exception != null){
+            if (DBTask.Exception != null)
+            {
                     Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
             }
-            else {
+            else
+            {
+                DataSnapshot snapshot = DBTask.Result;
+
+                losses = int.Parse(snapshot.Child("losses").Value.ToString());
 
             }
+
+           
     }
 
         // Function to call all the data in the user database and store it into a game object
