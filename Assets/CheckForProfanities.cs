@@ -53,6 +53,7 @@ public class CheckForProfanities : MonoBehaviour
             create.text.ToLower().Contains("penis") ||
             create.text.ToLower().Contains("piss") ||
             create.text.ToLower() == "pussy" ||
+            create.text.ToLower() == "swearword" ||
             create.text.ToLower().Contains("scrotum") ||
             create.text.ToLower().Contains("sex") ||
             create.text.ToLower().Contains("shit") ||
